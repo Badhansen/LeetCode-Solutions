@@ -1,3 +1,5 @@
+// Programming Language Used: C++
+
 class Solution {
 public:
     int maxProfitAssignment(vector<int>& difficulty, vector<int>& profit, vector<int>& worker) {
@@ -37,3 +39,6 @@ public:
         return answer;
     }
 };
+
+// Time Complexity: O(NlogN + PlogP), here N = number of jobs and P = number of people
+// Space Complexity: O(N + P)
