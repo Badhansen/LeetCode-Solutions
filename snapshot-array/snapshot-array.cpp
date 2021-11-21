@@ -2,15 +2,20 @@
 
 class SnapshotArray {
 private:
-    unordered_map<int, int> memo[MAX_SNAP];
+    map<int, map<int, int>> memo;
     int snapIndex;
 public:
     SnapshotArray(int length) {
+        for(int i = 0; i < length; i++){
+            map<int, int> mp;
+            mp[0] = 0;
+            memo[i] = mp;
+        }
         snapIndex = 0;
     }
     
     void set(int index, int val) {
-        memo[snapIndex][index] = val;
+        memo[index][snapIndex] = val;
     }
     
     int snap() {
@@ -19,13 +24,9 @@ public:
     }
     
     int get(int index, int snap_id) {
-        while(snap_id >= 0){
-            if(memo[snap_id].count(index)){
-                return memo[snap_id][index];
-            }
-            snap_id--;
-        }
-        return 0;
+        auto pos = memo[index].upper_bound(snap_id);
+        pos--;
+        return pos->second;
     }
 };
 
