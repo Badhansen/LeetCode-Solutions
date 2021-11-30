@@ -1,104 +1,48 @@
-static auto _ = [](){
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-    return 0;
-}();
-
-class UnionFind {
-private:
-    struct Node {
-        int parent;
-        int rank;
-    };
-    vector<Node> nodes;
-    
-public:
-    UnionFind(int n) : nodes(n) {}
-    
-    void Init(int i) {
-        nodes[i].parent = i;
-    }
-    
-    int FindRoot(int i) {
-        if (nodes[i].parent == i) {
-            return i;
-        }
-        return nodes[i].parent = FindRoot(nodes[i].parent);
-    }
-    
-    void Unify(int i, int j) {
-        i = FindRoot(i);
-        j = FindRoot(j);
-        if (i == j) {
-            return;
-        }
-        if (nodes[i].rank < nodes[j].rank) {
-            nodes[i].parent = j;
-        } else if (nodes[j].rank < nodes[i].rank) {
-            nodes[j].parent = i;
-        } else {
-            nodes[j].parent = i;
-            ++nodes[i].rank;
-        }
-    }
-};
-
-struct Email {
-    static hash<string> hasher;
-    
-    Email(string* str) : s(str) {
-        h = hasher(*s);
-    }
-    
-    string* s;
-    size_t  h;
-};
-
-struct EmailHasher {
-    inline size_t operator()(const Email& email) const {
-        return email.h;
-    }
-};
-
-struct EmailEqual {
-    inline bool operator() (const Email& a, const Email& b) const {
-        return *a.s == *b.s;
-    }
-};
-
 class Solution {
+private:
+    unordered_map<string, bool> visited;
+    unordered_map<string, vector<string>> graph;
 public:
-    vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) {
-        UnionFind union_find(accounts.size());
-        unordered_map<Email, int, EmailHasher, EmailEqual> email_to_acc;
-        for (int i = 0; i < accounts.size(); ++i) {
-            union_find.Init(i);
-            for (int j = 1; j < accounts[i].size(); ++j) {
-                if (auto it = email_to_acc.find(&accounts[i][j]); it != email_to_acc.end()) {
-                    union_find.Unify(it->second, i);
-                } else {
-                    email_to_acc.emplace(&accounts[i][j], i);
-                }
+    void dfs(vector<string>& account, string email){
+        visited[email] = true;
+        account.push_back(email);
+        
+        for(string& node : graph[email]){
+            if(!visited.count(node)){
+                dfs(account, node);
             }
         }
-        unordered_map<int, vector<string*>> result_map;
-        for (auto& [email, acc]: email_to_acc) {
-            int r = union_find.FindRoot(acc);
-            if (auto it = result_map.find(r); it != result_map.end()) {
-                it->second.emplace_back(email.s);
-            } else {
-                result_map[r] = {&accounts[acc][0], email.s};
+    }
+    vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) {
+        string firstEmail, email, name;
+        
+        for(auto &account : accounts){
+            int len = account.size();
+            string firstEmail = account[1], email;
+            
+            for(int i = 2; i < len; i++){
+                email = account[i];
+                graph[firstEmail].push_back(email);
+                graph[email].push_back(firstEmail);
             }
         }
         vector<vector<string>> result;
-        for (auto& [i, emails] : result_map) {
-            auto& row = result.emplace_back();
-            for (int j = 0; j < emails.size(); ++j) {
-                row.emplace_back(move(*emails[j]));
+            
+        for(auto &account : accounts){
+            name = account[0];
+            firstEmail = account[1];
+            
+            if(!visited.count(firstEmail)){
+                vector<string> account;
+                account.push_back(name);
+                
+                dfs(account, firstEmail);
+                
+                sort(account.begin() + 1, account.end());
+                result.push_back(account);
             }
-            sort(row.begin() + 1, row.end());
         }
+        
         return result;
     }
 };
