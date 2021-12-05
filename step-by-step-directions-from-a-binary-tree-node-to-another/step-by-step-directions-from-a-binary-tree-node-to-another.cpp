@@ -9,12 +9,11 @@ public:
         
         if(left && right)
             return root;
-        if(!left)
-            return right;
-        return left;
+        return left ? left : right;
     }
     bool dfs(TreeNode* root, int target, string& path){
-        if(root->val == target) return true;
+        if(root->val == target) 
+            return true;
         if(root->left && dfs(root->left, target, path))
             path.push_back('L');
         else if(root->right && dfs(root->right, target, path))
