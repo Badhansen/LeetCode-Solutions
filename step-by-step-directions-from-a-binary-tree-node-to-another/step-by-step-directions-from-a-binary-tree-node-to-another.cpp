@@ -11,20 +11,25 @@ public:
             return root;
         return left ? left : right;
     }
-    bool dfs(TreeNode* root, int target, string& path){
-        if(root->val == target) 
-            return true;
-        if(root->left && dfs(root->left, target, path))
-            path.push_back('L');
-        else if(root->right && dfs(root->right, target, path))
-            path.push_back('R');
-        return !path.empty();
+    void getPath(TreeNode* root, int target, string& path, string &answer){
+        if(!root) return;
+        if(root->val == target){
+            answer = path;
+            return;
+        }
+        path.push_back('L');
+        getPath(root->left, target, path, answer);
+        path.pop_back();
+        
+        path.push_back('R');
+        getPath(root->right, target, path, answer);
+        path.pop_back();
     }
     string getDirections(TreeNode* root, int startValue, int destValue) {
-        string left, right;
         TreeNode* lca = LCA(root, startValue, destValue);
-        dfs(lca, startValue, left);
-        dfs(lca, destValue, right);
-        return string(left.size(), 'U') + string(right.rbegin(), right.rend());
+        string left, right, path;
+        getPath(lca, startValue, path, left);
+        getPath(lca, destValue, path, right);
+        return string(left.size(), 'U') + right;
     }
 };
