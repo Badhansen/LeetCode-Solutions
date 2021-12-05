@@ -1,33 +1,43 @@
+// @Author: KING-SEN
+// Programming Language Used: C++
+
 class Solution {
 public:
+    int dp[1001][1001];
+    int solve(int x, int y, string& S)
+    {  
+        if(x > y) return 0;
+        int &ret = dp[x][y];
+        if(ret != -1){ 
+            return ret;
+        }
+        if(S[x] == S[y]){
+            ret = max(ret, max(solve(x + 1, y, S), solve(x, y - 1, S)));
+            int val = solve(x + 1, y - 1, S);
+            if(val >= (y - 1) - (x + 1) + 1)
+                ret = 2 - (x == y) + val;
+        }
+        else{
+            ret = max(solve(x + 1, y, S), solve(x, y - 1, S));
+        }
+        return ret;
+    }
     string longestPalindrome(string s) {
-        int n = s.size();
-        bool dp[n + 1][n + 1];
-        memset(dp, false, sizeof dp);
-        int maxLength = 1, startIndex;
+        memset(dp, -1, sizeof dp);
+        int ret = solve(0, s.size() - 1, s);
+        int startIndex;
         
-        for(int i = 0; i < n; i++){
-            dp[i][i] = true;
-        }
-        for(int i = 0; i + 1 < n; i++){
-            if(s[i] == s[i + 1]){
-                dp[i][i + 1] = true;
-                maxLength = 2;
-                startIndex = i;
-            }
-        }
-        for(int l = 3; l <= n; l++){
-            for(int i = 0; i < n - l + 1; i++){
-                int j = i + l - 1;
-                if(dp[i + 1][j - 1] && s[i] == s[j]){
-                    dp[i][j] = true;
-                    if(maxLength < l){
-                        maxLength = l;
-                        startIndex = i;
-                    }
+        for(int i = 0; i < s.size(); i++){
+            for(int j = 0; j < s.size(); j++){
+                if(ret == dp[i][j]){
+                    startIndex = j - ret + 1;
+                    break;
                 }
             }
         }
-        return s.substr(startIndex, maxLength);
+        return s.substr(startIndex, ret);
     }
 };
+
+// Time Complexity: O(N^2), where N is the lenght of the string
+// Space complexity: O(N^2), we used 2d vector array to store the intermediate result
