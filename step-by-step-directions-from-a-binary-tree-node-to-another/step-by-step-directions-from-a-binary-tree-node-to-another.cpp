@@ -14,7 +14,7 @@ private:
     vector<int> graph[100001];
     int parent[100001];
     int level[100001];
-    unordered_map<int, TreeNode*> seen;
+    map<int, TreeNode*> seen;
 public:
     void init(){
         for(int i = 0; i <= 100000; i++){
@@ -22,6 +22,7 @@ public:
             parent[i] = i;
         }
     }
+    
     void solve(TreeNode* root, int pr){
         if(root == NULL) 
             return;
@@ -37,6 +38,7 @@ public:
         solve(root->left, u);
         solve(root->right, u);
     }
+    
     int LCA(int a, int b){
         if(level[a] > level[b])
             swap(a, b);
@@ -68,7 +70,7 @@ public:
     }
     
     string getDirections(TreeNode* root, int startValue, int destValue) {
-        init();
+        //init();
         solve(root, -1);
         dfs(root->val, 0, -1);
         int lca = LCA(startValue, destValue);
