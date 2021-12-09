@@ -1,17 +1,20 @@
 class Solution {
 public:
-    bool rec(vector<int> &v, int pos){
-        if(pos < 0 || pos >= v.size()) 
+    bool rec(vector<int> &arr, int pos){
+        if(pos < 0 || pos >= arr.size()) 
             return false;
-        if(v[pos] == 0) 
+        
+        if(arr[pos] == 0) 
             return true;
-        int jump = v[pos];
-        if(jump > v.size()) 
+        
+        int jump = arr[pos];
+        
+        if(jump > arr.size()) 
             return false;
         
-        v[pos] += 1e8;
+        arr[pos] += 1e8;
         
-        return rec(v, pos + jump) | rec(v, pos - jump);
+        return rec(arr, pos + jump) | rec(arr, pos - jump);
     }
     bool canReach(vector<int>& arr, int start) {
         return rec(arr, start);
