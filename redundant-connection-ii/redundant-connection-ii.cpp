@@ -34,41 +34,30 @@ public:
 
 class Solution {
 public:
-    vector<int> detectCycle(int n, vector<vector<int>> &edges, vector<int> skipList = {}){
-        UnionFind root(n);
-        for(auto &edge : edges){
-            if(edge == skipList) 
-                continue;
-            if(!root.Union(edge[0], edge[1])){
-                return edge;
-            }
-        }
-        return {-1, -1};
-    }
     vector<int> findRedundantDirectedConnection(vector<vector<int>>& edges) {
         int len = edges.size();
-        vector<int> inDegree(len + 1, 0);
-        int has2InDegree = -1;
+        UnionFind root(len);
+        vector<int> ans1, ans2;
+        unordered_map<int, int> seen;
         
         for(auto &edge : edges){
-            inDegree[edge[1]]++;
-            
-            if(inDegree[edge[1]] == 2){
-                has2InDegree = edge[1];
+            if(seen[edge[1]] > 0){
+                ans1.push_back(seen[edge[1]]);
+                ans1.push_back(edge[1]);
+                ans2 = edge;
                 break;
             }
+            seen[edge[1]] = edge[0];
         }
         
-        if(has2InDegree == -1){
-            return detectCycle(len, edges);
+        for(auto &edge : edges){
+            if(ans2 == edge)
+                continue;
+            if(!root.Union(edge[0], edge[1]))
+                return ans1.size() == 0 ? edge : ans1;
         }
-        for(int i = len - 1; i >= 0; i--){
-            if(edges[i][1] == has2InDegree){
-                if(detectCycle(len, edges, edges[i])[0] == -1)
-                    return edges[i];
-            }
-        }
-        return {};
+        
+        return ans2;
     }
 };
 
