@@ -1,3 +1,6 @@
+// @Author: KING-SEN
+// Programming Language Used: C++
+
 class UnionFind{
 private:
     vector<int> parent, rank;
@@ -68,3 +71,7 @@ public:
         return {};
     }
 };
+
+// Here, assume that, N = Number of Nodes
+// Time Complexity: O(N * IN(N)) ~ O(N)
+// Space Complexity: O(N), The current construction of the graph has at most N nodes.
