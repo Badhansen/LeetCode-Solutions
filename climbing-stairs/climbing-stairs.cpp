@@ -1,17 +1,17 @@
 class Solution {
+private:
+    vector<int> dp;
 public:
     int climbStairs(int n) {
-        if(n == 1) 
-            return n;
-        int first = 1, second = 1, third;
+        dp.resize(n + 1, 0);
+        dp[0] = 1;
+        dp[1] = 1;
         for(int i = 2; i <= n; i++){
-            third = first + second;
-            first = second;
-            second = third;
+            dp[i] = dp[i - 1] + dp[i - 2];
         }
-        return third;
+        return dp[n];
     }
 };
 // Assume that N = number of elements
 // Time Complexity: O(N)
-// Space Complexity: O(1)
+// Space Complexity: O(N)
