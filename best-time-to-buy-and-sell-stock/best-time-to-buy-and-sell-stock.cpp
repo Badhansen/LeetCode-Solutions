@@ -4,27 +4,21 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int length = prices.size();
-        vector<int> dp(length, 0);
-        
-        dp[length - 1] = prices[length - 1];
-        
-        for(int i = length - 2; i >= 0; i--){
-            dp[i] = max(dp[i + 1], prices[i]);
+        int len = prices.size();
+        int maxProfit = 0;
+        int minPrice = INT_MAX;
+        for(int i = 0; i < len; i++){
+            if(prices[i] < minPrice)
+                minPrice = prices[i];
+            else if(prices[i] - minPrice)
+                maxProfit = max(maxProfit, prices[i] - minPrice);
         }
-        
-        int answer = 0;
-        
-        for(int i = 0; i < length; i++){
-            answer = max(answer, dp[i] - prices[i]);
-        }
-        
-        return answer;
+        return maxProfit;
     }
 };
 
 // Time complexity: O(N), where N is the length of the array
-// Space complexity: O(N), to store the dp result
+// Space complexity: O(1), only using constant space
 
 
 
