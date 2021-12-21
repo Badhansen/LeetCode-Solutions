@@ -11,21 +11,20 @@
  */
 class Solution {
 public:
-    bool isSubtree(TreeNode* s, TreeNode* t) {
-        
-        if(!s) return false;
-        if (isSame(s,t)) return true;
-        
-        return isSubtree(s->left,t) || isSubtree(s->right,t);
-        
+    bool dfs(TreeNode* a, TreeNode* b){
+        if(!a && !b)
+            return true;
+        if(!a || !b)
+            return false;
+        if(a->val != b->val)
+            return false;
+        return dfs(a->left, b->left) && dfs(a->right, b->right);
     }
-    bool isSame(TreeNode *s, TreeNode *t)
-    {
-        if (!s && !t) return true;
-        if (!s || !t) return false;
-        if (s->val != t->val) return false;
-        
-        return isSame(s->left, t->left) && isSame(s->right, t->right);
-        
+    bool isSubtree(TreeNode* root, TreeNode* subRoot) {
+        if(!root)
+            return false;
+        if(dfs(root, subRoot))
+            return true;
+        return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
     }
 };
