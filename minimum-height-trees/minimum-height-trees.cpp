@@ -1,41 +1,69 @@
 class Solution {
 private:
     vector<vector<int>> graph;
-    vector<int> inDegree;
 public:
-    vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
-        graph.resize(n);
-        inDegree.resize(n, 0);
-        for(int i = 0; i < edges.size(); i++){
-            graph[edges[i][0]].push_back(edges[i][1]);
-            graph[edges[i][1]].push_back(edges[i][0]);
-            
-            inDegree[edges[i][0]]++;
-            inDegree[edges[i][1]]++;
-        }
-        
-        vector<int> leaves;
-        for(int i = 0; i < n; i++){
-            if(inDegree[i] <= 1)
-                leaves.push_back(i);
-        }
-        
-        int lCount = leaves.size();
-        
-        while(lCount < n){
-            vector<int> newLeaves;
-            for(auto &l : leaves){
-                for(auto &g : graph[l]){
-                    inDegree[g]--;
-                    if(inDegree[g] == 1)
-                        newLeaves.push_back(g);
+    int bfs(int src, int n){
+        vector<int> dis(n, 0);
+        vector<int> vis(n, 0);
+        queue<int> q;
+        q.push(src);
+        while(!q.empty()){
+            int curr = q.front();
+            q.pop();
+            vis[curr] = 1;
+            for(int v : graph[curr]){
+                if(vis[v] == 0){
+                    dis[v] = dis[curr] + 1;
+                    q.push(v);
                 }
             }
-            
-            lCount += newLeaves.size();
-            leaves = newLeaves;
         }
-        
-        return leaves;
+        int maxDis = INT_MIN, vertex;
+        for(int i = 0; i < n; i++){
+            if(dis[i] > maxDis){
+                maxDis = dis[i];
+                vertex = i;
+            }
+        }
+        return vertex;
+    }
+    vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
+        graph.resize(n);
+        for(auto &e : edges){
+            graph[e[0]].push_back(e[1]);
+            graph[e[1]].push_back(e[0]);
+        }
+        int start = bfs(0, n);
+        int end = bfs(start, n);
+        vector<int> parent(n);
+        vector<int> vis(n, 0);
+        queue<int> q;
+        parent[start] = -1;
+        q.push(start);
+        while(!q.empty()){
+            int curr = q.front();
+            q.pop();
+            vis[curr] = 1;
+            for(int v : graph[curr]){
+                if(vis[v] == 0){
+                    parent[v] = curr;
+                    q.push(v);
+                }
+            }
+        }
+        vector<int> path;
+        while(end != -1){
+            path.push_back(end);
+            end = parent[end];
+        }
+        if(path.size() & 1){
+            return {path[path.size() / 2]};
+        }
+        else{
+            return {path[path.size() / 2], path[path.size() / 2 - 1]};
+        }
     }
 };
+
+// Time Complexity: O(N), only 2 DFS calls is made each requiring O(N) time.
+// Space Complexity: O(N)
