@@ -17,26 +17,21 @@ public:
 */
 
 class Solution {
-private:
-    vector<vector<Node*>> view;    
 public:
-    void solve(Node* root, int level){
-        if(root == NULL)
-            return;
-        if(level == view.size())
-            view.push_back({});
-        view[level].push_back(root);
-        solve(root->left, level + 1);
-        solve(root->right, level + 1);
+    Node* NodeConnect(Node* root){
+        if(!root)
+            return root;
+        if(root->left){
+            root->left->next = root->right;
+        }
+        if(root->next && root->right){
+            root->right->next = root->next->left;
+        }
+        root->left = NodeConnect(root->left);
+        root->right = NodeConnect(root->right);
+        return root;
     }
     Node* connect(Node* root) {
-        solve(root, 0);
-        int len = view.size();
-        for(int i = 0; i < len; i++){
-            for(int j = 1; j < view[i].size(); j++){
-                view[i][j - 1]->next = view[i][j];
-            }
-        }
-        return root;
+        return NodeConnect(root);
     }
 };
