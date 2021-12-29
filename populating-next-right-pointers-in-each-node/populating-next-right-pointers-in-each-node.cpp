@@ -18,20 +18,20 @@ public:
 
 class Solution {
 public:
-    Node* NodeConnect(Node* root){
+    void NodeConnect(Node* root){
         if(!root)
-            return root;
+            return;
         if(root->left){
             root->left->next = root->right;
         }
         if(root->next && root->right){
             root->right->next = root->next->left;
         }
-        root->left = NodeConnect(root->left);
-        root->right = NodeConnect(root->right);
-        return root;
+        NodeConnect(root->left);
+        NodeConnect(root->right);
     }
     Node* connect(Node* root) {
-        return NodeConnect(root);
+        NodeConnect(root);
+        return root;
     }
 };
