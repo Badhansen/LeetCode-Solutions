@@ -10,8 +10,6 @@
  * };
  */
 class Solution {
-private:
-    int ans, minVal, maxVal;
 public:
     int dfs(TreeNode* root, int minVal, int maxVal){
         if(root == NULL)
