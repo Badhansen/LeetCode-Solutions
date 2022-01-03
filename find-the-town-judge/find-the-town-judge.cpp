@@ -1,13 +1,16 @@
 class Solution {
 public:
     int findJudge(int N, vector<vector<int>>& trust) {
-        int arr[10001] = {0};
-        for(auto const &x : trust){
-            arr[x[0]]--;
-            arr[x[1]]++;
+        map<int, int> count;
+        for(auto &num : trust){
+            count[num[0]]--;
+            count[num[1]]++;
         }
-        for(int i = 1; i <= N; i++){
-            if(arr[i] == N - 1) return i;
+        if(N == 1)
+            return 1;
+        for(auto &[key, val] : count){
+            if(val == N - 1)
+                return key;
         }
         return -1;
     }
