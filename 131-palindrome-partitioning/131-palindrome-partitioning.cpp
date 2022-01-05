@@ -12,7 +12,7 @@ public:
         for(int end = start; end < s.size(); end++){
             if(s[start] == s[end] && (end - start <= 2 || dp[start + 1][end - 1])){
                 dp[start][end] = true;
-                res.push_back(s.substr(start, end - start + 1));
+                res.emplace_back(s.substr(start, end - start + 1));
                 dfs(s, end + 1, res);
                 res.pop_back();
             }
