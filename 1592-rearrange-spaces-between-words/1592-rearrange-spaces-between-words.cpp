@@ -1,43 +1,31 @@
 class Solution {
 public:
     string reorderSpaces(string text) {
+        int spaces = 0;
+        string word, ans;
         vector<string> words;
-        
-        stringstream ss;
-        ss << text;
-        string word;
-        
-        while(ss >> word){
-            words.push_back(word);
-        }
-        
-        int spaceCount = 0;
-        
-        for(auto &c : text){
-            if(c == ' ') spaceCount++;
-        }
-        
-        int wordCount = words.size();
-        int space = wordCount > 1 ? spaceCount / (wordCount - 1) : spaceCount;
-        
-        string answer;
-        
-        for(auto &w : words){
-            if(answer.empty()){
-                answer.append(w);
+        for(auto &ch : text){
+            if(ch == ' '){
+                spaces++;
+                if(!word.empty()){
+                    words.push_back(word);
+                }
+                word = "";
             }
             else{
-                answer.append(string(space, ' '));
-                answer.append(w);
+                word.push_back(ch);
             }
         }
-        if(wordCount == 1){
-            answer.append(string(space, ' '));
+        if(!word.empty()){
+            words.push_back(word);
         }
-        else if(wordCount > 1 && spaceCount % (wordCount - 1)){
-            answer.append(string(spaceCount % (wordCount - 1), ' '));
+        if(words.size() == 1){
+            return words.back() + string(spaces, ' ');
         }
-        
-        return answer;
-    }
+        int gap = spaces / (words.size() - 1), rem = spaces % (words.size() - 1);
+        for(auto &w : words){
+            ans.append(w + string(gap, ' '));
+        }
+        return ans.substr(0, ans.size() - gap) + string(rem, ' ');
+    } 
 };
