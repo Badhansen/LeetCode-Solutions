@@ -11,15 +11,12 @@
  */
 class Solution {
 public:
-    void solve(TreeNode* root, int parent, int gParent, int& ans){
-        if(!root) return;
-        if(gParent) ans += root->val;
-        solve(root->left, !(root->val & 1), parent, ans);
-        solve(root->right, !(root->val & 1), parent, ans);
+    int solve(TreeNode* root, int parent, int gParent){
+        if(!root) return 0;
+        return solve(root->left, !(root->val & 1), parent) +
+            solve(root->right, !(root->val & 1), parent) + (gParent & 1 ? root->val : 0);
     }
     int sumEvenGrandparent(TreeNode* root) {
-        int ans = 0;
-        solve(root, 0, 0, ans);
-        return ans;
+        return solve(root, 0, 0);
     }
 };
