@@ -19,7 +19,8 @@ public:
     }
     int deleteAndEarn(vector<int>& nums) {
         count.resize(MAX, 0);
-        dp.resize(MAX, -1);        
+        dp.resize(MAX, -1);  
+        
         for(auto &n : nums){
             count[n]++;
         }
