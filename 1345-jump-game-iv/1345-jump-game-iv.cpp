@@ -1,6 +1,6 @@
 class Solution {
 private:
-    unordered_map<int, set<int>> graph;
+    map<int, set<int>> graph;
     vector<bool> vis;
 public:
     int minJumps(vector<int>& arr) {
