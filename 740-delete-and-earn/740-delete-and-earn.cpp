@@ -1,4 +1,4 @@
-#define MAX 200005
+#define MAX 10005
 
 class Solution {
 private:
