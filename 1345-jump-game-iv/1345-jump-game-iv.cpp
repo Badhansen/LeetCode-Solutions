@@ -16,10 +16,9 @@ public:
             vector<int> nxt;
             for(auto &u : curr){
                 if(u == len - 1) return ans;
-                vector<int> path(graph[arr[u]].begin(), graph[arr[u]].end());
-                path.push_back(u - 1);
-                path.push_back(u + 1);
-                for(auto &v : path){
+                graph[arr[u]].insert(u - 1);
+                graph[arr[u]].insert(u + 1);
+                for(auto &v : graph[arr[u]]){
                     if(v > 0 && u < len && !vis[v]){
                         vis[v] = true;
                         nxt.push_back(v);
