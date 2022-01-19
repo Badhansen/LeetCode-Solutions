@@ -18,7 +18,7 @@ public:
     }
     int maxProfit(vector<int>& prices) {
         int len = prices.size();
-        dp.resize(len + 1, vector<int>(3, -1));
+        dp.resize(len + 1, vector<int>(2, -1));
         return solve(0, 0, prices);
     }
 };
