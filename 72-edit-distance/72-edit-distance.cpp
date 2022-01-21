@@ -1,30 +1,24 @@
 class Solution {
+private:
+    vector<vector<int>> dp;
 public:
-    int rec(string &a, string &b){
-        int n = a.size(), m = b.size();
-        int dp[n + 1][m + 1];
-        int result = 0; 
-        for(int i = 0; i <= n; i++){
-            dp[i][0] = i;
+    int solve(int i, int j, string &a, string &b){
+        if(i == a.size()) return b.size() - j;
+        if(j == b.size()) return a.size() - i;
+        int &ret = dp[i][j];
+        if(ret != -1) return ret;
+        if(a[i] != b[j]){
+            int insert = solve(i, j + 1, a, b);
+            int remove = solve(i + 1, j, a, b);
+            int replace = solve(i + 1, j + 1, a, b);
+            ret = min({insert, remove, replace}) + 1;
         }
-        for(int i = 0; i <= m; i++){
-            dp[0][i] = i; 
-        }
-        for(int i = 1; i <= n; i++){
-            for(int j = 1;  j <= m; j++){
-                if(a[i - 1] == b[j - 1]){
-                    dp[i][j] = dp[i - 1][j - 1];
-                }
-                else{
-                    dp[i][j] = min({dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]}) + 1;
-                }
-                    
-            }
-        }
-        return dp[n][m];
+        else ret = solve(i + 1, j + 1, a, b);
+        return ret;
     }
     int minDistance(string word1, string word2) {
-        int ret = rec(word1, word2);
-        return ret;
+        int len1 = word1.size(), len2 = word2.size();
+        dp.resize(len1 + 1, vector<int> (len2 + 1, -1));
+        return solve(0, 0, word1, word2);
     }
 };
