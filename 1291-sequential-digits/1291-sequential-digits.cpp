@@ -1,24 +1,19 @@
 class Solution {
 public:
     vector<int> sequentialDigits(int low, int high) {
+        string res = "123456789";
         vector<int> ans;
-        queue<int> qt;
-        for(int i = 1; i <= 9; i++){
-            qt.push(i);
-        }
-        while(!qt.empty()){
-            int num = qt.front();
-            qt.pop();
-            if(num >= low && num <= high){
-                ans.push_back(num);
-            }
-            if(num > high) break;
-            int rem = num % 10;
-            if(rem < 9){
-                qt.push(num * 10 + (rem + 1));
+        int lowLen = to_string(low).size();
+        int highLen = to_string(high).size();
+        for(int len = lowLen; len <= highLen; len++){
+            for(int st = 0; st < 10 - len; st++){
+                string nRes = res.substr(st, len);
+                int num = stoi(nRes);
+                if(num >= low && num <= high){
+                    ans.push_back(num);
+                }
             }
         }
-        sort(ans.begin(), ans.end());
         return ans;
     }
 };
