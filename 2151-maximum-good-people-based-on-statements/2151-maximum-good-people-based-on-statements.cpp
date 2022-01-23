@@ -6,9 +6,11 @@ public:
         for(int t = 0; t < total; t++){
             bool flag = true;
             for(int i = 0; i < len && flag; i++){
-                if(t >> i & 1){
+                bool ok = t & (1 << i);
+                if(ok){
                     for(int j = 0; j < len; j++){
-                        if(statements[i][j] != 2 && statements[i][j] != (t >> j & 1)){
+                        bool mask = t & (1 << j);
+                        if(statements[i][j] != 2 && statements[i][j] != mask){
                             flag = false;
                             break;
                         }
