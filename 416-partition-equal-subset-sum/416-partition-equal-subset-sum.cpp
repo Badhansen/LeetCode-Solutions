@@ -24,10 +24,11 @@ public:
         for(auto &num : nums){
             target += num;
         }
-        dp.resize(target + 1, -1);
-        if(target & 1) 
+        if(target & 1){
             return false;
+        }
         target /= 2;
+        dp.resize(target + 1, -1);
         return solve(0, target, nums);
     }
 };
