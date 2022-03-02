@@ -1,40 +1,29 @@
 class Solution {
+private:
+    int result, len, k;
 public:
-    bool dfs(int pos, int target, vector<int>& jobs, vector<int>& worker){
-        if(pos == jobs.size()){
-            return true;
+    void dfs(int pos, vector<int>& jobs, vector<int>& count){
+        if(pos == len){
+            result = min(result, *max_element(count.begin(), count.end()));
+            return;
         }
-        for(int i = 0; i < worker.size(); i++){
-            if(worker[i] + jobs[pos] <= target){
-                worker[i] += jobs[pos];
-                if(dfs(pos + 1, target, jobs, worker)){
-                    return true;
-                }
-                worker[i] -= jobs[pos];
+        for(int i = 0; i < k; i++){
+            if(count[i] + jobs[pos] < result){
+                count[i] += jobs[pos];
+                dfs(pos + 1, jobs, count);
+                count[i] -= jobs[pos];
             }
-            if(worker[i] == 0){
+            if(count[i] == 0){
                 break;
             }
         }
-        return false;
     }
     int minimumTimeRequired(vector<int>& jobs, int k) {
-        int len = jobs.size();
-        int answer, low, high;
+        len = jobs.size(), this->k = k;
         sort(jobs.begin(), jobs.end(), greater<int>());
-        low = answer = jobs[0];
-        high = accumulate(jobs.begin(), jobs.end(), 0);
-        while(low <= high){
-            int mid = (low + high) / 2;
-            vector<int> worker(k);
-            if(dfs(0, mid, jobs, worker)){
-                answer = mid;
-                high = mid - 1;
-            }
-            else{
-                low = mid + 1;
-            }
-        }
-        return answer;
+        result = accumulate(jobs.begin(), jobs.end(), 0);
+        vector<int> count(k, 0);
+        dfs(0, jobs, count);
+        return result;
     }
 };
