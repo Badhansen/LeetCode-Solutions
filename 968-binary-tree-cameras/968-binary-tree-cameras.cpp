@@ -23,30 +23,29 @@
 class Solution {
 private:
     int camera;
-    enum Camera{
-        HAS_CAMERA,
-        COVERED,
-        PLEASE_COVER,
-    };
+    unordered_map<TreeNode*, bool> covered;
 public:
-    Camera dfs(TreeNode* root){
+    void dfs(TreeNode* root, TreeNode* parent){
         if(root == NULL){
-            return Camera::COVERED;
+            return;
         }
-        Camera left = dfs(root->left);
-        Camera right = dfs(root->right);
-        if(left == Camera::PLEASE_COVER || right == Camera::PLEASE_COVER){
+        dfs(root->left, root);
+        dfs(root->right, root);
+        if(parent == NULL && !covered.count(root) ||
+                             !covered.count(root->left) ||
+                             !covered.count(root->right)){
             camera++;
-            return Camera::HAS_CAMERA;
+            covered[root] = true;
+            covered[parent] = true;
+            covered[root->left] = true;
+            covered[root->right] = true;
         }
-        if(left == Camera::HAS_CAMERA || right == Camera::HAS_CAMERA){
-            return Camera::COVERED;
-        }
-        return Camera::PLEASE_COVER;
     }
     int minCameraCover(TreeNode* root) {
         camera = 0;
-        return dfs(root) == Camera::PLEASE_COVER ? ++camera : camera;
+        covered[NULL] = true;
+        dfs(root, NULL);
+        return camera;
     }
 };
 /*
