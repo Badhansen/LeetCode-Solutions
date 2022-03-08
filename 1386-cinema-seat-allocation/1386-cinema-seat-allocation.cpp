@@ -1,5 +1,5 @@
 //@Author: KING-SEN
-
+/*
 class Solution {
 private:
     map<int, set<int>> seat;
@@ -29,5 +29,28 @@ public:
             }
         }
         return ans;
+    }
+};
+*/
+
+//@Author: KING-SEN
+
+class Solution {
+public:
+    int maxNumberOfFamilies(int n, vector<vector<int>>& reservedSeats) {
+        unordered_map<int, int> seat;
+        for(auto &s : reservedSeats){
+            seat[s[0]] = seat[s[0]] | (1 << (s[1] - 1));
+        }
+        int res = 0;
+        for(auto &[key, b] : seat){
+            if(!(b & 0b0111111110)){
+                res += 2;
+            }
+            else if(!(b & 0b0111100000) || !(b & 0b0000011110) || !(b & 0b0001111000)){
+                res++;
+            }
+        }
+        return res + (n - seat.size()) * 2;
     }
 };
