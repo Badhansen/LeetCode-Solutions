@@ -3,42 +3,30 @@
 class Solution {
 public:
     string longestDiverseString(int a, int b, int c) {
-        priority_queue<pair<int, char>> qt;
-        if(a != 0){
-            qt.push({a, 'a'});
-        }
-        if(b != 0){
-            qt.push({b, 'b'});
-        }
-        if(c != 0){
-            qt.push({c, 'c'});
-        }
+        int size = a + b + c;
+        int countA = 0, countB = 0, countC = 0;
         string ans;
-        int size = 0;
-        while(!qt.empty()){
-            auto top = qt.top();
-            qt.pop();
-            if(size > 1 && ans[size - 1] == top.second && ans[size - 2] == top.second){
-                if(qt.empty()){
-                    return ans;
-                }
-                auto temp = qt.top();
-                qt.pop();
-                ans.push_back(temp.second);
-                size++;
-                temp.first--;
-                if(temp.first > 0){
-                    qt.push(temp);
-                }
-                qt.push(top);
+        for(int i = 0; i < size; i++){
+            if((a >= b && a >= c && countA != 2) || (countB == 2 && a > 0) || (countC == 2 && a > 0)){
+                ans.push_back('a');
+                a--;
+                countA++;
+                countB = 0;
+                countC = 0;
             }
-            else{
-                ans.push_back(top.second);
-                size++;
-                top.first--;
-                if(top.first > 0){
-                    qt.push(top);
-                }
+            else if((b >= a && b >= c && countB != 2) || (countA == 2 && b > 0) || (countC == 2 && b > 0)){
+                ans.push_back('b');
+                b--;
+                countB++;
+                countA = 0;
+                countC = 0;
+            }
+            else if((c >= a && c >= b && countC != 2) || (countA == 2 && c > 0) || (countB == 2 && c > 0)){
+                ans.push_back('c');
+                c--;
+                countC++;
+                countA = 0;
+                countB = 0;
             }
         }
         return ans;
