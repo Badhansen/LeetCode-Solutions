@@ -29,6 +29,9 @@ public:
         head->next = tail;
         tail->prev = head;
     }
+    ~LRUCache(){
+        cache.clear();
+    }
     void remove(Node* currNode){
         Node* nextNode = currNode->next;
         Node* prevNode = currNode->prev;
