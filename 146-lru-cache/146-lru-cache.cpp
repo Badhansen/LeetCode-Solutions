@@ -1,19 +1,11 @@
 class Node{
-private:
-    int key, value;
 public:
+    int key, value;
     Node* next, *prev;
-    
     Node(int key, int value){
         this->key = key;
         this->value = value;
         next = prev = NULL;
-    }
-    int getValue(){
-        return value;
-    }
-    int getKey(){
-        return key;
     }
 };
 class LRUCache {
@@ -37,7 +29,7 @@ public:
         Node* prevNode = currNode->prev;
         nextNode->prev = prevNode;
         prevNode->next = nextNode;
-        cache.erase(currNode->getKey());
+        cache.erase(currNode->key);
     }
     void add(Node* currNode){
         Node* nextNode = head->next;
@@ -45,14 +37,14 @@ public:
         currNode->next = nextNode;
         currNode->prev = head;
         head->next = currNode;
-        cache[currNode->getKey()] = currNode;
+        cache[currNode->key] = currNode;
     }
     int get(int key) {
         if(cache.find(key) != cache.end()){
             Node* currNode = cache[key];
             remove(currNode);
             add(currNode);
-            return currNode->getValue();
+            return currNode->value;
         }
         else{
             return -1;
