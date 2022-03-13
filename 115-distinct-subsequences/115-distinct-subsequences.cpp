@@ -1,32 +1,28 @@
 class Solution {
+private:
+    vector<vector<int>> dp;
 public:
-    
-    int dp[1007][1007];
-    int solve(int i,int j, string &s, string &t)
-    {
-        if(j==t.size()) return 1;
-        
-        if(i==s.size())
-        {
-            return(j==t.size());
+    int solve(int sid, int tid, string& s, string& t){
+        if(sid == s.size()){
+            return tid == t.size();
         }
-        
-        int &ret = dp[i][j];
-        
-        if(ret!=-1) return ret;
-        
-        int x = 0 , y = 0;
-        if(s[i]==t[j])
-            x = solve(i+1,j+1,s,t);
-        y = solve(i+1,j,s,t);
-        
-        ret = x+y;
-        return ret;
-        
+        if(tid == t.size()){
+            return 1;
+        }
+        int &ret = dp[sid][tid];
+        if(ret != -1){
+            return ret;
+        }
+        int include = 0, exclude = 0;
+        if(s[sid] == t[tid]){
+            include = solve(sid + 1, tid + 1, s, t);
+        }
+        exclude = solve(sid + 1, tid, s, t);
+        return ret = include + exclude;
     }
     
     int numDistinct(string s, string t) {
-        memset(dp,-1,sizeof(dp));
-        return solve(0,0,s,t);
+        dp.resize(s.size(), vector<int>(t.size(), -1));
+        return solve(0, 0, s, t);
     }
 };
