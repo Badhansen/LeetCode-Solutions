@@ -45,3 +45,59 @@ public:
     }
 };
 
+/*
+class Solution {
+public:
+    int numDistinct(string s, string t) {
+        int m = t.size();
+        int n = s.size();
+        vector<vector<unsigned int>> dp(m + 1, vector<unsigned int>(n + 1));
+        
+        for (int j = 0; j <= n; j++){
+            dp[0][j] = 1;
+        }
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+				if (t[i - 1] == s[j - 1]) {
+                    dp[i][j] = dp[i - 1][j - 1] + dp[i][j - 1];
+                }
+                else {
+                    dp[i][j] = dp[i][j - 1];
+                }
+            }
+        }
+        return dp[m][n];
+    }
+};
+*/
+
+/*
+class Solution {
+private:
+    vector<vector<int>> dp;
+public:
+    int solve(int sid, int tid, string& s, string& t){
+        if(sid == s.size()){
+            return tid == t.size();
+        }
+        if(tid == t.size()){
+            return 1;
+        }
+        int &ret = dp[sid][tid];
+        if(ret != -1){
+            return ret;
+        }
+        int include = 0, exclude = 0;
+        if(s[sid] == t[tid]){
+            include = solve(sid + 1, tid + 1, s, t);
+        }
+        exclude = solve(sid + 1, tid, s, t);
+        return ret = include + exclude;
+    }
+    
+    int numDistinct(string s, string t) {
+        dp.resize(s.size(), vector<int>(t.size(), -1));
+        return solve(0, 0, s, t);
+    }
+};
+*/
