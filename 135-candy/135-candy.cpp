@@ -1,27 +1,23 @@
 class Solution {
 public:
     int candy(vector<int>& ratings) {
-        int len = ratings.size(), answer = 0;
-        vector<pair<int, int>> order;
+        int len = ratings.size();
         vector<int> candy(len, 1);
-        for(int i = 0; i < len; i++){
-            order.push_back({ratings[i], i});
-        }
-        sort(order.begin(), order.end());
-        for(int i = 0; i < len; i++){
-            int rating = order[i].first, id = order[i].second;
-            int c = candy[id];
-            if(id - 1 >= 0 && ratings[id - 1] < ratings[id]){
-                c = max(c, candy[id - 1] + 1);
+        for(int i = 0; i < len - 1; i++){
+            if(ratings[i] < ratings[i + 1]){
+                candy[i + 1] = candy[i] + 1;
             }
-            if(id + 1 < len && ratings[id + 1] < ratings[id]){
-                c = max(c, candy[id + 1] + 1);
+        }
+        for(int i = len - 1; i > 0; i--){
+            if(ratings[i - 1] > ratings[i]){
+                candy[i - 1] = max(candy[i - 1], candy[i] + 1);
             }
-            candy[id] = c;
         }
-        for(int i = 0; i < len; i++){
-            answer += candy[i];
+        int ans = 0;
+        for(auto el : candy){
+            ans += el;
         }
-        return answer;
+        
+        return ans;
     }
 };
