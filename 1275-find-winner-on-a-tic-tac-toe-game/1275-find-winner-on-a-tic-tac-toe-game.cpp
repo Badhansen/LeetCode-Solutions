@@ -3,25 +3,25 @@
 class Solution {
 public:
     string tictactoe(vector<vector<int>>& moves) {
-        vector<vector<int>> grid(3, vector<int>(3, 2));
-        int player = 1;
+        int player = 1, n = 3;
+        vector<int> rows(n, 0), cols(n, 0);
+        int diag = 0, antiDiag = 0;
         for(auto m : moves){
-            grid[m[0]][m[1]] = player;
-            player = !player;
-        }
-        for(int i = 0; i < 3; i++){
-            if((grid[0][i] == 1 && grid[1][i] == 1 && grid[2][i] == 1) || (grid[i][0] == 1 && grid[i][1] == 1 && grid[i][2] == 1)){
-                return "A";
+            int row = m[0];
+            int col = m[1];
+            rows[row] += player;
+            cols[col] += player;
+            if(row == col){
+                diag += player;
             }
-            if((grid[i][0] == 0 && grid[i][1] == 0 && grid[i][2] == 0) || (grid[0][i] == 0 && grid[1][i] == 0 && grid[2][i] == 0)){
-                return "B";
+            if(row + col == n - 1){
+                antiDiag += player;
             }
-        }
-        if((grid[0][0] == 1 && grid[1][1] == 1 && grid[2][2] == 1) || (grid[0][2] == 1 && grid[1][1] == 1 && grid[2][0] == 1)){
-            return "A";
-        }
-        if((grid[0][0] == 0 && grid[1][1] == 0 && grid[2][2] == 0) || (grid[0][2] == 0 && grid[1][1] == 0 && grid[2][0] == 0)){
-            return "B";
+            if(abs(rows[row]) == n || abs(cols[col]) == n ||
+              abs(diag) == n || abs(antiDiag) == n){
+                return player == 1 ? "A" : "B";
+            }
+            player *= -1;
         }
         if(moves.size() < 9){
             return "Pending";
