@@ -12,12 +12,14 @@ public:
             return ret;
         }
         if(S[x] == S[y]){
+            ret = max(ret, max(solve(x + 1, y, S), solve(x, y - 1, S)));
             int val = solve(x + 1, y - 1, S);
-            if(val >= (y - 1) - (x + 1) + 1){
+            if(val >= (y - 1) - (x + 1) + 1)
                 ret = 2 - (x == y) + val;
-            }
         }
-        ret = max({ret, solve(x + 1, y, S), solve(x, y - 1, S)});
+        else{
+            ret = max(solve(x + 1, y, S), solve(x, y - 1, S));
+        }
         return ret;
     }
     string longestPalindrome(string s) {
