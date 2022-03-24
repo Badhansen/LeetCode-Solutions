@@ -22,7 +22,7 @@ public:
         memset(dp, -1, sizeof dp); 
         int start, end, maxx = 0;
         for(int i = 0; i < s.size(); i++){
-            for(int j = s.size() - 1; j >= i; j--){
+            for(int j = s.size() - 1; j >= 0; j--){
                 if(solve(i, j, s) && j - i + 1 > maxx){
                     start = i, end = j, maxx = j - i + 1;
                 }
