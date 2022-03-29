@@ -11,13 +11,13 @@
  */
 class Solution {
 public:
-    map<int, int> leftView;
+    map<int, int> rightView;
     vector<int> answer;
     void dfs(TreeNode* root, int level){
         if(root == NULL)
             return;
-        if(leftView.find(level) == leftView.end()){
-            leftView[level] = 1;
+        if(rightView.find(level) == rightView.end()){
+            rightView[level] = 1;
             answer.push_back(root->val);
         }
         dfs(root->right, level + 1);
