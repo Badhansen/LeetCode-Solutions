@@ -1,21 +1,14 @@
-// @Author: KING-SEN
-// Programming Language Used: C++
-
 class Solution {
 public:
-    int findDuplicate(vector<int>& nums) {
-        int len = nums.size();
-        int ret = 0;
-        for(int i = 0; i < len; i++){
-            int id = abs(nums[i]);
-            if(nums[id] < 0){
-                return id;
-            }
-            nums[id] *= -1;
+    int solve(int pos, vector<int>& nums){
+        if(nums[pos] == -1){
+            return pos;
         }
-        return 0;
+        int next = nums[pos];
+        nums[pos] = -1;
+        return solve(next, nums);
+    }
+    int findDuplicate(vector<int>& nums) {
+        return solve(0, nums);
     }
 };
-
-// Time Complexity: O(N), Here N = length of the array
-// Space Complexity: O(1) 
