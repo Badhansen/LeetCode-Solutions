@@ -5,6 +5,7 @@ class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
         int len = nums.size();
+        int ret = 0;
         for(int i = 0; i < len; i++){
             int id = abs(nums[i]);
             if(nums[id] < 0){
