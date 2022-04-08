@@ -1,3 +1,5 @@
+// Resource: https://www.techiedelight.com/quickselect-algorithm/
+
 class Solution {
 public:
     int partition(vector<int>& a, int left, int right, int pIndex){
