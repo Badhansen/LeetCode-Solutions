@@ -9,7 +9,7 @@ public:
         for(auto item : count){
             value.push_back({item.second, item.first});
         }
-        sort(value.begin(), value.end(), [](auto & a, auto & b){
+        sort(value.begin(), value.end(), [](auto a, auto b){
             return a.first > b.first;
         });
         vector<int> answer;
