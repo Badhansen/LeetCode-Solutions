@@ -1,38 +1,22 @@
 class Solution {
-private:
-    int cache[45][45];
 public:
-    int largestLeaf(int start, int end, const vector<int>& nums){
-        if(start > end){
-            return 1;
+    int mctFromLeafValues(vector<int>& arr) {
+        int result = 0;
+        vector<int> stack = {INT_MAX};
+        for(auto &item : arr){
+            while(stack.back() <= item){
+                int minValue = stack.back();
+                stack.pop_back();
+                result += minValue * min(stack.back(), item);
+            }
+            stack.push_back(item);
         }
-        if(start == end){
-            return nums[start];
-        }
-        int maxValue = 0;
-        for(int i = start; i <= end; i++){
-            maxValue = max(maxValue, nums[i]);
-        }
-        return maxValue;
-    }
-    int solve(int start, int end, const vector<int>& nums){
-        if(start == end){
-            return 0;
-        }
-        int &result = cache[start][end];
-        if(result != -1){
-            return result;
-        }
-        result = INT_MAX / 2;
-        for(int i = start; i <= end; i++){
-            int leftSum = solve(start, i, nums);
-            int rightSum = solve(i + 1, end, nums);
-            result = min(result, leftSum + rightSum + largestLeaf(start, i, nums) * largestLeaf(i + 1, end, nums));
+        for(int i = 2; i < stack.size(); i++){
+            result += stack[i] * stack[i - 1];
         }
         return result;
     }
-    int mctFromLeafValues(vector<int>& arr) {
-        memset(cache, -1, sizeof cache);
-        return solve(0, arr.size() - 1, arr);
-    }
 };
+
+// Time: O(N), N = number of elements
+// Space: O(N)
