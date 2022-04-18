@@ -10,19 +10,22 @@
  * };
  */
 class Solution {
+private:
+    int answer;    
 public:
-    
-    int arr[1000001];
-    int ind;
-    void go(struct TreeNode* root){
-        if(root == NULL) return;
-        go(root->left);
-        arr[ind++] = root->val;
-        go(root->right);
+    void dfs(TreeNode* root, int& k){
+        if(root == NULL){
+            return;
+        }
+        dfs(root->left, k);
+        if(--k == 0){
+            answer = root->val;
+            return;
+        }
+        dfs(root->right, k);
     }
     int kthSmallest(TreeNode* root, int k) {
-        ind = 0;
-        go(root);
-        return arr[k - 1];
+        dfs(root, k);
+        return answer;
     }
 };
