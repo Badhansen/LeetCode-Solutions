@@ -57,6 +57,17 @@ public:
         }
         current->value = -1;
     }
+    
+    void deleteAll(Trie* root) {
+        for(auto [key, value] : root->children) {
+            deleteAll(value);
+        }
+        delete root;
+    }
+
+    ~MyHashMap() {
+        deleteAll(root);
+    }
 };
 
 /**
