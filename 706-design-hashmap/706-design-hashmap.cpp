@@ -1,27 +1,61 @@
 //@Author: KING-SEN
-
+class Trie{
+public:
+    int value;
+    unordered_map<int, Trie*> children;
+    Trie(){
+        value = -1;
+    }
+};
 class MyHashMap {
 private:
-    int arr[1000001];
+    Trie* root;
 public:
     /** Initialize your data structure here. */
     MyHashMap() {
-        memset(arr, -1, sizeof arr);
+        root = new Trie;
     }
     
     /** value will always be non-negative. */
     void put(int key, int value) {
-        arr[key] = value;
+        Trie* current = root;
+        while(key){
+            int rem = key % 10;
+            if(current->children.find(rem) == current->children.end()){
+                current->children[rem] = new Trie();
+            }
+            key /= 10;
+            current = current->children[rem];
+        }
+        current->value = value;
     }
     
     /** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key */
     int get(int key) {
-        return arr[key];
+        Trie* current = root;
+        while(key){
+            int rem = key % 10;
+            if(current->children.find(rem) == current->children.end()){
+                return -1;
+            }
+            key /= 10;
+            current = current->children[rem];
+        }
+        return current->value;
     }
     
     /** Removes the mapping of the specified value key if this map contains a mapping for the key */
     void remove(int key) {
-        arr[key]=-1;
+        Trie* current = root;
+        while(key){
+            int rem = key % 10;
+            key /= 10;
+            if(current->children.find(rem) == current->children.end()){
+                return;
+            }
+            current = current->children[rem];
+        }
+        current->value = -1;
     }
 };
 
