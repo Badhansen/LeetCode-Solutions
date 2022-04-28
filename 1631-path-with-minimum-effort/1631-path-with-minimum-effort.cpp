@@ -1,43 +1,48 @@
 class Solution {
 private:
-    struct Node{
-        int u, v;
-        int weight;
-        Node(int _u, int _v, int _w){
-            u = _u, v = _v, weight = _w;
-        }
-        bool operator < (const Node& a) const {
-            return weight > a.weight; 
-        }
-    };
     int dirX[4] = {1, -1, 0, 0};
     int dirY[4] = {0, 0, 1, -1};
 public:
-    int minimumEffortPath(vector<vector<int>>& heights) {
+    bool isValid(vector<vector<int>>& heights, int mid){
         int row = heights.size(), col = heights[0].size();
-        vector<vector<int>> dist(row, vector<int>(col, INT_MAX));
-        priority_queue<Node> que;
-        que.push(Node(0, 0, 0));
-        dist[0][0] = 0;
+        vector<vector<bool>> visit(row, vector<bool>(col, false));
+        queue<pair<int, int>> que;
+        que.push({0, 0});
+        visit[0][0] = true;
         while(!que.empty()){
-            Node p = que.top();
+            int u = que.front().first;
+            int v = que.front().second;
             que.pop();
-            if(p.u == row - 1 && p.v == col - 1){
-                return p.weight;
+            if(u == row - 1 && v == col - 1){
+                return true;
             }
             for(int i = 0; i < 4; i++){
-                int nu = dirX[i] + p.u;
-                int nv = dirY[i] + p.v;
-                if(nu >= 0 && nu < row && nv >= 0 && nv < col){
-                    int w = abs(heights[nu][nv] - heights[p.u][p.v]);
-                    int maxw = max(w, p.weight);
-                    if(dist[nu][nv] > maxw){
-                        dist[nu][nv] = maxw;
-                        que.push(Node(nu, nv, maxw));
+                int nu = dirX[i] + u;
+                int nv = dirY[i] + v;
+                if(nu >= 0 && nu < row && nv >= 0 && nv < col && visit[nu][nv] == false){
+                    int weight = abs(heights[nu][nv] - heights[u][v]);
+                    if(weight > mid){
+                        continue;
                     }
+                    visit[nu][nv] = true;
+                    que.push({nu, nv});
                 }
             }
         }
-        return 0;
+        return false;
+    }
+    int minimumEffortPath(vector<vector<int>>& heights) {
+        int low = 0, high = INT_MAX, best = INT_MAX;
+        while(low <= high){
+            int mid = low + (high - low) / 2;
+            if(isValid(heights, mid)){
+                high = mid - 1;
+                best = min(best, mid);
+            }
+            else{
+                low = mid + 1;
+            }
+        }
+        return best;
     }
 };
