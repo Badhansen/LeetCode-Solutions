@@ -7,9 +7,7 @@ public:
                 st.push({s[i], 1});
             }
             else{
-                int count = st.top().second + 1;
-                st.pop();
-                st.push({s[i], count});
+                st.top().second++;
             }
             if(st.top().second == k){
                 st.pop();
