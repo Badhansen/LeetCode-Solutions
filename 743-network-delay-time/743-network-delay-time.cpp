@@ -7,14 +7,16 @@ private:
             this->u = u;
             this->w = w;
         }
-        bool operator < (const Node& a) const{
-            return w > a.w;
+    };
+    struct compare {
+        bool operator()(const Node& a, const Node& b){
+            return a.w > b.w;
         }
     };
 public:
     int dijkstra(int src, int n){
         vector<int> dist(n + 1, INT_MAX);
-        priority_queue<Node> que;
+        priority_queue<Node, vector<Node>, compare> que;
         que.push(Node(src, 0));
         dist[0] = dist[src] = 0; 
         while(!que.empty()){
