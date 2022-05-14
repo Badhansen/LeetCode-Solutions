@@ -20,7 +20,9 @@ public:
         while(!que.empty()){
             auto node = que.top();
             que.pop();
-            //if(node[0] > dist[node[]])
+            if(node.w > dist[node.u]){
+                continue;
+            }
             for(auto vec : graph[node.u]){  
                 int v = vec[0];
                 int w = vec[1];
