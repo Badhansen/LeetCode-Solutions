@@ -5,6 +5,7 @@ private:
 public:
     CountIntervals() {
         sum = 0;
+        
     }
     
     void add(int left, int right) {
