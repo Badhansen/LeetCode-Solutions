@@ -29,11 +29,11 @@ public:
         }
         //cout << endl;
         for(int i = k - 1; i < odd.size(); i++){
-            int fr = esumf[odd[i - k + 1]], fprev = i - k + 1 > 0 ? esumf[odd[i - k]] : 0;
-            int bk = esumb[odd[i]], bnext = i + 1 == odd.size() ? 0 : esumb[odd[i + 1]];        
-            int ans1 = fr - fprev + 1;
-            int ans2 = bk - bnext + 1;
-            //cout << odd[i] << " " << bk << " " << bnext << " " <<  ans1 << " " << ans2 << endl;
+            int fr = odd[i - k + 1], fprev = i - k + 1 > 0 ? odd[i - k] : -1;
+            int bk = odd[i], bnext = i + 1 == odd.size() ? len  : odd[i + 1];        
+            int ans1 = fr - fprev;
+            int ans2 = bnext - bk;
+          //  cout << odd[i] << " " << fr << " " << fprev << " " <<  ans1 << " " << ans2 << endl;
             ans += ans1 * ans2;
         }
         return ans;
