@@ -9,24 +9,22 @@
  */
 
 class Solution {
+private:
+    TreeNode* ans, *target;
 public:
-    void dfs(TreeNode* root, vector<TreeNode*>& ret){
-        if(!root){
+    void dfs(TreeNode* original, TreeNode* cloned){
+        if(!original){
             return;
         }
-        ret.push_back(root);
-        dfs(root->left, ret);
-        dfs(root->right, ret);
+        dfs(original->left, cloned->left);
+        if(original == target){
+            ans = cloned;
+        }
+        dfs(original->right, cloned->right);
     }
     TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
-        vector<TreeNode*> ans1, ans2;
-        dfs(original, ans1);
-        dfs(cloned, ans2);
-        for(int i = 0; i < ans1.size(); i++){
-            if(ans1[i] == target){
-                return ans2[i];
-            }
-        }
-        return NULL;
+        this->target = target;
+        dfs(original, cloned);
+        return ans;
     }
 };
