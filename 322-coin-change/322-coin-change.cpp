@@ -3,7 +3,6 @@
 
 class Solution {
 public:
-    int dp[10001];
     int solve(vector<int>& coins, int amount, vector<int>& dp){
         if(amount < 0) return INT_MAX / 2;
         if(amount == 0) return 0;
