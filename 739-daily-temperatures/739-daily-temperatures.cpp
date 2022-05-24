@@ -4,20 +4,29 @@
 class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
-        int n = temperatures.size();
-        vector<int> stack, ans(n, 0);
-        for(int day = 0; day < n; day++){
-            int currTemp = temperatures[day];
-            while(!stack.empty() && temperatures[stack.back()] < currTemp){
-                int prevDay = stack.back();
-                stack.pop_back();
-                ans[prevDay] = day - prevDay; 
+        int n = temperatures.size(), hot = 0;
+        vector<int> ans(n, 0);
+        for(int currday = n - 1; currday >= 0; currday--){
+            int currTemp = temperatures[currday];
+            if(currTemp >= hot){
+                hot = currTemp;
+                continue;
             }
-            stack.push_back(day);
+            int days = 1;
+            while(temperatures[currday + days] <= currTemp){
+                days += ans[currday + days];
+            }
+            ans[currday] = days;
         }
         return ans;
     }
 };
 
 // Time: O(N), N = Length of temperatures
-// Space: O(N), for using stack
+// Space: O(1)
+/*   
+      0  1  2  3 4  5   6  7
+    [73, 74, 75, 71, 69, 72, 76, 73]   // for index 2, sum = 1 + ans[2 + 1] ~ 2 -> 3 + ans[2 + 3] ~ 1 -> 2 + ans[2 + 4]  
+      1   1   4   2   1  1   0   0
+               
+*/
