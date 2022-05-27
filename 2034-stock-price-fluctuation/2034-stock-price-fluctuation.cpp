@@ -1,3 +1,6 @@
+// @Author: KING-SEN
+// 1 last try
+
 class StockPrice {
 private:
     map<int, int> rate;
@@ -6,8 +9,8 @@ public:
     StockPrice() {
         
     }
-    
-    void update(int timestamp, int price) {
+    // O(5 log N ~ log N)
+    void update(int timestamp, int price) { 
         if(rate.count(timestamp)){
             auto itPos = prices.find(rate[timestamp]);
             prices.erase(itPos);
@@ -15,19 +18,22 @@ public:
         prices.insert(price);
         rate[timestamp] =  price;
     }
-    
-    int current() {
+    // O(1)
+    int current() { 
         return rate.rbegin()->second;
     }
-    
-    int maximum() {
+    // O(1)
+    int maximum() { 
         return *prices.rbegin();
     }
-    
-    int minimum() {
+    // O(1)
+    int minimum() { 
         return *prices.begin();
     }
 };
+
+// Time: O(log N), N = total number of elements
+// Space: O(N)
 
 /**
  * Your StockPrice object will be instantiated and called as such:
