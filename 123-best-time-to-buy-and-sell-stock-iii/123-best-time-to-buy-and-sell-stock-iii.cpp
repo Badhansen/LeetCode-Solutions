@@ -1,6 +1,7 @@
 // @Author: KING-SEN
 // 1 last try
 
+/*
 class Solution {
 private:
     int dp[100005][2][3];
@@ -27,3 +28,24 @@ public:
 
 // Time: O(N * 2 * 3) ~ O(N), N = Length of prices
 // Space: O(N * 2 * 3) ~ O(N)
+
+*/
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int t1cost, t1profit;
+        int t2cost, t2profit;
+        t1cost = t2cost = INT_MAX;
+        t1profit = t2profit = 0;
+        for(auto p : prices){
+            t1cost = min(t1cost, p);
+            t1profit = max(t1profit, p - t1cost);
+            t2cost = min(t2cost, p - t1profit);
+            t2profit = max(t2profit, p - t2cost);
+        }
+        return t2profit;
+    }
+};
+
+// Time: O(N), N = Length of prices
+// Space: O(1)
