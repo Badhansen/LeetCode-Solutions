@@ -1,3 +1,6 @@
+// @Author: KING-SEN
+// 1 last try
+
 struct Node{
     int index;
     int val;
@@ -82,3 +85,5 @@ public:
         return divide(0, n - 1, 0);
     }
 };
+// Time: O(N * log N), N = Length of array
+// Space: O(4 * N)
