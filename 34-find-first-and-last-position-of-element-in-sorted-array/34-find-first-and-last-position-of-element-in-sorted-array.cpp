@@ -15,7 +15,7 @@ public:
 
         answer[0] = position;
         
-        answer[1] =  upper_bound(nums.begin(), nums.end(), target) - nums.begin();
+        answer[1] =  upper_bound(nums.begin() + position, nums.end(), target) - nums.begin();
         answer[1]--;
         return answer;
     }
