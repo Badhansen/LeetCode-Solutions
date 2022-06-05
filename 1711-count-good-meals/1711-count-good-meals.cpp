@@ -8,7 +8,7 @@ public:
         for(auto val : deliciousness){ // O(N * 21) ~ O(N)
             for(int i = 0; i <= 21; i++){
                 int key = (1 << i) - val;
-                answer = (answer + count[key]) % mod;
+                if(count.count(key)) answer = (answer + count[key]) % mod;
             }  
             count[val]++;
         }
