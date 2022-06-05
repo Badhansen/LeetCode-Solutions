@@ -1,6 +1,6 @@
 class Solution {
 private:
-    unordered_map<int, int> count;
+    int count[(1 << 21) + 1];
     int mod = 1e9 + 7;
 public:
     int countPairs(vector<int>& deliciousness) {
@@ -8,7 +8,7 @@ public:
         for(auto val : deliciousness){ // O(N * 21) ~ O(N)
             for(int i = 0; i <= 21; i++){
                 int key = (1 << i) - val;
-                if(count.count(key)) answer = (answer + count[key]) % mod;
+                if(key >= 0 && count[key]) answer = (answer + count[key]) % mod;
             }  
             count[val]++;
         }
