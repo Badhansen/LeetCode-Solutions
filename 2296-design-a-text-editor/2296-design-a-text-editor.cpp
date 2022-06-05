@@ -1,41 +1,57 @@
 class TextEditor {
 private:
-    string _text;
-    int pos;
+    stack<char> left, right;
 public:
     TextEditor() {
-        pos = 0;
+        // pass
     }
     
     void addText(string text) { // O(N)
-        _text.insert(pos, text);
-        pos += text.size();
+       for(auto c : text){
+           left.push(c);
+       }
     }
     
-    int deleteText(int k) { // O(K * N)
+    int deleteText(int k) { // O(K)
         int count = 0;
-        while(pos != 0 && count < k){ // O(N)
-            _text.erase(pos - 1, 1);
-            pos--;
-            count++;
+        while(!left.empty() && k){ 
+            left.pop();
+            count++, k--;
         }
         return count;
     }
     
     string cursorLeft(int k) { // O(K)
-        pos = max(pos - k, 0);
-        string res = "";
-        for(int i = pos - 10; i < pos; i++){
-            if(i >= 0) res += _text[i];
+        while(!left.empty() && k){
+            char c = left.top();
+            left.pop();
+            right.push(c);
+            k--;
         }
-        return res;
+        return getString();
     }
     
     string cursorRight(int k) { // O(K)
-        pos = min(pos + k, (int)_text.size());
+        while(!right.empty() && k){
+            char c = right.top();
+            right.pop();
+            left.push(c);
+            k--;
+        }
+        return getString();
+    }
+    string getString(){
         string res = "";
-        for(int i = pos - 10; i < pos; i++){
-            if(i >= 0) res += _text[i];
+        int count = 10;
+        while(!left.empty() && count){
+            char c = left.top();
+            left.pop();
+            res += c;
+            count--;
+        }
+        reverse(res.begin(), res.end());
+        for(int i = 0; i < res.size(); i++){
+            left.push(res[i]);
         }
         return res;
     }
