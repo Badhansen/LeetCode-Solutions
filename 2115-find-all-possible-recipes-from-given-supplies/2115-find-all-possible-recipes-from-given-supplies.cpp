@@ -1,41 +1,35 @@
-//@Author: KING-SEN
-// 1 last try
-
 class Solution {
 private:
     unordered_map<string, vector<string>> graph;
-    unordered_map<string, int> indegree;
-    unordered_map<string, bool> visited;
+    unordered_map<string, int> visited;
+    unordered_map<string, int> present;
 public:
+    bool dfs(string src){
+        if(graph[src].size() == 0) return present.count(src);
+        visited[src] = 1;
+        for(auto dest : graph[src]){
+            if(visited[dest] == 1) return false;
+            if(visited[dest] == 0 && !dfs(dest)){
+                return false;
+            }
+        }
+        visited[src] = 2;
+        return true;
+    }
     vector<string> findAllRecipes(vector<string>& recipes, vector<vector<string>>& ingredients, vector<string>& supplies) {
         int n = recipes.size();
-        vector<string> answer;
-        queue<string> que;
+        for(auto s : supplies) present[s] = 1;
         for(int i = 0; i < n; i++){
-            for(int j = 0; j < ingredients[i].size(); j++){
-                graph[ingredients[i][j]].push_back(recipes[i]);
-                indegree[recipes[i]]++;
+            for(auto &node : ingredients[i]){
+                graph[recipes[i]].push_back(node);
             }
         }
-        for(int i = 0; i < supplies.size(); i++){
-            que.push(supplies[i]);
-            visited[supplies[i]] = true;
-        }
-        while(!que.empty()){
-            string src = que.front();
-            que.pop();
-            for(auto dest : graph[src]){
-                indegree[dest]--;
-                if(indegree[dest] == 0){
-                    visited[dest] = true;
-                    answer.push_back(dest);
-                    que.push(dest);
-                }
-            }
+        vector<string> answer;
+        for(auto &r : recipes){
+            if(visited[r] == 2) answer.push_back(r);
+            else if(dfs(r)) answer.push_back(r);
+            
         }
         return answer;
     }
 };
-
-// Time: O(V + E), V = number of repices, E = number of ingredients
-// Space: O(V)
