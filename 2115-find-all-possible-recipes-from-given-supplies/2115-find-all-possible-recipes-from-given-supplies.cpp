@@ -4,7 +4,7 @@ private:
     unordered_map<string, int> visited;
     unordered_map<string, int> present;
 public:
-    bool dfs(string src){
+    bool dfs(string src){ // O(V + E)
         if(graph[src].size() == 0) return present.count(src);
         visited[src] = 1;
         for(auto dest : graph[src]){
@@ -25,7 +25,7 @@ public:
             }
         }
         vector<string> answer;
-        for(auto &r : recipes){
+        for(auto &r : recipes){ // O(V + E), as visited not will not visited again
             if(visited[r] == 2) answer.push_back(r);
             else if(dfs(r)) answer.push_back(r);
             
@@ -33,3 +33,6 @@ public:
         return answer;
     }
 };
+
+// Time: O(V + E), V = number of recipes, E = number of total ingredients
+// Space: O(V)
