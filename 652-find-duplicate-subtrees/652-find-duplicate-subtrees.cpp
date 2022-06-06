@@ -9,6 +9,9 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+// @Author: KING-SEN
+// 1 last try
+
 class Solution {
 private:
     unordered_map<string, int> stoIndex;
@@ -43,3 +46,28 @@ public:
 
 // Time: O(N), N = number of nodes
 // Spce: O(N)
+/*
+class Solution {
+private:
+    unordered_map<string, int> count;
+    vector<TreeNode*> res;
+public:
+    string dfs(TreeNode* root){ // O(N)
+        if(!root) return "";
+        // O(1) ~ O(N)
+        string node = to_string(root->val) + 
+                    "," + dfs(root->left) +
+                    "," + dfs(root->right);
+        count[node]++;
+        if(count[node] == 2) res.push_back(root);
+        return node;
+    }
+    vector<TreeNode*> findDuplicateSubtrees(TreeNode* root) {
+        dfs(root);
+        return res;
+    }
+};
+
+// Time: O(N^2), N = number of nodes
+// Spce: O(N)
+*/
