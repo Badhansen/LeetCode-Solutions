@@ -14,8 +14,9 @@ private:
     unordered_map<string, int> count;
     vector<TreeNode*> res;
 public:
-    string dfs(TreeNode* root){
+    string dfs(TreeNode* root){ // O(N)
         if(!root) return "";
+        // O(1) ~ O(N)
         string node = to_string(root->val) + 
                     "," + dfs(root->left) +
                     "," + dfs(root->right);
@@ -28,3 +29,6 @@ public:
         return res;
     }
 };
+
+// Time: O(N^2), N = number of nodes
+// Spce: O(N)
