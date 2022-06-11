@@ -1,3 +1,4 @@
+/*
 class Solution {
 public:
     int minOperations(vector<int>& nums, int x) {
@@ -21,5 +22,32 @@ public:
 
         if(ans < 0) return -1;
         return n - ans;
+    }
+};
+*/
+class Solution {
+public:
+    int minOperations(vector<int>& nums, int x) {
+        int n = nums.size();
+        unordered_map<long long, int> seen;
+        long long currsum = 0;
+        int ans = INT_MAX;
+        
+        for(int i = n - 1, j = 1; i >= 0; i--, j++){
+            currsum += nums[i];
+            seen[currsum] = j;
+        }
+        
+        if(seen[x]) ans = seen[x];
+        currsum = 0;
+        
+        for(int i = 0; i < n; i++){
+            currsum += nums[i];
+            
+            if(currsum == x) ans = min(ans, i + 1);
+            if(seen[x - currsum]) ans = min(ans, i + 1 + seen[x - currsum]);
+        }
+        
+        return ans > n ? -1 : ans;
     }
 };
