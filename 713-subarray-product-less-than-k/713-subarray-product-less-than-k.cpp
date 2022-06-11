@@ -1,5 +1,6 @@
 // @Author: KING-SEN
 // 1 last try
+// Link: https://www.geeksforgeeks.org/number-subarrays-product-less-k/
 
 class Solution {
 public:
