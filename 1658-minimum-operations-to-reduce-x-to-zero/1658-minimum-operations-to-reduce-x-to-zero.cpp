@@ -1,51 +1,25 @@
-// 1 last try
-
 class Solution {
 public:
     int minOperations(vector<int>& nums, int x) {
-        int n = nums.size();
-        vector<int> left(n), right(n);
-        left[0] = nums[0], right[0] = nums[n - 1];
-        for(int i = 1, j = n - 2; i < n; i++, j--){
-            left[i] = left[i - 1] + nums[i];
-            right[i] = right[i - 1] + nums[j];
+        int sum = 0, n = nums.size();
+        for(int i = 0; i < n; i++){
+            sum += nums[i];
         }
         
-        int pos = lower_bound(left.begin(), left.end(), x) - left.begin();
-        int ans = INT_MAX;
+        if(x > sum) return -1;
         
-        if(pos == 0){
-            if(x == left[0]) ans = 1;
-            else ans = INT_MAX;
-        }
-        else{
-            if(pos < n && left[pos] == x) ans = pos + 1;
-            else ans = INT_MAX;
-        }
+        int target = sum - x, left = 0;
+        int ans = INT_MIN, currsum = 0;
         
-        pos = lower_bound(right.begin(), right.end(), x) - right.begin();
-        
-        if(pos == 0){
-            if(x == right[0]) ans = 1;
-        }
-        else{
-            if(pos < n && right[pos] == x) ans = min(ans, pos + 1);
+        for(int right = 0; right < n; right++){
+            currsum += nums[right];
+            while(left < n && currsum - nums[left] >= target){                
+                currsum -= nums[left++];
+            }
+            if(currsum == target) ans = max(ans, right - left + 1);
         }
 
-        for(int i = 1; i <= n; i++){
-            int rem = x - left[i - 1];
-            if(rem <= 0) break;
-            pos = lower_bound(right.begin(), right.end(), rem) - right.begin();
-            if(pos == n) continue;
-            if(left[i - 1] + right[pos] == x) ans = min(ans, i + pos + 1);
-        }
-        
-        return ans > n ? -1 : ans;
+        if(ans < 0) return -1;
+        return n - ans;
     }
 };
-
-/*
-    Time: O(N log N)
-    Space: O(N)
-    N = Length of the array
-*/
