@@ -1,3 +1,5 @@
+// 1 last try
+
 class Solution {
 public:
     int minOperations(vector<int>& nums, int x) {
@@ -38,14 +40,12 @@ public:
             if(left[i - 1] + right[pos] == x) ans = min(ans, i + pos + 1);
         }
         
-        // for(int i = 1; i <= n; i++){
-        //     int rem = x - right[i - 1];
-        //     if(rem <= 0) break;
-        //     pos = lower_bound(left.begin(), left.end(), rem) - left.begin();
-        //     if(pos == n) continue;
-        //     if(right[i - 1] + left[pos] == x) ans = min(ans, i + pos + 1);
-        // }
-        
         return ans > n ? -1 : ans;
     }
 };
+
+/*
+    Time: O(N log N)
+    Space: O(N)
+    N = Length of the array
+*/
