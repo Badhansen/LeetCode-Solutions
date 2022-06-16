@@ -1,43 +1,34 @@
-// @Author: KING-SEN
-// Programming Language Used: C++
-
 class Solution {
 public:
-    int dp[1001][1001];
-    int solve(int x, int y, string& S)
-    {  
-        if(x > y) return 0;
-        int &ret = dp[x][y];
-        if(ret != -1){ 
-            return ret;
-        }
-        if(S[x] == S[y]){
-            ret = max(ret, max(solve(x + 1, y, S), solve(x, y - 1, S)));
-            int val = solve(x + 1, y - 1, S);
-            if(val >= (y - 1) - (x + 1) + 1)
-                ret = 2 - (x == y) + val;
-        }
-        else{
-            ret = max(solve(x + 1, y, S), solve(x, y - 1, S));
-        }
-        return ret;
-    }
+    
     string longestPalindrome(string s) {
-        memset(dp, -1, sizeof dp);
-        int ret = solve(0, s.size() - 1, s);
-        int startIndex;
-        
-        for(int i = 0; i < s.size(); i++){
-            for(int j = 0; j < s.size(); j++){
-                if(ret == dp[i][j]){
-                    startIndex = j - ret + 1;
-                    break;
+        int n = s.size();
+        bool dp[n + 1][n + 1];
+        memset(dp, false, sizeof dp);
+        int maxLength = 1;
+        for(int i = 0; i < n; i++){
+            dp[i][i] = true;
+        }
+        int start = 0;
+        for(int i = 0; i < n - 1; i++){
+            if(s[i] == s[i + 1]){
+                dp[i][i + 1] = true;
+                start = i;
+                maxLength = 2;
+            }
+        }
+        for(int k = 3; k <= n; k++){
+            for(int i = 0; i < n - k + 1; i++){
+                int j = i + k - 1;
+                if(dp[i + 1][j - 1] && s[i] == s[j]){
+                    dp[i][j] = true;
+                    if(maxLength < k){
+                        start = i;
+                        maxLength = k;
+                    }
                 }
             }
         }
-        return s.substr(startIndex, ret);
+        return s.substr(start, maxLength);
     }
 };
-
-// Time Complexity: O(N^2), where N is the lenght of the string
-// Space complexity: O(N^2), we used 2d vector array to store the intermediate result
