@@ -31,3 +31,6 @@ public:
     }
     
 };
+
+// Time: O(N log M), N = number of row, M = Max - Min element difference
+// Space: O(1)
