@@ -50,3 +50,5 @@ public:
 		return curr->index;
 	}
 };
+// Time: O(N * K^2 + QK) // N = number of words, K = maximum word length, Q = is the number of quries
+// Space: O(N * K^2)
