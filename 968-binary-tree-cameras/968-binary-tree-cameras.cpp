@@ -1,3 +1,57 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+enum Camera{
+    NO_CAMERA,
+    HAS_CAMERA,
+    NOT_NEEDED
+};
+
+class Solution {
+private:
+    int ans = 0;
+public:
+    int dfs(TreeNode *root) {
+        if(!root) return NOT_NEEDED;
+        
+        int left = dfs(root->left);
+        int right = dfs(root->right);
+        
+        if(left == NO_CAMERA || right == NO_CAMERA){
+            ans++;
+            return HAS_CAMERA;
+        }
+        if(left == HAS_CAMERA || right == HAS_CAMERA) return NOT_NEEDED;
+        return NO_CAMERA;
+    }
+    int minCameraCover(TreeNode* root) {
+        if (dfs(root) == NO_CAMERA) ans++;
+        return ans;
+    }
+};
+
+// Time: O(N), N = number of nodes
+// Space: O(recursion stack)
+
+
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -7,7 +61,7 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-
+/*
 
 #define NO_CAMERA       0
 #define HAS_CAMERA      2
@@ -44,7 +98,7 @@ public:
 // Space: O(recursion stack)
 
 
-
+*/
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
