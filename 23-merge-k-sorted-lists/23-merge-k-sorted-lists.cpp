@@ -13,36 +13,28 @@
 // Progrmming Language Used: C++
 
 class Solution {
-public:
-    struct compare{
-        bool operator()(const ListNode* a, const ListNode* b){
-            return a->val > b->val;
-        }
-    };
-    
+public:    
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        priority_queue<ListNode*, vector<ListNode*>, compare> itemList;
-        
-        for(auto &el : lists){
-            if(el){
-                itemList.push(el);
+        int n = lists.size();
+        if(n == 0) return NULL;
+        priority_queue<pair<int, ListNode*>, vector<pair<int, ListNode*>>, greater<pair<int, ListNode*>>> que;
+        for(int i = 0; i < n; i++){
+            if(lists[i] == NULL) continue;
+            que.push({lists[i]->val, lists[i]->next});
+        }
+        ListNode* root = new ListNode(-1), *curr;
+        curr = root;
+        while(!que.empty()){
+            auto top = que.top();
+            que.pop();
+            curr->next = new ListNode(top.first);
+            curr = curr->next;
+            ListNode* nnode = top.second;
+            if(nnode){
+                que.push({nnode->val, nnode->next});
             }
         }
-        ListNode* dummy = new ListNode(-1);
-        ListNode* head = dummy;
-        
-        while(!itemList.empty()){
-            ListNode* node = itemList.top();
-            itemList.pop();
-            
-            head->next = node;
-            head = head->next;
-            
-            if(node->next != NULL){
-                itemList.push(node->next);
-            }
-        }
-        return dummy->next;
+        return root->next;
     }
 };
 
