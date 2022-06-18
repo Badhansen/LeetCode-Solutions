@@ -1,59 +1,51 @@
-class TrieNode {
+class TrieNode{
 public:
-	TrieNode* next[27];
-	int index;
-	TrieNode() {
-		for (int i = 0; i < 27; i++) {
-			next[i] = NULL;
-		}
-		index = 0;
-	}
+    int index;
+	unordered_map<char, TrieNode*> next;
+    TrieNode(){
+        index = 0;
+    }
 };
+
 class Trie {
 public:
 	TrieNode* root;
-	Trie() {
+	Trie(){
 		root = new TrieNode();
 	}
-	void insert(string str, int val) {
+	void insert(string str, int val){
 		TrieNode* curr = root;
         curr->index = val;
-		for (int i = 0; i < str.size(); i++) {
-            int id;
-            if(str[i] == '$') id = 26;
-            else id = str[i] - 'a';
-            
-			if (curr->next[id] == NULL) {
-				curr->next[id] = new TrieNode();
+		for(int i = 0; i < str.size(); i++){
+			if(!curr->next.count(str[i])){
+				curr->next[str[i]] = new TrieNode();
 			}
-			curr = curr->next[id];
+			curr = curr->next[str[i]];
             curr->index = val;
 		}
 	}
 };
+
 class WordFilter {
+private:
+    Trie tree;
 public:
-	Trie tr;
 	WordFilter(vector<string>& words) {
 		for (int i = 0; i < words.size(); i++) {
             string s = words[i] + '$' + words[i];
             for(int j = 0; j <= words[i].size(); j++){
                 string st = s.substr(j, s.size());
-                tr.insert(st, i);
+                tree.insert(st, i);
             }
 		}
 	}
 
-	int f(string prefix, string suffix) {
-		TrieNode* curr = tr.root;
+	int f(string prefix, string suffix){
+		TrieNode* curr = tree.root;
         string s = suffix + '$' + prefix;
-		for (int i = 0; i < s.size(); i++) {
-            int id;
-            if(s[i] == '$') id = 26;
-            else id = s[i] - 'a';
-            
-			if (curr->next[id] == NULL) return -1;
-			curr = curr->next[id];
+		for(int i = 0; i < s.size(); i++){
+			if(!curr->next.count(s[i])) return -1;
+			curr = curr->next[s[i]];
 		}
 		return curr->index;
 	}
