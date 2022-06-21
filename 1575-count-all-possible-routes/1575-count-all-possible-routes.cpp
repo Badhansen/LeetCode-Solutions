@@ -27,3 +27,6 @@ public:
         return ans;
     }
 };
+
+// Time: O(N^2 * F)
+// Space: O(NF)
