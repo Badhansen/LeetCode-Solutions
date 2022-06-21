@@ -5,21 +5,31 @@ private:
     vector<vector<int>> dp;
 public:
     int countRoutes(vector<int>& locations, int start, int finish, int fuel) {
+        /*
+        // dp[s][f] is the number of ways to get FROM START to city s with available fuel f 
+        // Note: f means exactly f, not less than f, so the number of ways to get to s with cost f - 1 is not included
+
+        //basecase
+            dp[start][0]=1 // with cost = 0, i'm already at the start, so there s only 1 way
+        */
         int n = locations.size();
-        dp.resize(n + 1, vector<int>(fuel + 1));
-        fill(dp[finish].begin(), dp[finish].end(), 1);
+        dp.resize(n + 1, vector<int>(fuel + 1, 0));
+        dp[start][0] = 1;
         
         for(int f = 0; f <= fuel; f++){
             for(int s = 0; s < n; s++){
                 for(int e = 0; e < n; e++){
                     if(s == e) continue;
                     int diff = abs(locations[e] - locations[s]);
-                    if(diff <= f) dp[s][f] = (dp[s][f] + dp[e][f - diff]) % MOD;
+                    if(f >= diff) dp[s][f] = (dp[s][f] + dp[e][f - diff]) % MOD;
                 }
             }
         }
-        
-        return dp[start][fuel];
+        int ans = 0;
+        for(int f = 0; f <= fuel; f++){
+            ans = (ans + dp[finish][f]) % MOD;
+        }
+        return ans;
     }
 };
 
