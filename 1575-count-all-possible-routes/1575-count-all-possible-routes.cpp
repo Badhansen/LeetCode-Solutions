@@ -12,7 +12,6 @@ public:
         if(pos >= locations.size() || fuel < 0){
             return 0;
         }
-        
         int &ret = dp[pos][fuel];
         if(ret != -1) return ret;        
         ret = pos == finish ? 1 : 0;
