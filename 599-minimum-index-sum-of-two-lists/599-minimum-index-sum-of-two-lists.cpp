@@ -24,5 +24,8 @@ public:
         return ans;
     }
 };
+
 //list1 = ["Shogun","Tapioca Express","Burger King","KFC"], 
 //list2 = ["KFC","Shogun","Burger King"]
+// Time: O(len1 + len2)
+// Space: O(Len1 * x), x refers to average string length
