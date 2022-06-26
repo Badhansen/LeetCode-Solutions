@@ -1,72 +1,34 @@
 // @Author: KING-SEN
 // 1 last try
 
-struct Node{
-    int time;
-    string word;
-    Node(int t, string w){
-        time = t;
-        word = w;
-    }
-    bool operator < (const Node& x) const {
-        if(time == x.time){
-            return word > x.word;
-        }
-        return time < x.time;
-    }
-};
-
 class Trie{
 private:
     unordered_map<char, Trie*> children;
-    bool isEnd;
-    int times; 
+    unordered_map<string, int> counts;
 public:
     Trie(){
-        this->isEnd = false;
-        this->times = 0;
     }
     void insert(string& word, int val){
         Trie *curr = this;
         for(int i = 0; i < word.size(); i++){
-            if(curr->children[word[i]] == NULL){
+            if(!curr->children.count(word[i])){
                 curr->children[word[i]] = new Trie();
             }
-            curr = curr->children[word[i]];
-        }
-        curr->isEnd = true;
-        curr->times += val;
-    }
-    void dfs(Trie* curr, string& path, priority_queue<Node>& que){
-        if(!curr) return;
-        if(curr->isEnd) que.push(Node(curr->times, path));
-        char c = ' ';
-        for(int i = 0; i < 27; i++){
-            if(i == 26) c = ' ';
-            else c = 'a' + i;
-            path.push_back(c);
-            dfs(curr->children[c], path, que);
-            path.pop_back();
+            curr = curr->children[word[i]]; 
+            curr->counts[word] += val;
         }
     }
-    vector<string> find(string word){
+    Trie* find(string& word){
         Trie *curr = this;
         for(int i = 0; i < word.size(); i++){
-            if(curr->children[word[i]] == NULL)
-                return {};
+            if(!curr->children.count(word[i]))
+                return NULL;
             curr = curr->children[word[i]]; 
         }
-        priority_queue<Node> que;
-        string path = word;
-        dfs(curr, path, que);
-        vector<string> ans;
-        int count = 3;
-        while(!que.empty() && count){
-            ans.push_back(que.top().word);
-            que.pop();
-            count--;
-        }
-        return ans;
+        return curr;
+    }
+    unordered_map<string, int> getCounts(Trie* curr){
+        return curr->counts;
     }
     ~Trie(){
         children.clear();
@@ -74,8 +36,22 @@ public:
 };
 class AutocompleteSystem {
 private:
+    struct Node{
+        int time;
+        string word;
+        Node(int t, string w){
+            time = t;
+            word = w;
+        }
+        bool operator < (const Node& x) const {
+            if(time == x.time){
+                return word > x.word;
+            }
+            return time < x.time;
+        }
+    };
     Trie* root;
-    string stream = "";
+    string stream;
 public:
     AutocompleteSystem(vector<string>& sentences, vector<int>& times) {
         root = new Trie();
@@ -92,8 +68,20 @@ public:
             stream.clear();
         }
         else{
-            stream += c;
-            ans = root->find(stream);
+            stream.push_back(c);
+            Trie* curr = root->find(stream);
+            unordered_map<string, int> counts;
+            if(curr != NULL) counts = curr->getCounts(curr);
+            priority_queue<Node> que;
+            for(auto count : counts){
+                que.push(Node(count.second, count.first));
+            }
+            int count = 3;
+            while(!que.empty() && count){
+                ans.push_back(que.top().word);
+                que.pop();
+                count--;
+            }
         }
         return ans;
     }
