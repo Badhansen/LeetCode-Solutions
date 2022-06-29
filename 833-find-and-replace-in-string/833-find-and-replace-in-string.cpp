@@ -43,11 +43,12 @@ public:
         string res;
         for(int i = 0; i < k; i++){
             int index = nindices[i].second, val = nindices[i].first;
-            for(int j = prev; j < val; j++){
-                res += s[j];
-                prev++;
-            }
-            
+            // for(int j = prev; j < val; j++){
+            //     res += s[j];
+            //     prev++;
+            // }
+            res += s.substr(prev, val - prev);
+            prev += val - prev;
             int sLen = sources[index].size();
             long long curr_hash;
             if(val + sLen - 1 < n){
@@ -64,9 +65,10 @@ public:
                 prev = val;
             }
             if(i == k - 1){
-                for(int j = prev; j < n; j++){
-                    res += s[j];
-                }
+                // for(int j = prev; j < n; j++){
+                //     res += s[j];
+                // }
+                res += s.substr(prev, n);
             }
         }
         return res;
