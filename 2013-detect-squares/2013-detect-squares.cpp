@@ -3,31 +3,34 @@
 
 class DetectSquares {
 private:
-    int points[1005][1005];
+    unordered_map<int, unordered_map<int, int>> pointX;
+    unordered_map<int, unordered_map<int, int>> pointY;
 public:
     DetectSquares() {
-        memset(points, 0, sizeof points);
+        
     }
     
     void add(vector<int> point) {
-        points[point[0]][point[1]]++;
+        pointX[point[0]][point[1]]++;
+        pointY[point[1]][point[0]]++;
     }
     
     int count(vector<int> point) {
         int result = 0;
-        int x = point[0], y = point[1];
-        for(int r = 0; r <= 1000; r++){
-            if(r != x && points[r][y]){
-                int size = abs(r - x);
-                if(y + size <= 1000){
-                    result += (points[r][y + size] * points[x][y + size] * points[r][y]);
-                }
-                if(y - size >= 0){
-                    result += (points[r][y - size] * points[x][y - size] * points[r][y]); 
-                }
+        int px = point[0], py = point[1];
+        for(auto [x, val] : pointX[px]){
+            int dist = x - py;
+            if(x != py){
+                result += pointX[px][x] * pointY[py][px + dist] * pointY[x][px + dist];
+                result += pointX[px][x] * pointY[py][px - dist] * pointY[x][px - dist];
             }
         }
         return result;
+    }
+    
+    ~DetectSquares() {
+        pointX.clear();
+        pointY.clear();
     }
 };
 
