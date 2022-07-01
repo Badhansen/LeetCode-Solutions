@@ -1,6 +1,35 @@
 class Solution {
 public:
     string removeKdigits(string num, int k) {
+        string result;
+        for(auto digit : num){
+            while(result.size() && k && result.back() > digit){
+                result.pop_back();
+                k--;
+            }
+            if(digit == '0'){
+                if(result.size()){
+                    result.push_back(digit);
+                }
+            }
+            else{ 
+                result.push_back(digit);
+            }
+        }
+        while(k && result.size()){
+            k--;
+            result.pop_back();
+        }
+        return result.size() == 0 ? "0" : result;
+    }
+};
+
+// Time: O(N), N = Length of the String
+// Space: O(N)
+/*
+class Solution {
+public:
+    string removeKdigits(string num, int k) {
         int len = num.size();
         stack<int> digits;
         string ans;
@@ -29,3 +58,4 @@ public:
 
 // Time: O(N), N = Length of the String
 // Space: O(N)
+*/
