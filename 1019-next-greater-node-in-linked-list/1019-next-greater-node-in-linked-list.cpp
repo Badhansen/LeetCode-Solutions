@@ -9,6 +9,9 @@
  * };
  */
 class Solution {
+private:
+    vector<int> answer;
+    stack<pair<int, int>> nextLarge;
 public:
     int getLength(ListNode* head){
         ListNode* curr = head;
@@ -21,8 +24,7 @@ public:
     }
     vector<int> nextLargerNodes(ListNode* head) {
         int len = getLength(head);
-        vector<int> answer(len, 0);
-        stack<pair<int, int>> nextLarge;
+        answer.resize(len, 0);
         for(int i = 0; i < len; i++){
             while(!nextLarge.empty() && head->val > nextLarge.top().first){
                 answer[nextLarge.top().second] = head->val;
