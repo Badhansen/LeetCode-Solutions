@@ -1,27 +1,22 @@
+// monotonic stack solution
 class Solution {
 public:
-    int calculate(vector<int>& heights,int i){
-        int j=i-1;
-        int k=i+1;
-        int count=1;
-        while(j>=0 && heights[j]>=heights[i]){
-            count++;
-            j--;
-        }
-        while(k<heights.size() && heights[k]>=heights[i]){
-            count++;
-            k++;
-        }
-        return count*heights[i];
-    }
-    int largestRectangleArea(vector<int>& heights) {
-        int ans=0;
-        if(heights.size()==0) return 0;
-        ans=max(ans,calculate(heights,0));
-        for(int i=1;i<heights.size();i++){
-            if(heights[i]==heights[i-1]) continue;
-            ans=max(ans,calculate(heights,i));
+    int largestRectangleArea(vector<int>& A) {
+        A.push_back(0); // append a zero at the end so that we can pop all elements from the stack and calculate the corresponding areas
+        int N = A.size(), ans = 0;
+        stack<int> s; // strictly-increasing mono-stack
+        for (int i = 0; i < N; ++i) {
+            while (s.size() && A[i] <= A[s.top()]) { // Take `A[i]` as the right edge
+                int height = A[s.top()]; // Take the popped element as the height
+                s.pop();
+                int left = s.size() ? s.top() : -1; // Take the element left on the stack as the left edge
+                ans = max(ans, (i - left - 1) * height);
+            }
+            s.push(i);
         }
         return ans;
     }
 };
+
+// Time: O(N)
+// Space: O(N)
