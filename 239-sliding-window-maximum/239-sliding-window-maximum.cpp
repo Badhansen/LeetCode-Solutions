@@ -11,7 +11,7 @@ public:
             if(!seen.empty() && seen.front() == i - k){
                 seen.pop_front();
             }
-            while(!seen.empty() && nums[seen.back()] <= nums[i]){
+            while(!seen.empty() && nums[i] >= nums[seen.back()]){
                 seen.pop_back();
             }
             seen.push_back(i);
