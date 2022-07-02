@@ -31,6 +31,11 @@ public:
         }
         return sum;
     }
+    ~Solution(){
+        left.clear();
+        right.clear();
+        while(!stack.empty()) stack.pop();
+    }
 };
 
 // Time: O(N + N + N) = O(3N) ~ O(N), N = Number of elements
