@@ -27,7 +27,7 @@ public:
         }
         int sum = 0;
         for(int i = 0; i < n; i++){
-            sum = (sum + mod + (1ll * left[i] * right[i] * arr[i]) % mod) % mod;
+            sum = (sum + (1ll * left[i] * right[i] * arr[i]) % mod) % mod;
         }
         return sum;
     }
