@@ -1,5 +1,29 @@
 class StockSpanner {
 private:
+    stack<pair<int, int>> stack;
+public:
+    StockSpanner() {
+        // pass
+    }
+    int next(int price) {
+        int res = 1;
+        while (!stack.empty() && stack.top().first <= price) {
+            res += stack.top().second;
+            stack.pop();
+        }
+        stack.push({price, res});
+        return res;
+    }
+    ~StockSpanner() {
+        while(!stack.empty()){
+            stack.pop();
+        }
+    }
+};
+
+/*
+class StockSpanner {
+private:
     stack<int> stack;
     vector<int> prices;
     int index;
@@ -23,6 +47,7 @@ public:
         prices.clear();
     }
 };
+*/
 
 /**
  * Your StockSpanner object will be instantiated and called as such:
