@@ -7,23 +7,18 @@ public:
         int length = nums.size();
         deque<int> seen;
         vector<int> answer;
-        
         for(int i = 0; i < length; i++){
             if(!seen.empty() && seen.front() == i - k){
                 seen.pop_front();
             }
-            
             while(!seen.empty() && nums[seen.back()] <= nums[i]){
                 seen.pop_back();
             }
-            
             seen.push_back(i);
-            
             if(i >= k - 1){
                 answer.push_back(nums[seen.front()]);
             }
         }
-        
         return answer;
     }
 };
