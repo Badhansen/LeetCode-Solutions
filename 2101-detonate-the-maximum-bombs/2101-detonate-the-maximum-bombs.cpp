@@ -2,15 +2,6 @@ class Solution {
 private:
     vector<vector<int>> graph;
 public:
-    int dfs(int src, bitset<100>& connections){
-        if(!connections[src]){
-            connections[src] = true;
-            for(auto dest : graph[src]){
-                dfs(dest, connections);
-            }
-        }
-        return connections.count();
-    }
     int maximumDetonation(vector<vector<int>>& bombs) {
         int n = bombs.size();
         graph.resize(n + 1);
@@ -26,7 +17,19 @@ public:
             }
         }
         for(int i = 0; i < n && result < n; i++){
-            result = max(result, dfs(i, bitset<100>() = {}));
+            vector<int> queue{i};
+            unordered_set<int> connections{i};
+            while(!queue.empty()){
+                vector<int> tempQueue;
+                for(int src : queue){
+                    for(int k : graph[src]){
+                        if(connections.insert(k).second)
+                            tempQueue.push_back(k);
+                    }
+                }
+                swap(queue, tempQueue);
+            }
+            result = max((int)connections.size(), result);
         }
         return result;
     }
