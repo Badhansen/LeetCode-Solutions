@@ -25,7 +25,7 @@ public:
                 }
             }
         }
-        for(int i = 0; i < n; i++){
+        for(int i = 0; i < n && result < n; i++){
             result = max(result, dfs(i, bitset<100>() = {}));
         }
         return result;
