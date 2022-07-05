@@ -1,6 +1,6 @@
 class Solution {
 private:
-    stack<int> stack;
+    std::stack<int> stack;
 public:
     int evalRPN(vector<string>& tokens) {
         for(auto &item : tokens){
