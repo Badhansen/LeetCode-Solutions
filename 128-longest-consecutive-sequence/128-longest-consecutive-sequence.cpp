@@ -1,4 +1,26 @@
 class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        if(!nums.size()) return 0;
+        sort(nums.begin(), nums.end());
+        int count = 1, maxCount = 1;
+        for(int i = 1; i < nums.size(); i++){
+            if(nums[i] - 1 < nums[i - 1]){
+                maxCount = max(maxCount, count);
+            }
+            else if(nums[i] - 1 == nums[i - 1]){
+                count = count + 1;
+                maxCount = max(maxCount, count);
+            }
+            else{
+                count = 1;
+            }
+        }
+        return maxCount;
+    }
+};
+/*
+class Solution {
 private:
     unordered_map<int, bool> seen;
 public:
@@ -23,3 +45,4 @@ public:
         return longestStreak;
     }
 };
+*/
