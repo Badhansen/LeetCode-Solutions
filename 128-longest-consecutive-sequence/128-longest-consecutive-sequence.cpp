@@ -1,39 +1,56 @@
-class Solution {
+class UnionFind{
+private:
+    vector<int> parent;
+    vector<int> size;
 public:
-    vector<int> pr, _size;
-    int _find(int r){
-        if(r == pr[r]) return r;
-        return pr[r] = _find(pr[r]);
-    }
-    void _union(int a, int b){
-        int x = _find(a), y = _find(b);
-        if(x != y){
-            if(x < y) swap(x, y);
-            _size[x] += _size[y];
-            pr[y] = x;
+    UnionFind(int n){
+        parent.resize(n);
+        size.resize(n, 1);
+        for(int i = 0; i < n; i++){
+            parent[i] = i;
         }
     }
+    int FindRoot(int r){
+        if(parent[r] == r)
+            return r;
+        return parent[r] = FindRoot(parent[r]);
+    }
+    void Union(int a, int b){
+        a = FindRoot(a);
+        b = FindRoot(b);
+        if(a != b){
+            if(a < b) swap(a, b);
+            size[a] += size[b];
+            parent[b] = a;
+        }
+    }
+    int getSize(int index){
+        return size[index];
+    }
+    int getParent(int index){
+        return parent[index];
+    }
+};
+class Solution {
+private:
+    UnionFind* root;
+public:
     int longestConsecutive(vector<int>& nums) {
-        int siz = nums.size();
-        if(!siz) return 0;
-        pr.assign(siz, 0);
-        for(int i = 0; i < siz; i++){
-            pr[i] = i;
-        }
-        _size.assign(siz, 1);
-        
+        int n = nums.size();
+        if(!n) return 0;
+        root = new UnionFind(n);
         unordered_map<int, int> keep;
-        for(int i = 0; i < siz; i++){
-            keep[nums[i]] = i;
+        for(int index = 0; index < n; index++){
+            keep[nums[index]] = index;
         }
-        for(auto &el : nums){
-            if(keep.find(el + 1) != keep.end()){
-                _union(keep[el + 1], keep[el]);
+        for(auto &num : nums){
+            if(keep.find(num + 1) != keep.end()){
+                root->Union(keep[num + 1], keep[num]);
             }
         }
         int maxCount = 1;
-        for(int i = 0; i < siz; i++){
-            maxCount = max(maxCount, _size[i]);
+        for(int i = 0; i < n; i++){
+            maxCount = max(maxCount, root->getSize(i));
         }
         return maxCount;
     }
