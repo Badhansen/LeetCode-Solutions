@@ -1,45 +1,38 @@
 // @Author: KING-SEN
 // 1 last try
-
 class MyQueue {
 private:
     stack<int> stackOne, stackTwo;
+    int front;
 public:
     MyQueue() {
         
     }
-    void push(int x) {
+    void push(int x) { // O(1)
+        if(stackOne.empty()){
+            front = x;
+        }
         stackOne.push(x);
     }
-    int pop() {
-        while(!stackOne.empty()){
-            int n = stackOne.top();
-            stackOne.pop();
-            stackTwo.push(n);
+    int pop() { // Amortized O(1)
+        if(stackTwo.empty()){
+            while(!stackOne.empty()){
+                stackTwo.push(stackOne.top());
+                stackOne.pop();
+            }
         }
         int popval = stackTwo.top();
         stackTwo.pop();
-        while(!stackTwo.empty()){
-            int n = stackTwo.top();
-            stackTwo.pop();
-            stackOne.push(n);
-        }
         return popval;
     }
-    int peek() {
-        while(!stackOne.empty()){
-            stackTwo.push(stackOne.top());
-            stackOne.pop();
+    int peek() { // O(1)
+        if(!stackTwo.empty()){
+            return stackTwo.top();
         }
-        int peekval = stackTwo.top();
-        while(!stackTwo.empty()){
-            stackOne.push(stackTwo.top());
-            stackTwo.pop();
-        }
-        return peekval;
+        return front;
     }
     bool empty() {
-        return stackOne.empty();
+        return stackOne.empty() && stackTwo.empty();
     }
     ~MyQueue() {
         while(!stackOne.empty()) stackOne.pop();
