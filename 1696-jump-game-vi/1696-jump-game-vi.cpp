@@ -5,12 +5,13 @@ public:
     int maxResult(vector<int>& nums, int k) {
         int n = nums.size();
         int maxval = nums[0];
+        pair<int, int> topval;
         que.push({nums[0], 0});
         for(int index = 1; index < n; index++){
             while(!que.empty() && index - que.top().second > k){
                 que.pop();
             }
-            pair<int, int> topval = que.top();
+            topval = que.top();
             maxval = nums[index] + topval.first;
             que.push({maxval, index});
         }
