@@ -3,61 +3,47 @@
 
 class MyQueue {
 private:
-    stack<int> stack1, stack2;
+    stack<int> stackOne, stackTwo;
 public:
     MyQueue() {
         
     }
-    
     void push(int x) {
-        // 1 -> pop
-        // 2
-        // 3
-        stack1.push(x);
+        stackOne.push(x);
     }
-    
     int pop() {
-        while(!stack1.empty()){
-            stack2.push(stack1.top());
-            stack1.pop();
+        while(!stackOne.empty()){
+            int n = stackOne.top();
+            stackOne.pop();
+            stackTwo.push(n);
         }
-        int popval = stack2.top();
-        stack2.pop();
-        // 3
-        // 2
-        // 1
-        while(!stack2.empty()){
-            stack1.push(stack2.top());
-            stack2.pop();
+        int popval = stackTwo.top();
+        stackTwo.pop();
+        while(!stackTwo.empty()){
+            int n = stackTwo.top();
+            stackTwo.pop();
+            stackOne.push(n);
         }
         return popval;
     }
-    
     int peek() {
-        // 3
-        // 2
-        // 1
-        while(!stack1.empty()){
-            stack2.push(stack1.top());
-            stack1.pop();
+        while(!stackOne.empty()){
+            stackTwo.push(stackOne.top());
+            stackOne.pop();
         }
-        int peekval = stack2.top();
-        // 3
-        // 2
-        // 1
-        while(!stack2.empty()){
-            stack1.push(stack2.top());
-            stack2.pop();
+        int peekval = stackTwo.top();
+        while(!stackTwo.empty()){
+            stackOne.push(stackTwo.top());
+            stackTwo.pop();
         }
         return peekval;
     }
-    
     bool empty() {
-        return stack1.empty();
+        return stackOne.empty();
     }
     ~MyQueue() {
-        while(!stack1.empty()) stack1.pop();
-        while(!stack2.empty()) stack2.pop();
+        while(!stackOne.empty()) stackOne.pop();
+        while(!stackTwo.empty()) stackTwo.pop();
     }
 };
 
