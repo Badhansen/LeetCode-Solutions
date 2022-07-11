@@ -1,3 +1,5 @@
+// 1 last try
+
 class Solution {
 public:
     int numOfSubarrays(vector<int>& arr, int k, int threshold) {
@@ -13,3 +15,6 @@ public:
         return answer;
     }
 };
+
+// Time: O(N), N = Length of the array
+// Space: O(1)
