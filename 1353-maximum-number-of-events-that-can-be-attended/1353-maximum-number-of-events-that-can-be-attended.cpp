@@ -22,3 +22,7 @@ public:
         return result;
     }
 };
+/*
+Time O(d + nlogn), where D is the range of A[i][1]
+Space O(N)
+*/
