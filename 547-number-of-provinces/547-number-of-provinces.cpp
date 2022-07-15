@@ -1,3 +1,25 @@
+class Solution {
+public:
+    void Dfs(int src, vector<vector<int>>& isConnected) {
+        for (int dest = 0; dest < isConnected.size(); dest++) {
+            if (isConnected[src][dest]) {
+                isConnected[src][dest] = isConnected[dest][src] = 0; 
+                Dfs(dest, isConnected);
+            }
+        }
+    }
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int result = 0;
+        for (int src = 0; src < isConnected.size(); src++) {            
+            if (isConnected[src][src]) {
+                Dfs(src, isConnected);
+                result++;
+            }
+        }
+        return result;
+    }
+};
+/*
 class UnionFind{
 private:
     vector<int> parent;
@@ -53,3 +75,4 @@ public:
         return root.GetCount();
     }
 };
+*/
