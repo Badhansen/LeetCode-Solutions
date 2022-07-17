@@ -1,3 +1,5 @@
+// not my code
+
 const int kMod = 1e9 + 7;
 const int kMaxN = 1005;
 const int kMaxK = 1005;
@@ -11,7 +13,7 @@ public:
             for (int K = 0; K <= k; ++K) {
                 dp[N][K] = (dp[N - 1][K] + (K > 0 ? dp[N][K - 1] : 0)) % kMod;
                 if (K >= N)
-                    dp[N][K] = (1000000007 + dp[N][K] - dp[N - 1][K - N]) % kMod;
+                    dp[N][K] = (kMod + dp[N][K] - dp[N - 1][K - N]) % kMod;
             }
         }
         return dp[n][k];
