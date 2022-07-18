@@ -14,14 +14,11 @@ public:
                 dp[r + 1][c + 1] = dp[r + 1][c] + dp[r][c + 1] + matrix[r][c] - dp[r][c];
             }
         }
-        set<array<int, 4>> sum;
         for (int x1 = 0; x1 < row; x1++) {
             for (int y1 = 0; y1 < col; y1++) {
                 for (int x2 = x1; x2 < row; x2++) {
                     for (int y2 = y1; y2 < col; y2++) {
                         if (SumRegion(x1, y1, x2, y2) == target) {
-                            //cout << x1 << " " << y1 << " " << x2 << " " << y2 << endl;
-                            sum.insert({x1, y1, x2, y2});
                             count++;
                         }
                     }
