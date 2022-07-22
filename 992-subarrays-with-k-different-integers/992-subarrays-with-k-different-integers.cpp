@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int KDistinct(vector<int>& nums, int k) {
+    int AtMostKDistinct(vector<int>& nums, int k) {
         unordered_map<int, int> freq;
         int start = 0, end = 0, answer = 0, count = 0;
         for (int end = 0; end < nums.size(); end++) {
@@ -17,6 +17,6 @@ public:
         return answer;
     }
     int subarraysWithKDistinct(vector<int>& nums, int k) {
-        return KDistinct(nums, k) - KDistinct(nums, k - 1);
+        return AtMostKDistinct(nums, k) - AtMostKDistinct(nums, k - 1);
     }
 };
