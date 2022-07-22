@@ -17,3 +17,6 @@ public:
         return result;
     }
 };
+
+// Time: O(N)
+// Space: O(1)
