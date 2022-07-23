@@ -1,6 +1,22 @@
 class Solution {
 public:
     string removeDuplicates(string s) {
+        string res = "";
+        for (char& c : s){
+            if (res.size() && c == res.back()) {
+                res.pop_back();
+            }
+            else {
+                res.push_back(c);
+            }
+        }
+        return res;
+    }
+};
+/*
+class Solution {
+public:
+    string removeDuplicates(string s) {
         stack<char> st;
         for(int i = 0; i < s.size(); i++){
             if(!st.empty()){
@@ -21,3 +37,4 @@ public:
         return ans;
     }
 };
+*/
