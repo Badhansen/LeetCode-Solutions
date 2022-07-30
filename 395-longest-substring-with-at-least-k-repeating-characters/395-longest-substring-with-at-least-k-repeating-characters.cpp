@@ -1,6 +1,7 @@
 class Solution {
 public:
     int longestSubstring(string s, int k) {
+        // Here we can cout the unique character and the complexity O(26 * N) to O(Unique Character * N)
         int answer = 0;
         for (int curr_unique = 1; curr_unique <= 26; curr_unique++) {
             vector<int> freq(26, 0);
