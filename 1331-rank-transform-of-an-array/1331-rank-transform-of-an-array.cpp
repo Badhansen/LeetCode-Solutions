@@ -12,7 +12,7 @@ public:
         vector<int> ans(n);
         
         for(auto n : arr){ // O(N)
-            seen[n] = true; // O(log N)
+            seen[n] = 1; // O(log N)
         }
         
         int rank = 1;
