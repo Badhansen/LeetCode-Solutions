@@ -1,3 +1,19 @@
+const int kMax = 100;
+class Solution {
+public:
+    vector<int> frequencySort(vector<int>& nums) {
+        vector<int> freq(205, 0);
+        for (auto n : nums) {
+            freq[n + kMax]++;
+        }
+        sort(nums.begin(), nums.end(), [&](int a, int b) {
+            if (freq[a + kMax] == freq[b + kMax]) return a > b;
+            return freq[a + kMax] < freq[b + kMax];
+        });
+        return nums;
+    }
+};
+/*
 class Solution {
 public:
     vector<int> frequencySort(vector<int>& nums) {
@@ -20,3 +36,4 @@ public:
         return ans;
     }
 };
+*/
