@@ -1,6 +1,29 @@
 class Solution {
 public:
     int longestStrChain(vector<string>& words) {
+        sort(words.begin(), words.end(), [&](const string& a, const string& b){
+            return a.size() < b.size();
+        });
+        unordered_map<string, int> dp;
+        int res = 0;
+        for (string w : words) {
+            for (int i = 0; i < w.length(); i++) {
+                string pre = w.substr(0, i) + w.substr(i + 1);
+                dp[w] = max(dp[w], dp.find(pre) == dp.end() ? 1 : dp[pre] + 1);
+            }
+            res = max(res, dp[w]);
+        }
+        return res;
+    }
+};
+// Time O(NlogN) for sorting,
+// Time O(NSS) for the for loop, where the second S refers to the string generation and S <= 16.
+// Space O(NS)
+
+/*
+class Solution {
+public:
+    int longestStrChain(vector<string>& words) {
         vector<string> wlen[17];
         unordered_map<string, int> dist;
         for(auto &word : words){ // O(N)
@@ -25,3 +48,4 @@ public:
 
 // Time: O(N * L ^ 2)
 // Space: O(N)
+*/
