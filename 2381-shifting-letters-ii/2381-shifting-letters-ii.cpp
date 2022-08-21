@@ -1,7 +1,7 @@
 class SegTree {
 private:
     int size;
-    vector<long long> tree;
+    vector<int> tree;
 public:
     SegTree(int n) {
         size = 1;
@@ -9,21 +9,6 @@ public:
             size *= 2;
         }
         tree.resize(2 * size, 0);
-    }
-    void build(vector<int> &v, int n, int x, int lx, int rx) {
-        if (rx - lx == 1) {
-            if (lx < n) {
-                tree[x] = v[lx];
-            }
-            return;
-        }
-        int m = (lx + rx) / 2;
-        build(v, n, 2 * x + 1, lx, m);
-        build(v, n, 2 * x + 2, m, rx);
-        tree[x] = tree[2 * x + 1] + tree[2 * x + 2];
-    }
-    void build(vector<int> &v, int n) {
-        build(v, n, 0, 0, size);
     }
     void updateRange(int l, int r, int val, int x, int lx, int rx) {
         if (lx >= r || l >= rx) return;
@@ -38,7 +23,7 @@ public:
     void updateRange(int l, int r, int val) {
         updateRange(l, r, val, 0, 0, size);
     }
-    long long get(int i, int x, int lx, int rx) {
+    int get(int i, int x, int lx, int rx) {
         if (rx - lx == 1) {
             return tree[x];
         }
@@ -52,7 +37,7 @@ public:
         }
         return res + tree[x];
     }
-    long long get(int i) {
+    int get(int i) {
         return get(i, 0, 0, size);
     }
     ~SegTree() {
