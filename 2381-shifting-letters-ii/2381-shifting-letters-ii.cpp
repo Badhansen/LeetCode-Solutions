@@ -36,7 +36,7 @@ public:
         int m = (lx + rx) / 2;
         updateRange(l, r, val, 2 * x + 1, lx, m);
         updateRange(l, r, val, 2 * x + 2, m, rx);
-        tree[x] = tree[2 * x + 1] + tree[2 * x + 2];
+        tree[x] = tree[2 * x + 1] + tree[2 * x + 2] + lazy[x];
     }
     void updateRange(int l, int r, int val) {
         updateRange(l, r, val, 0, 0, size);
