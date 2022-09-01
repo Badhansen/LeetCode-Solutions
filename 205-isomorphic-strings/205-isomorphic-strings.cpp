@@ -1,16 +1,14 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        map<char, char> st, tt;
+        vector<int> sseen(256, -1), tseen(256, -1);
         for(int i = 0; i < s.size(); i++){
-            if(st.count(t[i]) || tt.count(s[i])){
-                if(st[t[i]] != s[i]){
-                    return false;
-                }
+            if(sseen[t[i]] != -1 || tseen[s[i]] != -1){
+                if(sseen[t[i]] != s[i]) return false;
             }
             else{
-                st[t[i]] = s[i];
-                tt[s[i]] = t[i];
+                sseen[t[i]] = s[i];
+                tseen[s[i]] = t[i];
             }
         }
         return true;
