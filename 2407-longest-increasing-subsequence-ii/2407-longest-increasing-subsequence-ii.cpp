@@ -57,7 +57,7 @@ public:
         int ans = 0;
         for (int i = 0; i < n; i++) {
             int left = max(0, nums[i] - k);
-            int curr = max_tree.get(left, nums[i]) + 1;
+            int curr = max_tree.get(left, nums[i]) + 1; // as this segment tree work's [l, r) so nums[i] - 1 is not necessary
             max_tree.set(nums[i], curr);
             ans = max(ans, curr);
         }
