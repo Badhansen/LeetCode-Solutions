@@ -1,15 +1,21 @@
 class Solution {
+private:
+    int dp[1001][1001] = {0};
+    bool visited[1001][1001] = {false};
 public:
-    int maximumScore(vector<int>& nums, vector<int>& multipliers) {
-        int n = nums.size();
-        int m = multipliers.size();
-        vector<vector<int>> dp(1001, vector<int>(1001, 0));
-        for (int op = m - 1; op >= 0; op--) {
-            for (int left = op; left >= 0; left--) {
-                dp[op][left] = max(multipliers[op] * nums[left] + dp[op + 1][left + 1],
-                                   multipliers[op] * nums[n - 1 - (op - left)] + dp[op + 1][left]);
-            }
+    int dfs(vector<int>& nums, vector<int>& mults, int l, int i) {
+        if (i >= mults.size()) {
+            return 0;
         }
-        return dp[0][0];
+        if (!visited[l][i]) {
+            int r = nums.size() - 1 - (i - l);
+            dp[l][i] = max(nums[l] * mults[i] + dfs(nums, mults, l + 1, i + 1), 
+                nums[r] * mults[i] + dfs(nums, mults, l, i + 1));
+            visited[l][i] = true;
+        }
+        return dp[l][i];
+    }
+    int maximumScore(vector<int>& nums, vector<int>& multipliers) {
+        return dfs(nums, multipliers, 0, 0);
     }
 };
