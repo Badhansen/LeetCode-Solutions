@@ -25,8 +25,8 @@ public:
     int numberOfPaths(vector<vector<int>>& grid, int k) {
         m = grid.size(), n = grid[0].size();
         this->k = k;
-        for (int i = 0; i < 50; i++) {
-            dp[i].resize(m + 1, vector<int>(n + 1, -1));
+        for (int i = 0; i < k; i++) {
+            dp[i].resize(m, vector<int>(n, -1));
         }
         return solve(0, 0, 0, grid);
     }
