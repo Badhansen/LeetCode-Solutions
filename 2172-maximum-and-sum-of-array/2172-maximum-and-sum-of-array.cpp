@@ -32,3 +32,10 @@ public:
         return result;
     }
 };
+
+/*
+Time Complexity: 
+Here dp state is (index in nums, array of slots). possible values of index[0,n) and no of possible values of the array of slots are 3^numSlots(since the possible value of an element in slot is 0,1,2). so the total number of states would be N*(3^numSlots).
+And for each state, we are also iterating over numSlots.
+Overall complexity would be N*(3^numSlots)*numSlots
+*/
