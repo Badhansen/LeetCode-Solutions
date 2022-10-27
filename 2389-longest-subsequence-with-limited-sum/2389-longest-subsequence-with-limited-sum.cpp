@@ -1,3 +1,4 @@
+/*
 class Solution {
 public:
     vector<int> answerQueries(vector<int>& nums, vector<int>& queries) {
@@ -15,6 +16,25 @@ public:
                 }
             }
             answer[i] = max_len;
+        }
+        return answer;
+    }
+};
+// Time: O(N log N + N * M)
+*/
+
+class Solution {
+public:
+    vector<int> answerQueries(vector<int>& nums, vector<int>& queries) {
+        int nums_len = nums.size(), queries_len = queries.size();
+        vector<int> answer;
+        sort(nums.begin(), nums.end());
+        for (int i = 1; i < nums_len; i++) {
+            nums[i] += nums[i - 1];
+        }
+        for (auto q : queries) {
+            int index = upper_bound(nums.begin(), nums.end(), q) - nums.begin();
+            answer.push_back(index);
         }
         return answer;
     }
