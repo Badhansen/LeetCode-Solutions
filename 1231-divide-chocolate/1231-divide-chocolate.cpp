@@ -15,7 +15,7 @@ public:
     }
     int maximizeSweetness(vector<int>& sweetness, int k) {
         int left = *min_element(sweetness.begin(), sweetness.end());
-        int right = accumulate(sweetness.begin(), sweetness.end(), 0);
+        int right = accumulate(sweetness.begin(), sweetness.end(), 0) / (k + 1);
         int answer = 0;
         while (left <= right) {
             int mid = (left + right) >> 1;
