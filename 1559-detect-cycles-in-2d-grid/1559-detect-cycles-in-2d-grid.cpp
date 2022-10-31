@@ -1,29 +1,48 @@
+// see bfs solution
+
 class Solution {
-private:
-    vector<vector<int>> direction_ = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-    vector<vector<bool>> visited_;
-    int row_, col_;
 public:
-    bool dfs(int x, int y, int px, int py, vector<vector<char>>& grid) {
-        visited_[x][y] = true;
-        for (int i = 0; i < 4; i++) {
-            int new_x = direction_[i][0] + x;
-            int new_y = direction_[i][1] + y;
-            if (new_x >= 0 && new_x < row_ && new_y >= 0 && new_y < col_ && grid[x][y] == grid[new_x][new_y] && !(new_x == px && new_y == py)) {
-                if (visited_[new_x][new_y] || dfs(new_x, new_y, x, y, grid)) {
-                    return true;
+    bool isValid(vector<vector<char>>& g,int u,int v,int prex,int prey){
+        if (u < 0 || u >= g.size() || v < 0 || v >= g[0].size() || g[u][v] != g[prex][prey]){
+            return false;
+        }
+        return true;
+    }
+    bool bfs(vector<vector<char>>& g,int r,int c,vector<vector<bool>>&vi){
+        int offsets[] = {0, 1, 0, -1, 0};
+        queue<pair<pair<int,int>,pair<int,int>>>q;
+        q.push({{-1,-1},{r,c}});
+        vi[r][c]=true;
+        while(!q.empty()){
+            int prex=q.front().first.first;
+            int prey=q.front().first.second;
+            int x = q.front().second.first;
+            int y = q.front().second.second;
+            q.pop();
+            for (int k = 0; k < 4; k++) {
+                int u = x + offsets[k], v = y + offsets[k + 1];
+                if (isValid(g,u,v,x,y)) {
+                    if(vi[u][v]){
+                        if(prex!=u or prey!=v){
+                            return true;
+                        } 
+                    }else{
+                        vi[u][v] = true;
+                        q.push({{x,y},{u, v}});
+                    }
                 }
             }
         }
         return false;
     }
     bool containsCycle(vector<vector<char>>& grid) {
-        row_ = grid.size(), col_ = grid[0].size();
-        visited_.resize(row_, vector<bool>(col_, false));
-        for (int i = 0; i < row_; i++) {
-            for (int j = 0; j < col_; j++) {
-                if (visited_[i][j] == false && dfs(i, j, -1, -1, grid)) {
-                    return true;
+        int m=grid.size();
+        int n=grid[0].size();
+        vector<vector<bool>>vis(m,vector<bool>(n,false));
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(!vis[i][j]){
+                    if(bfs(grid,i,j,vis)) return true;
                 }
             }
         }
