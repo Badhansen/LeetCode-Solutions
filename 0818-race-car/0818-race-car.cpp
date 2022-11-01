@@ -23,7 +23,9 @@ public:
                     } else {
                         speed = speed > 0 ? -1 : 1;
                     }
-                    if (position < 0 || position > 2 * target) continue;
+                    if (position < 0 || position > 2 * target) {
+                        continue;
+                    }
                     if (discovered.insert({{position, speed}, true}).second) {
                         que.push({position, speed});
                     }
