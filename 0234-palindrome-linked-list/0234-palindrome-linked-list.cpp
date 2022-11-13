@@ -44,7 +44,7 @@ public:
             ptr1 = ptr1->next;
             ptr2 = ptr2->next;
         }
-        first_half_end = ReverseList(second_half_start);
+        first_half_end->next = ReverseList(second_half_start);
         return result;
     }
 };
