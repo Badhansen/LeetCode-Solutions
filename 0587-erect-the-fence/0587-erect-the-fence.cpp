@@ -1,3 +1,4 @@
+// N^2 Got TLE and I don't know the Andrew's method
 class Solution {
 public:
     vector<vector<int>> outerTrees(vector<vector<int>>& points) {
