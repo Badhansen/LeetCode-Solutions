@@ -36,12 +36,15 @@ public:
             int c = rem / (sz - 1), d = rem % (sz - 1);
             ret = vec[0];
             for(int i = 1; i < sz; i++){
-                for(int j = 0; j < c; j++) ret += " ";
+                //for(int j = 0; j < c; j++) ret += " ";
+                ret.append(string(c, ' '));
                 if(d > 0){
-                    ret += " ";
+                    //ret += " ";
+                    ret.push_back(' ');
                     d--;
                 }
-                ret += vec[i];
+                //ret += vec[i];
+                ret.append(vec[i]);
             }
         }
         return ret;
