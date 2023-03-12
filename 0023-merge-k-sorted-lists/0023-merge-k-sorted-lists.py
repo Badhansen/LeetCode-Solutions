@@ -4,8 +4,6 @@
 #         self.val = val
 #         self.next = next
 
-import heapq
-
 
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
