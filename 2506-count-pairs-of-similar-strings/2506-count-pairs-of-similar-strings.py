@@ -1,6 +1,6 @@
 class Solution:
     def similarPairs(self, words: List[str]) -> int:
-        return sum([set(words[i]) == set(words[j]) for i in range(len(words)) for j in range(i + 1, len(words))])
+        return sum([set(a) == set(b) for i, a in enumerate(words) for b in words[i + 1:]])
                                         
                                          
             
