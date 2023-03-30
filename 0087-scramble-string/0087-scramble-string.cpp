@@ -4,6 +4,12 @@ private:
     bool vis[35][35][35];
 public:
     bool solve(int i, int j, int len, string &s1, string &s2) {
+        /*
+    s1, s2 is scramble when
+        s1[0:k], s2[0:k] is scramble and s1[k:n], s2[k:n] is scramble.
+    Or,
+        s1[0:k], s2[n-k:n] is scramble and s1[k:n], s2[0:n-k] is scramble.
+    */
         if (vis[i][j][len]) {
             return dp[i][j][len];
         }
