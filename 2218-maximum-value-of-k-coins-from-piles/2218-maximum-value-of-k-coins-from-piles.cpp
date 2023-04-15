@@ -24,7 +24,7 @@ public:
     }
     int maxValueOfCoins(vector<vector<int>>& piles, int k) {
         int n = piles.size();
-        dp.resize(n + 1, vector<int>(2005, -1));
+        dp.resize(n + 1, vector<int>(k + 1, -1));
         int answer = solve(0, k, piles);
         return answer;
     }
