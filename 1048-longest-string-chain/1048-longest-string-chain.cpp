@@ -16,6 +16,19 @@ public:
         return res;
     }
 };
+/*
+/*
+Let N be the number of words in the list and LL be the maximum possible length of a word.
+
+    Time complexity: O(N⋅(log⁡N+L^2))
+
+    Sorting a list of size NN takes O(Nlog⁡N) time. Next, we use two for loops in which the outer loop runs for O(N) iterations and the inner loop runs for O(L^2) iterations in the worst case scenario. The first LL is for the inner loop and the second LL is for creating each predecessor. Thus the overall time complexity is O(NlogN+(N⋅L^2)) which equals O(N⋅(log⁡N+L^2)).
+
+    Space complexity: O(N).
+
+    We use a map to store the length of the longest sequence formed with each of the N words as the end word.
+*/
+
 // Time O(NlogN) for sorting,
 // Time O(NSS) for the for loop, where the second S refers to the string generation and S <= 16.
 // Space O(NS)
