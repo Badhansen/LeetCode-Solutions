@@ -1,34 +1,24 @@
 class Solution {
 public:
     string removeKdigits(string num, int k) {
-        deque<int> que;
+        string result;
         for (int i = 0; i < num.size(); i++) {
-            while (!que.empty() && k && que.back() > num[i] - '0') {
+            while (!result.empty() && k && result.back() > num[i]) {
                 k--;
-                que.pop_back();
+                result.pop_back();
             }
-            
-            que.push_back(num[i] - '0');
-            
-            if (k == 0) {
-                i++;
-                while (i < num.size()) {
-                    que.push_back(num[i] - '0');
-                    i++;
+            if (num[i] == '0') {
+                if (!result.empty()) {
+                    result.push_back(num[i]);
                 }
-                break;
+            } else {
+                result.push_back(num[i]);
             }
         }
-        string answer;
-        for (int i = 0; i < que.size() - k; i++) {
-            if (answer.size() == 0 && que.at(i) == 0) {
-                continue;
-            }
-            answer.push_back('0' + que.at(i));
+        while(k and !result.empty()) {
+            k--;
+            result.pop_back();
         }
-        if (answer.size() == 0) {
-            return "0";
-        } 
-        return answer;
+        return result.empty() ? "0" : result;
     }
 };
