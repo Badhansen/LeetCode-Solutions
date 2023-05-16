@@ -4,11 +4,13 @@
 class Solution {
 private:
     vector<int> parent;
-    vector<int> rank;
+    vector<int> size;
     int component;
 public:
-    int Find(int node){
-        if(parent[node] == node) return node;
+    int Find(int node) {
+        if (node == parent[node]) {
+            return node;
+        }
         return parent[node] = Find(parent[node]);
     }
     void Union(int a, int b){
@@ -16,18 +18,18 @@ public:
         b = Find(b);
         if(a != b){
             component--;
-            if(rank[a] < rank[b]) swap(rank[a], rank[b]);
+            if (size[a] < size[b]) {
+		        swap(a, b);
+            }
             parent[b] = a;
-            if(rank[a] == rank[b]) rank[a]++;
+            size[a] += size[b];
         }
     }
     int countComponents(int n, vector<vector<int>>& edges) {
         parent.resize(n);
-        rank.resize(n, 1);
+        size.resize(n, 1);
+        iota(parent.begin(), parent.end(), 0);
         component = n;
-        for(int i = 0; i < n; i++){
-            parent[i] = i;
-        }
         for(auto &edge : edges){
             Union(edge[0], edge[1]);
         }
