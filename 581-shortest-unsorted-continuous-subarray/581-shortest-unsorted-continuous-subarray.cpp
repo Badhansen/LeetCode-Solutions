@@ -3,24 +3,38 @@
 class Solution {
 public:
     int findUnsortedSubarray(vector<int>& nums) {
-        stack<int> increasing, decreasing; 
-        // Increasing stack previous lesser and next lesser elelments
-        // Decresing stack previous greater and next greater elements
         int n = nums.size();
-        int left = n, right = 0, end = n - 1;
-        for (int i = 0; i < n; i++) {
-            while (!increasing.empty() && nums[increasing.top()] > nums[i]) {
-                left = min(left, increasing.top());
-                increasing.pop();
+        int min_val = INT_MAX, max_val = INT_MIN;
+        bool sorted = true;
+        for (int i = 1; i < n; i++) {
+            if (nums[i] < nums[i - 1]) {
+                sorted = false;
             }
-            while (!decreasing.empty() && nums[decreasing.top()] < nums[end - i]) {
-                right = max(right, decreasing.top());
-                decreasing.pop();
+            if (!sorted) {
+                min_val = min(min_val, nums[i]);
             }
-            increasing.push(i);
-            decreasing.push(end - i);
+        }
+        sorted = true;
+        for (int i = n - 2; i >= 0; i--) {
+            if (nums[i] > nums[i + 1]) {
+                sorted = false;
+            }
+            if (!sorted) {
+                max_val = max(max_val, nums[i]);
+            }
+        }
+        int left, right;
+        for (left = 0; left < n; left++) {
+            if (min_val < nums[left]) {
+                break;
+            }
+        }
+        for (right = n - 1; right >= 0; right--) {
+            if (max_val > nums[right]) {
+                break;
+            }
         }
         int total = right - left + 1;
-        return total < 0 ? 0 : total; 
+        return total < 0 ? 0 : total;
     }
 };
