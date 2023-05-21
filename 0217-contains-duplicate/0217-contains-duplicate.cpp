@@ -3,17 +3,17 @@
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        set<int> st;
+        unordered_map<int, int> seen;
         for(auto &num : nums){
-            if(st.count(num))
+            if(seen.count(num)) {
                 return true;
-            else
-                st.insert(num);
+            }
+            seen[num] = 1;
         }
         return false;
     }
 };
 
 // Here N = Number of elements
-// Time Complexity: O(N log N)
+// Time Complexity: O(N)
 // Space Complexity: O(N)
