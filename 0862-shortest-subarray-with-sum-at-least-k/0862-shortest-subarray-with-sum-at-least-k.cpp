@@ -21,3 +21,6 @@ public:
         return answer >= n * 2 ? -1 : answer;
     }
 };
+
+// Time Complexity: O(N), where N is the length of A.
+// Space Complexity: O(N).
