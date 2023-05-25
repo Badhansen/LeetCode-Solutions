@@ -32,3 +32,6 @@ public:
         return nodes == n ? semesters : -1;
     }
 };
+
+// Time Complexity: O(N + E)
+// Space Complexity: O(N + E)
