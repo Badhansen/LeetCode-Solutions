@@ -6,30 +6,24 @@ public:
     int trap(vector<int>& height) {
         int start = 0;
         int end = height.size() - 1;
+        
+        int maxleft = height[start];
+        int maxright = height[end];
+        
         int answer = 0;
         
-        int leftMax = 0, rightMax = 0;
-        while(start < end){
-            if(height[start] < height[end]){
-                if(height[start] >= leftMax){
-                    leftMax = height[start];
-                }
-                else{
-                    answer += leftMax - height[start];
-                }
+        while (start < end) {
+            if (maxleft <= maxright) {
                 start++;
-            }
-            else{
-                if(height[end] >= rightMax){
-                    rightMax = height[end];
-                }
-                else{
-                    answer += rightMax - height[end];
-                }
+                maxleft = max(maxleft, height[start]);
+                answer += maxleft - height[start];
+            } else {
                 end--;
+                maxright = max(maxright, height[end]);
+                answer += maxright - height[end];
             }
         }
-        
+            
         return answer;
     }
 };
