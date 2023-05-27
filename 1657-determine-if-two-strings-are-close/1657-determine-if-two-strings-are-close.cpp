@@ -1,32 +1,25 @@
 class Solution {
 public:
     bool closeStrings(string word1, string word2) {
-        map<char, int> count1, count2;
+        vector<int> count1(26, 0), count2(26, 0);
+        set<char> set1, set2;
         for (auto w : word1){
-            count1[w]++;
+            count1[w - 'a']++;
+            set1.insert(w);
         }
         for (auto w : word2) {
-            count2[w]++;
+            count2[w - 'a']++;
+            set2.insert(w);
         }
-        vector<char> char1, char2;
-        vector<int> freq1, freq2;
-        for (auto [key, val] : count1) {
-            char1.push_back(key);
-            freq1.push_back(val);
-        }
-        for (auto [key, val] : count2) {
-            char2.push_back(key);
-            freq2.push_back(val);
-        }
-        sort(char1.begin(), char1.end());
-        sort(char2.begin(), char2.end());
-        if (char1 != char2) {
+        sort(count1.begin(), count1.end());
+        sort(count2.begin(), count2.end());
+        if (set1 != set2) {
             return false;
         }
-        sort(freq1.begin(), freq1.end());
-        sort(freq2.begin(), freq2.end());
-        if (freq1 != freq2) {
-            return false;
+        for (int i = 0; i < 26; i++) {
+            if (count1[i] != count2[i]) {
+                return false;
+            }
         }
         return true;
     }
