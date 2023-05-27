@@ -19,7 +19,7 @@ public:
     
     double findMedian() {
         double ans = 1.00 * lo.top();
-        if(lo.size() <= hi.size()){
+        if(lo.size() == hi.size()){
             ans += hi.top();
             return ans * 0.5;
         }
