@@ -11,7 +11,7 @@ public:
         }
         auto it = next(window.begin(), (k - 1) / 2); 
         for (int i = k; i <= n; i++) {            
-            double median = (k & 1) ? *it : (1ll * *it + *next(it)) / 2.00;
+            double median = (k & 1) ? *it : (1.0 * *it + *next(it)) / 2.00;
             answer.push_back(median);
             if (i == n) {
                 break;
