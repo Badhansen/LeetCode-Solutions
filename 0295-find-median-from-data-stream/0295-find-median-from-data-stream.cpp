@@ -1,27 +1,28 @@
 class MedianFinder {
 private:
-    priority_queue<int> lo;
-    priority_queue<int, vector<int>, greater<int>> hi;
+    // left = max heap
+    // right = min heap
+    multiset<int> left, right;
 public:
     MedianFinder() {
         // leave it as it is.
     }
     
     void addNum(int num) {
-        lo.push(num);
-        hi.push(lo.top());
-        lo.pop();
-        if(lo.size() < hi.size()){
-            lo.push(hi.top());
-            hi.pop();
+        left.insert(num);
+        right.insert(*left.rbegin());
+        left.erase(prev(left.end()));
+        if(left.size() < right.size()){
+            left.insert(*right.begin());
+            right.erase(right.begin());
         }
     }
     
     double findMedian() {
-        double ans = 1.00 * lo.top();
-        if(lo.size() == hi.size()){
-            ans += hi.top();
-            return ans * 0.5;
+        double ans = 1.00 * (*left.rbegin());
+        if(left.size() == right.size()){
+            ans += (*right.begin());
+            ans /= 2.00;
         }
         return ans;
     }
