@@ -13,14 +13,9 @@ public:
         }
         sort(count1.begin(), count1.end());
         sort(count2.begin(), count2.end());
-        if (set1 != set2) {
-            return false;
+        if (set1 == set2 && count1 == count2) {
+            return true;
         }
-        for (int i = 0; i < 26; i++) {
-            if (count1[i] != count2[i]) {
-                return false;
-            }
-        }
-        return true;
+        return false;
     }
 };
