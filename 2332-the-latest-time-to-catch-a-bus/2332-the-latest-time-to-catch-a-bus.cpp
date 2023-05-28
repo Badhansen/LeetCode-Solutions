@@ -2,30 +2,30 @@
 
 class Solution {
  private:
-    unordered_map<int, int> seen_passenger;
+    unordered_map<int, bool> seen;
  public:
     int latestTimeCatchTheBus(vector<int>& buses, vector<int>& passengers, int capacity) {
         sort(buses.begin(), buses.end());
         sort(passengers.begin(), passengers.end());
         for(auto p : passengers){
-            seen_passenger[p] = 1;
+            seen[p] = true;
         }
-        int passenger_ID = 0, last_passenger, last_capacity = 0;
-        for (int b = 0; b < buses.size(); b++) {
-            last_capacity = 0;
-            while(passenger_ID < passengers.size() && passengers[passenger_ID] <= buses[b] && last_capacity < capacity) {
-                last_passenger = passengers[passenger_ID];
-                last_capacity++;
-                passenger_ID++;
+        int p_id = 0;
+        int last_passenger, cap = 0;
+        for (auto &b : buses) {
+            cap = 0;
+            while (p_id < passengers.size() && passengers[p_id] <= b && cap < capacity) {
+                last_passenger = passengers[p_id];
+                cap++, p_id++;
             }
         }
         int answer;
-        if (last_capacity < capacity) {
+        if (cap < capacity) {
             answer = buses[buses.size() - 1];
         } else {
             answer = last_passenger - 1;
         }
-        while (seen_passenger[answer] > 0) {
+        while (seen.count(answer)) {
             answer--;
         }
         return answer;
