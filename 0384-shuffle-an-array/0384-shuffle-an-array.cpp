@@ -1,27 +1,25 @@
 class Solution {
-private:
-    vector<int> a, b;
-    int n;
 public:
+    vector<int> input,result;
     Solution(vector<int>& nums) {
-        n = nums.size();
-        a = nums;
-        b = nums;
+        input = nums;
+        result = nums;
     }
     
     /** Resets the array to its original configuration and return it. */
     vector<int> reset() {
-        a = b;
-        return a;
+        result = input;
+        return result;
     }
     
     /** Returns a random shuffling of the array. */
     vector<int> shuffle() {
-        for(int i = n - 1; i > 0; i--){
-            int j = rand() % (i + 1);
-            swap(a[i], a[j]);
+        int sz = result.size();
+        for(int i=0;i<result.size();i++){
+            int pos = rand() % sz;
+            swap(result[i],result[pos]);
         }
-        return a;
+        return result;
     }
 };
 
