@@ -1,8 +1,8 @@
 class Solution {
 public:
     int racecar(int target) {
-        std::queue<std::array<int, 2>> que;
-        std::map<std::array<int, 2>, bool> discovered;
+        queue<array<int, 2>> que;
+        map<array<int, 2>, bool> discovered;
         que.push({0, 1});
         discovered.insert({{0, 1}, true});
         int level = 0;
@@ -37,3 +37,7 @@ public:
         return level;
     }
 };
+// Time : O(T log T)
+// Space : O(T log T)
+
+// Explanation: https://www.youtube.com/watch?v=p8N4iKiLnnU&t=1242s
