@@ -1,22 +1,9 @@
 class Solution {
 private:
     vector<vector<int>> graph[105];
-    struct Node{
-        int u, w;
-        Node(int u, int w){
-            this->u = u;
-            this->w = w;
-        }
-    };
-    struct compare {
-        bool operator()(const Node& a, const Node& b){
-            return a.w > b.w;
-        }
-    };
 public:
     int dijkstra(int src, int n){
         vector<int> dist(n + 1, INT_MAX);
-        //priority_queue<Node, vector<Node>, compare> que;
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> que;
         que.push({0, src});
         dist[0] = 0; // as 0 node isn't available
