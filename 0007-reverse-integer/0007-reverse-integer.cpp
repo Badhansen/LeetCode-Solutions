@@ -8,13 +8,14 @@ public:
             x = -x;
         }
         int res = 0;
-        while(x){
+        while (x) {
             int r = x % 10;
-            if(res && INT_MAX / res < 10) return 0;
+            if (res && INT_MAX / res < 10) {
+                return 0;
+            }
             res = res * 10 + r;
             x /= 10;
         }
-        if(flag) return -res;
-        return res;
+        return flag ? -res : res;
     }
 };
