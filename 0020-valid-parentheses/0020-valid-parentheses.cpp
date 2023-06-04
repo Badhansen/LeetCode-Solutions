@@ -4,24 +4,23 @@ class Solution {
 public:
     bool isValid(string s) {
         int n = s.size();
-        stack<char> charStack;
-        for(int i = 0; i < s.size(); i++){
-            if(s[i] == '(' || s[i] == '{' || s[i] == '['){
-                charStack.push(s[i]);
-            }
-            else{
-                if(charStack.empty()) return false;
-                
-                char topChar = charStack.top();
-                if((topChar == '(' && s[i] == ')') || (topChar == '{' && s[i] == '}') || (topChar == '[' && s[i] == ']')){
-                    charStack.pop();
-                }
-                else{
+        stack<char> stack;
+        unordered_map<char, char> need; 
+        need[')'] = '(';
+        need['}'] = '{';
+        need[']'] = '[';
+        for (int i = 0; i < s.size(); i++){
+            if (s[i] == '(' || s[i] == '{' || s[i] == '['){
+                stack.push(s[i]);
+            } else{
+                if (!stack.empty() && need[s[i]] == stack.top()) {
+                    stack.pop();
+                } else{
                     return false;
                 }
             }
         }
-        return charStack.empty();
+        return stack.empty();
     }
 };
 
