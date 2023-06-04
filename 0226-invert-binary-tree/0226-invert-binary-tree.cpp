@@ -9,9 +9,22 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-//@Author: KING-SEN
-// Programming Language Used: C++
-
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(root == NULL)
+            return root;
+        
+        TreeNode* left = invertTree(root->left);
+        TreeNode* right = invertTree(root->right);
+        
+        root->left = right;
+        root->right = left;
+        
+        return root;
+    }
+};
+/*
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
@@ -25,9 +38,10 @@ public:
             seen.pop();
             if(node->left) seen.push(node->left);
             if(node->right) seen.push(node->right);
-            TreeNode* temp = node->left;
-            node->left = node->right;
-            node->right = temp;
+            swap(node->left, node->right);
+            // TreeNode* temp = node->left;
+            // node->left = node->right;
+            // node->right = temp;
             
         }
         return root;
@@ -36,4 +50,4 @@ public:
 
 // Time complexity: O(N), where N is the total number of nodes
 // Space complexity: O(N), since in the worst case, the queue will contain all nodes in one level of the binary tree.
-
+*/
