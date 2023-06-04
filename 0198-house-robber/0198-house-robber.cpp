@@ -1,3 +1,19 @@
+// @Author: KING-SEN
+
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        int prev = 0, prevprev = 0;
+        for (auto val : nums) {
+            int best = max(prevprev + val, prev);
+            prevprev = prev;
+            prev = best;
+        }
+        return max(prev, prevprev);
+    }
+};
+
+/*
 class Solution {
 public:
     int solve(int pos, vector<int>& nums, vector<int>& dp){
