@@ -1,24 +1,28 @@
 class Solution {
 private:
     vector<vector<int>> graph;
-    vector<int> visited;
+    set<int> visited, path;
 public:
-    bool dfs(int u) {
-        if (visited[u] == 1) return true; // Already visited
-        if (visited[u] == 0) { // Not visited
-            visited[u] = 1; // mark as visited
-            for(auto &v : graph[u]){
-                if(dfs(v)){ // if in any path I can find a visited node then there is an cycle
-                    return true;
-                }
-            }   
+    bool dfs(int src) {
+        if (path.count(src)) {
+            return true;
         }
-        visited[u] = 2; // Mark as done.
-        return false;
+        visited.insert(src);
+        path.insert(src);
+        bool result = false;
+        for (auto dest : graph[src]) {
+            if (!visited.count(dest)) {
+                result |= dfs(dest);
+            }
+            if (path.count(dest)) {
+                return true;
+            }
+        }
+        path.erase(src);
+        return result;
     }
     bool canFinish(int n, vector<vector<int>>& pre) {
         graph.resize(n + 1);
-        visited.resize(n + 1, 0);
         for (auto &e : pre){
             graph[e[1]].push_back(e[0]);
         }
