@@ -4,21 +4,15 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        int result = 0;
-        int length = s.size();
-        unordered_map<int, int> seen;
-        int start = -1;
-        for(int i = 0; i < length; i++){
-            if(seen.count(s[i])){
-                if(seen[s[i]] > start){
-                    start = seen[s[i]];
-                }
-            }
-            result = max(result, i - start);
-            seen[s[i]] = i;
+        vector<int> dict(256, -1);
+        int maxLen = 0, start = -1;
+        for (int i = 0; i < s.length(); i++) {
+            if (dict[s[i]] > start)
+                start = dict[s[i]];
+            dict[s[i]] = i;
+            maxLen = max(maxLen, i - start);
         }
-        
-        return result;
+        return maxLen;
     }
 };
 
