@@ -7,7 +7,6 @@ public:
             if (pos != nums.size()) {
                 res += pos;
                 while (pos > 0) {
-                    cout << pos << endl;
                     swap(nums[pos - 1], nums[pos]);
                     pos--;
                 }
