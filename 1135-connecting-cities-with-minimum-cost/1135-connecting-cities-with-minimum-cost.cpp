@@ -1,3 +1,5 @@
+// @Author: KING-SEN
+
 class Solution {
 private:
     vector<int> parents;
