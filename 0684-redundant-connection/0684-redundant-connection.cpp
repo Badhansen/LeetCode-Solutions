@@ -1,27 +1,44 @@
-class Solution {
+class UnionFind{
 private:
-    vector<vector<int>> graph;
-    map<int, bool> vis;
+    struct Node{
+        int parent;
+        int rank;
+    };
+    vector<Node> nodes;
 public:
-    bool dfs(map<int, bool>& vis, vector<vector<int>>& graph, int u, int pr){
-        if(vis.find(u) != vis.end()) return true;
-        vis[u] = true;
-        for(auto v : graph[u]){
-            if(v == pr) continue;
-            if(dfs(vis, graph, v, u)){
-                return true;
-            }
+    UnionFind(int n){
+        nodes.resize(n);
+        for(int i = 0; i < n; i++){
+            nodes[i].parent = i;
+            nodes[i].rank = 0;
+        }
+    }
+    int FindRoot(int r){
+        if(nodes[r].parent == r)
+            return r;
+        return nodes[r].parent = FindRoot(nodes[r].parent);
+    }
+    bool Union(int a, int b){
+        a = FindRoot(a);
+        b = FindRoot(b);
+        if(a != b){
+            if(nodes[a].rank < nodes[b].rank)
+                swap(nodes[a].rank, nodes[b].rank);
+            nodes[b].parent = a;
+            if(nodes[a].rank == nodes[b].rank)
+                nodes[a].rank++;
+            return true;
         }
         return false;
     }
+};
+class Solution {
+public:
     vector<int> findRedundantConnection(vector<vector<int>>& edges) {
-        int n = edges.size();
-        graph.resize(n + 1);
-        for(auto &el : edges){
-            graph[el[0]].push_back(el[1]);
-            graph[el[1]].push_back(el[0]);
-            vis.clear();
-            if(dfs(vis, graph, el[0], -1)) return el;
+        UnionFind root(edges.size() + 1);
+        for(auto &edge : edges){
+            if(!root.Union(edge[0], edge[1]))
+                return edge;
         }
         return {0, 0};
     }
