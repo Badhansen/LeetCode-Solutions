@@ -2,17 +2,22 @@
 class Solution {
 public:
     bool canAttendMeetings(vector<vector<int>>& intervals) {
-        if(!intervals.size()) {
+        if (intervals.empty()) {
             return true;
         }
-        sort(intervals.begin(), intervals.end(), [](const auto& a, const auto& b){
-            return a[1] < b[1];
-        });
-        for (int i = 0; i < intervals.size() - 1; i++) {
-            if (intervals[i][1] > intervals[i + 1][0]) {
-                return false;
-            }
+        map<int, int> seen;
+        
+        for(auto &el : intervals){
+            seen[el[0]]++;
+            seen[el[1]]--;
         }
-        return true;
+        
+        int count = 0, answer = 0;
+        
+        for(auto &el : seen){
+            answer = max(answer, count += el.second);
+        }
+        
+        return answer == 1 ? true : false;
     }
 };
