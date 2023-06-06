@@ -3,16 +3,18 @@ public:
     void merge(vector<int>& nums, int start, int mid, int end) {
         int p = start, q = mid + 1, k = 0;
         vector<int> temp(end - start + 1);
-        for (int i = start; i <= end; i++) {
-            if (p > mid) {
-                temp[k++] = nums[q++];
-            } else if (q > end) {
-                temp[k++] = nums[p++];
-            } else if (nums[p] < nums[q]) {
+        while(p <= mid && q <= end) {
+            if (nums[p] < nums[q]) {
                 temp[k++] = nums[p++];
             } else {
                 temp[k++] = nums[q++];
             }
+        }
+        while(p <= mid){
+            temp[k++] = nums[p++];
+        }
+        while(q <= end){
+            temp[k++] = nums[q++];
         }
         for (int i = 0; i < k; i++) {
             nums[start++] = temp[i];
