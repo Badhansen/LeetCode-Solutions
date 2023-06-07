@@ -11,20 +11,22 @@
  */
 class Solution {
 public:
-    bool dfs(TreeNode* a, TreeNode* b){
-        if(!a && !b)
+    bool dfs(TreeNode* root, TreeNode* subRoot) {
+        if (!root && !subRoot) {
             return true;
-        if(!a || !b)
+        }
+        if (!root || !subRoot) {
             return false;
-        if(a->val != b->val)
-            return false;
-        return dfs(a->left, b->left) && dfs(a->right, b->right);
+        }
+        return (root->val == subRoot->val) && dfs(root->left, subRoot->left) && dfs(root->right, subRoot->right);
     }
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
-        if(!root)
+        if (!root) {
             return false;
-        if(dfs(root, subRoot))
+        }
+        if (dfs(root, subRoot)) {
             return true;
+        }
         return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
     }
 };
