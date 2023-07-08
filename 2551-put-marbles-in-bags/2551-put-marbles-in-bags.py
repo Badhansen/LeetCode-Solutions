@@ -1,14 +1,14 @@
+from heapq import heappop, heappush, heapify
+
 class Solution:
     def putMarbles(self, weights: List[int], k: int) -> int:
         n = len(weights)
-        if n <= 2 or n == k:
-            return 0
-        partition = [0] * (n - 1)
+        max_heap = []
+        min_heap = []
         for i in range(n - 1):
-            partition[i] = weights[i] + weights[i + 1]
-
-        partition.sort()
-
-        max_sum = sum(partition[n - k:]) #without weights[0]+weights[n-1]
-        min_sum = sum(partition[:k - 1])
-        return max_sum - min_sum
+            heappush(max_heap, weights[i] + weights[i + 1])
+            heappush(min_heap, -1 * (weights[i] + weights[i + 1]))
+            if len(max_heap) >= k:
+                heappop(max_heap)
+                heappop(min_heap)
+        return sum(max_heap) + sum(min_heap)
