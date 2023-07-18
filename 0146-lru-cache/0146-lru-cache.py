@@ -50,6 +50,7 @@ class LRUCache:
             
         
 """
+
 class LRUCache:
 
     def __init__(self, capacity: int):
@@ -58,15 +59,15 @@ class LRUCache:
 
     def get(self, key: int) -> int:
         if key in self.lru:
-            self.lru.move_to_end(key)
+            self.lru.move_to_end(key, False)
             return self.lru[key]
         return -1
 
     def put(self, key: int, value: int) -> None:
         self.lru[key] = value
-        self.lru.move_to_end(key)
+        self.lru.move_to_end(key, False)
         if len(self.lru) > self.cap:
-            self.lru.popitem(False)
+            self.lru.popitem()
         
 
 # Your LRUCache object will be instantiated and called as such:
