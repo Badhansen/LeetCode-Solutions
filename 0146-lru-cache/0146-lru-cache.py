@@ -45,7 +45,7 @@ class LRUCache:
         prev_node = node.prev
         next_node.prev = prev_node
         prev_node.next = next_node
-        self.cache.pop(node.key)
+        del self.cache[node.key]
             
         
 
