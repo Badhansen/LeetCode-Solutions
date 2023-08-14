@@ -1,64 +1,41 @@
-primes = []
-        
-def seive():
-    max_limit = 10 ** 5 + 5
-    prime = [True for i in range(max_limit + 1)]
-    p = 2
-    while (p * p <= max_limit):
-        if (prime[p] == True):
-            for i in range(p * p, max_limit + 1, p):
-                prime[i] = False
-        p += 1
-    for p in range(2, max_limit + 1):
-        if prime[p]:
-            primes.append(p)
-
-seive()
+isprime = [True] * 100001
+primeFactors = [0] * 100001
+for i in range(2, 100001):
+    if isprime[i]:
+        for j in range(i, 100001, i):
+            isprime[j] = False
+            primeFactors[j] += 1
 
 class Solution:
     def maximumScore(self, nums: List[int], k: int) -> int:
-        def score(num):
-            idx, n = 0, len(primes)
-            cnt = 0
-            while idx < n and primes[idx] * primes[idx] <= num:
-                if num % primes[idx] == 0:
-                    cnt += 1
-                while num % primes[idx] == 0:
-                    num /= primes[idx]
-                idx += 1
-            if num > 1:
-                cnt += 1
-            return cnt
+        n = len(nums)
+        p = [primeFactors[i] for i in nums]
+        left = [-1] * n
+        right = [n] * n
         
-        prime_score = dict([(x, score(x)) for x in nums])
-        prime_score[float('inf')] = float('inf')
-        
-        nums.insert(0, float('inf'))
-        nums.append(float('inf'))
+        # For each i, find the largest x < i s.t. p[x] >= p[i]
         stack = []
-        res = []
-        answer, mod = 1, 10 ** 9 + 7
-        # Calculate the range (l, r) where ith element is the largest
-        for i in range(len(nums)):
-            if not stack or prime_score[nums[stack[-1]]] > prime_score[nums[i]]:
-                stack.append(i)
-            else:
-                while len(stack) > 1 and prime_score[nums[stack[-1]]] < prime_score[nums[i]]:
-                    m = stack.pop()
-                    l, r = stack[-1] + 1, i - 1
-                    res.append([nums[m], [m, l, r]])
-                stack.append(i)
-        res.sort(reverse=True)
-        idx = 0
-        while k > 0:
-            val = res[idx][0]
-            m = res[idx][1][0]
-            l = res[idx][1][1]
-            r = res[idx][1][2]
-            n = (m - l + 1) * (r - m + 1)
-            power = min(k, n)
-            answer = (answer * pow(val, power, mod)) % mod
-            k -= n
-            idx += 1
-        return answer
-
+        for i in range(n):
+            while stack and p[stack[-1]] < p[i]:
+                stack.pop()
+            if stack:
+                left[i] = stack[-1]
+            stack.append(i)
+            
+        # For each i, find the smallest x > i s.t. p[x] > p[i]
+        stack = []
+        for i in range(n-1, -1, -1):
+            while stack and p[stack[-1]] <= p[i]:
+                stack.pop()
+            if stack:
+                right[i] = stack[-1]
+            stack.append(i)
+            
+        options = [(nums[i], (i - left[i]) * (right[i] - i)) for i in range(n)]
+        res = 1
+        for val, num in sorted(options, reverse = True):
+            cur = min(num, k)
+            k -= cur
+            res = res * pow(val, cur, 1000000007) % 1000000007
+            
+        return res
