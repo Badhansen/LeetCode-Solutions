@@ -1,17 +1,25 @@
 class Solution {
-private:
-    const int kMax = 1000000;
 public:
     int minTaps(int n, vector<int>& ranges) {
-        vector<int> dp(n + 1, kMax);
-        dp[0] = 0;
+        vector<int> maxReach(n + 1);
         for (int i = 0; i <= n; i++) {
             int left = max(0, i - ranges[i]);
-            int right = min(n, i + ranges[i]);
-            for (int j = left; j <= right; j++) {
-                dp[j] = min(dp[j], dp[left] + 1);
-            }
+            int right = max(0, i + ranges[i]);
+            
+            maxReach[left] = max(maxReach[left], right);
         }
-        return dp[n] == kMax ? -1 : dp[n];
+        int taps = 0;
+        int currEnd = 0, end = 0;
+        for (int i = 0; i <= n; i++) {
+            if (i > end) {
+                return -1;
+            }
+            if (i > currEnd) {
+                taps++;
+                currEnd = end;
+            }
+            end = max(end, maxReach[i]);
+        }
+        return taps;
     }
 };
