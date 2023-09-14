@@ -2,27 +2,25 @@ const int kMax = 305;
 
 class Solution {
 private:
-    map<string, int> in, out;
     map<string, vector<string>> graph;
     vector<string> path;
-    int index = 0, edges = 0;
+    int edges = 0;
 public:
     void setUp(vector<vector<string>>& tickets) {
-        in.clear(), out.clear();
-        graph.clear();
         edges = tickets.size();
         for (auto t : tickets) {
             string from = t[0], to = t[1];
             graph[from].push_back(to);
-            in[to]++, out[from]++;
         }
         for (auto &p : graph) {
             sort(p.second.rbegin(), p.second.rend());
         }
     }
     void dfs(string at) {
-        while (out[at]) {
-            string next = graph[at][--out[at]];
+        vector<string> &adjList = graph[at];
+        while (!adjList.empty()) {
+            string next = adjList.back();
+            adjList.pop_back();
             dfs(next);
         }
         path.push_back(at);
