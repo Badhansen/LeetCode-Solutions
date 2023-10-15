@@ -1,3 +1,4 @@
+/*
 class Solution {
 private:
     int mod = 1e9 + 7;
@@ -28,3 +29,34 @@ public:
         return res;
     }
 };
+
+// Time: O(n * min(n, m))
+// Space: O(n * min(n, m))
+
+*/
+class Solution {
+private:
+    int mod = 1e9 + 7;
+public:
+    int numWays(int steps, int arrLen) {
+        arrLen = min(steps, arrLen);
+        vector<int> prev(arrLen, 0), curr(arrLen, 0);
+        prev[0] = 1;
+        for (int s = 0; s < steps; s++) {
+            curr = vector(arrLen, 0);
+            for (int i = 0; i < arrLen; i++) {
+                curr[i] = prev[i];
+                if (i > 0) {
+                    curr[i] = (curr[i] + prev[i - 1]) % mod;
+                }
+                if (i < arrLen - 1) {
+                    curr[i] = (curr[i] + prev[i + 1]) % mod;
+                }
+            }
+            prev = curr;
+        }
+        return prev[0];
+    }
+};
+// Time: O(n * min(n, m))
+// Space: O(min(n, m))
