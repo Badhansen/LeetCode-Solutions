@@ -1,17 +1,13 @@
 class Solution {
 private:
     map<int, vector<int>> graph;
-    map<int, bool> visited;
-    
 public:
-    void dfs(int src, vector<int>& res) {
-        if (visited[src]) {
-            return;
-        }
-        visited[src] = true;
+    void dfs(int src, int parent, vector<int>& res) {
         res.push_back(src);
         for (auto dest : graph[src]) {
-            dfs(dest, res);
+            if (dest != parent) {
+                dfs(dest, src, res);
+            }
         }
     }
     vector<int> restoreArray(vector<vector<int>>& adjacentPairs) {
@@ -24,10 +20,11 @@ public:
         for (auto item : graph) {
             if (item.second.size() == 1) {
                 src = item.first;
+                break;
             }
         }
         vector<int> res;
-        dfs(src, res);
+        dfs(src, -1, res);
         return res;
     }
 };
