@@ -1,7 +1,7 @@
 class Graph {
 private:
     int n;
-    vector<vector<int>> graph[105];
+    vector<vector<pair<int, int>>> graph;
     int dijkstra(int src, int dest) {
         vector<int> dist(n, INT_MAX);
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> que;
@@ -16,8 +16,8 @@ private:
                 continue;
             }
             for (auto &vec : graph[source]) {
-                int dest = vec[0];
-                int dWeight = vec[1];
+                int dest = vec.first;
+                int dWeight = vec.second;
                 if (dist[dest] > dist[source] + dWeight) {
                     dist[dest] = dist[source] + dWeight;
                     que.push({dist[dest], dest});
@@ -32,7 +32,7 @@ private:
 public:
     Graph(int n, vector<vector<int>>& edges) {
         this->n = n;
-        //graph.resize(n);
+        graph.resize(n);
         for (auto &e : edges) {
             graph[e[0]].push_back({e[1], e[2]});
         }
