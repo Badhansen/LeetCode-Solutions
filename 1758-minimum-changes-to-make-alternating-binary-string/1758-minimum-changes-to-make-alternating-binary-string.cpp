@@ -4,13 +4,9 @@ public:
         int operations = 0;
         for (int i = 0; i < s.size(); i++) {
             if (i % 2 == 0) {
-                if (s[i] == '0') {
-                    operations++;
-                }
+                s[i] == '0' ? operations++ : true;
             } else {
-                if (s[i] == '1') {
-                    operations++;
-                }
+                s[i] == '1' ? operations++ : true;
             }
         }
         return min(operations, (int)s.size() - operations);
