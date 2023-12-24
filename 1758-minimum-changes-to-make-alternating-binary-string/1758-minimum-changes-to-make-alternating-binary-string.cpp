@@ -1,14 +1,14 @@
 class Solution {
 public:
     int minOperations(string s) {
-        int operations = 0;
+        int start0 = 0, start1 = 0;
         for (int i = 0; i < s.size(); i++) {
             if (i % 2 == 0) {
-                s[i] == '0' ? operations++ : true;
+                s[i] == '0' ? start1++ : start0++;
             } else {
-                s[i] == '1' ? operations++ : true;
+                s[i] == '0' ? start0++ : start1++;
             }
         }
-        return min(operations, (int)s.size() - operations);
+        return min(start0, start1);
     }
 };
