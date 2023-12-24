@@ -5,8 +5,6 @@ public:
         for (int i = 0; i < s.size(); i++) {
             if (i % 2 == 0) {
                 s[i] == '0' ? start1++ : start0++;
-            } else {
-                s[i] == '0' ? start0++ : start1++;
             }
             s[i] == '0' ? zeros++ : true;
         }
@@ -15,8 +13,8 @@ public:
             return -1;
         }
         if (zeros == ones) {
-            return min(start0, start1) / 2;
+            return min(start0, start1);
         }
-        return zeros > ones ? start0 / 2 : start1 / 2;
+        return zeros > ones ? start0 : start1;
     }
 };
