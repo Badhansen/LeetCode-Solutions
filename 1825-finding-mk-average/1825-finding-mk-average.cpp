@@ -1,6 +1,12 @@
 // @Author: KING-SEN
 // Problem Link: https://leetcode.com/problems/finding-mk-average/
 
+enum class Positions {
+    kBottom = 0,
+    kMiddle,
+    kTop,
+};
+
 class MKAverage {
 private:
     int m, k;
@@ -23,21 +29,19 @@ public:
             int removedValue = stream.front();
             stream.pop();
             if (kTop.find(removedValue) != kTop.end()) {
-                kTop.erase(kTop.find(removedValue));
+                removingValue(removedValue, Positions::kTop);
             } else if (middle.find(removedValue) != middle.end()) {
-                middle.erase(middle.find(removedValue));
-                sum -= removedValue;
+                removingValue(removedValue, Positions::kMiddle);
                 int value = removeSmallest(kTop);
-                middle.insert(value);
-                sum += value;
+                addingValue(value, Positions::kMiddle);
             } else {
-                kBottom.erase(kBottom.find(removedValue));
+                removingValue(removedValue, Positions::kBottom);
                 int value = removeSmallest(kTop);
-                middle.insert(value);
-                sum += value;
+                addingValue(value, Positions::kMiddle);
+                
                 value = removeSmallest(middle);
-                sum -= value;
-                kBottom.insert(value);
+                sum -= value; // Already removed the value so don't calling the removingValue function, just decrement the sum
+                addingValue(value, Positions::kBottom);
             }
         }
         
@@ -52,16 +56,43 @@ public:
     }
 private:
     void add(int num) {
-        kBottom.insert(num);
+        addingValue(num, Positions::kBottom);
         if (kBottom.size() > k) {
             int value = removeLargest(kBottom);
-            middle.insert(value);
-            sum += value;
+            addingValue(value, Positions::kMiddle);
             if (middle.size() > m - 2 * k) {
                 value = removeLargest(middle);
-                sum -= value;
-                kTop.insert(value);
+                sum -= value; // For middle as we have already deleted the value from the set, so we are not calling the removingValue function
+                addingValue(value, Positions::kTop);
             }
+        }
+    }
+    void addingValue(int value, enum Positions pos) {
+        switch (pos) {
+            case Positions::kBottom:
+                kBottom.insert(value);
+                break;
+            case Positions::kMiddle:
+                middle.insert(value);
+                sum += value;
+                break;
+            case Positions::kTop:
+                kTop.insert(value);
+                break;
+        }
+    }
+    void removingValue(int value, enum Positions pos) {
+        switch (pos) {
+            case Positions::kBottom:
+                kBottom.erase(kBottom.find(value));
+                break;
+            case Positions::kMiddle:
+                middle.erase(middle.find(value));
+                sum -= value;
+                break;
+            case Positions::kTop:
+                kTop.erase(kTop.find(value));
+                break;
         }
     }
     int removeSmallest(multiset<int>& set) {
