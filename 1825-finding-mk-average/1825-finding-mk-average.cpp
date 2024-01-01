@@ -1,12 +1,15 @@
+// @Author: KING-SEN
+// Problem Link: https://leetcode.com/problems/finding-mk-average/
+
 class MKAverage {
 private:
     int m, k;
     long long sum;
     
     queue<int> stream;
-    multiset<int> kLeft;
-    multiset<int> avg;
-    multiset<int> kRight;
+    multiset<int> kBottom;
+    multiset<int> middle;
+    multiset<int> kTop;
 public:
     MKAverage(int m, int k) {
         this->m = m, this->k = k;
@@ -15,63 +18,52 @@ public:
     
     void addElement(int num) {
         stream.push(num);
+        
         if (stream.size() > m) {
-            // remove the value -> num
-            int removeValue = stream.front();
+            int removedValue = stream.front();
             stream.pop();
-            
-            if (kLeft.size() > 0 && (*kLeft.rbegin()) >= removeValue) {
-                kLeft.erase(kLeft.find(removeValue));
-            } else if (kRight.size() > 0 && (*kRight.begin()) <= removeValue) {
-                kRight.erase(kRight.find(removeValue));
+            if (kTop.find(removedValue) != kTop.end()) {
+                kTop.erase(kTop.find(removedValue));
+            } else if (middle.find(removedValue) != middle.end()) {
+                middle.erase(middle.find(removedValue));
+                sum -= removedValue;
+                int value = removeSmallest(kTop);
+                middle.insert(value);
+                sum += value;
             } else {
-                avg.erase(avg.find(removeValue));
-                sum -= removeValue;
+                kBottom.erase(kBottom.find(removedValue));
+                int value = removeSmallest(kTop);
+                middle.insert(value);
+                sum += value;
+                value = removeSmallest(middle);
+                sum -= value;
+                kBottom.insert(value);
             }
         }
         
-        // add value to the multiset
-        if (kLeft.size() > 0 && (*kLeft.rbegin()) >= num) {
-            kLeft.insert(num);
-        } else if (kRight.size() > 0 && (*kRight.begin()) < num) {
-            kRight.insert(num);
-        } else {
-            avg.insert(num);
-            sum += num;
-        }
-        
-        // balancing the tree size after adding
-        if (kLeft.size() > k) {
-            int movingValue = removeLargest(kLeft);
-            avg.insert(movingValue);
-            sum += movingValue;
-        } else if (kRight.size() > k) {
-            int movingValue = removeSmallest(kRight);
-            avg.insert(movingValue);
-            sum += movingValue;
-        }
-        
-        if (avg.size() > m - 2 * k) {
-            if (kLeft.size() < k) {
-                int movingValue = removeSmallest(avg);
-                sum -= movingValue;
-                kLeft.insert(movingValue);
-            } else if (kRight.size() < k) {
-                int movingValue = removeLargest(avg);
-                sum -= movingValue;
-                kRight.insert(movingValue);
-            }
-        }
-        
+        add(num);
     }
     
     int calculateMKAverage() {
         if (stream.size() < m) {
             return -1;
         }
-        return sum / (int)avg.size();
+        return sum / (int)middle.size();
     }
 private:
+    void add(int num) {
+        kBottom.insert(num);
+        if (kBottom.size() > k) {
+            int value = removeLargest(kBottom);
+            middle.insert(value);
+            sum += value;
+            if (middle.size() > m - 2 * k) {
+                value = removeLargest(middle);
+                sum -= value;
+                kTop.insert(value);
+            }
+        }
+    }
     int removeSmallest(multiset<int>& set) {
         auto smallest = set.begin();
         int result = *smallest;
