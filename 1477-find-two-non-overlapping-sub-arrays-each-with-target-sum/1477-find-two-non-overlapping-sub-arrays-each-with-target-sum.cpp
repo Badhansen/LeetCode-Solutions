@@ -35,9 +35,10 @@ public:
         vector<int> prefix = minLen(arr, target);
         reverse(arr.begin(), arr.end());
         vector<int> suffix = minLen(arr, target);
+        reverse(suffix.begin(), suffix.end());
         int ans = n + 1;
         for (int i = 0; i < n - 1; i++) {
-            ans = min(prefix[i] + suffix[n - 1 - i - 1], ans);
+            ans = min(prefix[i] + suffix[i + 1], ans);
         }
         return ans == n + 1 ? -1 : ans;
     }
