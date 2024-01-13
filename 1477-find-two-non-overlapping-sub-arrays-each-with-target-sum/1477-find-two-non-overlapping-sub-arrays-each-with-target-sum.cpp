@@ -33,9 +33,8 @@ public:
     int minSumOfLengths(vector<int>& arr, int target) {
         int n = arr.size();
         vector<int> prefix = minLen(arr, target);
-        vector<int> revArr(arr.begin(), arr.end());
-        reverse(revArr.begin(), revArr.end());
-        vector<int> suffix = minLen(revArr, target);
+        reverse(arr.begin(), arr.end());
+        vector<int> suffix = minLen(arr, target);
         int ans = n + 1;
         for (int i = 0; i < n - 1; i++) {
             ans = min(prefix[i] + suffix[n - 1 - i - 1], ans);
