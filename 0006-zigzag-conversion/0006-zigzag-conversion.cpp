@@ -1,27 +1,45 @@
 class Solution {
 public:
     string convert(string s, int numRows) {
-        vector<string>ans(min(numRows, int(s.size())));
-        string result="";
-        if (numRows == 1){
+        if (numRows == 1) {
             return s;
         }
-        bool down = false;
-        int value = 0;
-        for (char c : s) {
-            ans[value] += c;
-            if (value == 0 || value == numRows - 1) {
-                down = !down;
+        int n = s.size();
+        int sections = ceil(n / (2.0 * numRows - 2.0));
+        int numCols = sections * (numRows - 1);
+        vector<vector<char>> matrix(numRows, vector<char>(numCols, ' '));
+        int currRow = 0, currCol = 0;
+        int index = 0;
+        while (index < n) {
+            // move down
+            while (currRow < numRows && index < n) {
+                matrix[currRow][currCol] = s[index];
+                currRow++;
+                index++;
             }
-            if (down) {
-                value += 1;
-            } else {
-                value -= 1;
+            
+            currRow -= 2;
+            currCol++;
+            
+            // move up
+            while (currRow > 0 && currCol < numCols && index < n) {
+                matrix[currRow][currCol] = s[index];
+                currCol++;
+                currRow--;
+                index++;
             }
         }
-        for (string r : ans) {
-            result += r;
+        string answer;
+        for (auto &row : matrix) {
+            for (auto &c : row) {
+                if (c != ' ') {
+                    answer.push_back(c);
+                }
+            }
         }
-        return result;
+        return answer;
     }
 };
+
+// Time: O(rows * n)
+// Space: O(rows * n);
