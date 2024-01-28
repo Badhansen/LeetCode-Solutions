@@ -10,11 +10,10 @@ public:
         if(target < 0){
             return;
         }
-        
-        for(int i = pos; i < nums.size(); i++){
+        for (int i = pos; i < nums.size(); i++) {
             path.push_back(nums[i]);
-            solve(i, target - nums[i], nums, path); 
-            path.pop_back();   
+            solve(i, target - nums[i], nums, path);
+            path.pop_back();
         }
     }
     
