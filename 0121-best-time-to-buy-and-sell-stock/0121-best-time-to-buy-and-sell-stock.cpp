@@ -1,11 +1,20 @@
 class Solution {
 public:
-    int maxProfit(vector<int>& prices) {
-        int best_price = 0, min_price = prices[0];
-        for (int i = 1; i < prices.size(); i++) {
-            best_price = max(best_price, prices[i] - min_price);
-            min_price = min(min_price, prices[i]);
+    bool isPalindrome(string s) {
+        int left = 0; 
+        int right = s.size() - 1;
+        while (left < right) {
+            while (!isalnum(s[left]) && left < right) {
+                left++;
+            }
+            while (!isalnum(s[right]) && left < right) {
+                right--;
+            }
+            if (tolower(s[left]) != tolower(s[right])) {
+                return false;
+            }
+            left++, right--;
         }
-        return best_price;
+        return true;
     }
 };
