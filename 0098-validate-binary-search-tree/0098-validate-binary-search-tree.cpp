@@ -12,7 +12,7 @@
 class Solution {
 public:
     bool Dfs(TreeNode* root, long long min, long long max) {
-        if (root == NULL) {
+        if (!root) {
             return true;
         }
         if (min < root->val && root->val < max) {
