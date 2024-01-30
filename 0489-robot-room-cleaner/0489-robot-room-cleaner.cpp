@@ -1,4 +1,5 @@
-//written by AA
+//@Author: KING-SEN
+
 /**
  * // This is the robot's control interface.
  * // You should not implement it, or speculate about its implementation
