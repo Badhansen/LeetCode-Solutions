@@ -1,11 +1,16 @@
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
-        hash_set = set()
-        for n in nums:
-            if n in hash_set:
-                return True
-            hash_set.add(n)
-        return False
+        entries = set(nums)
+        return True if len(entries) < len(nums) else False
+    
+# class Solution:
+#     def containsDuplicate(self, nums: List[int]) -> bool:
+#         hash_set = set()
+#         for n in nums:
+#             if n in hash_set:
+#                 return True
+#             hash_set.add(n)
+#         return False
 
 '''
 Here N = Number of elements
