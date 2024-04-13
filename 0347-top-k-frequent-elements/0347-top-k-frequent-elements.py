@@ -4,13 +4,30 @@ import heapq
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         counts = Counter(nums)
-        answer = list()
-        for key, value in counts.items():
-            heapq.heappush(answer, (value, key))
-            if len(answer) > k:
-                heapq.heappop(answer)
+        buckets = [[] for _ in range(len(nums) + 1)]
+        for key, count in counts.items():
+            buckets[count].append(key)
+        results = [item for sublist in buckets for item in sublist]
+        return results[-k :]
+  
+'''
+Time complexity: O(N)
+Space complexity: O(N)
+'''
+
+# from collections import Counter
+# import heapq
+
+# class Solution:
+#     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+#         counts = Counter(nums)
+#         answer = list()
+#         for key, value in counts.items():
+#             heapq.heappush(answer, (value, key))
+#             if len(answer) > k:
+#                 heapq.heappop(answer)
         
-        return [item[1] for item in answer]
+#         return [item[1] for item in answer]
 
 '''
 Time complexity: O(N log K)
