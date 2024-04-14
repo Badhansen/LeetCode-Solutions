@@ -30,7 +30,6 @@ class LRUCache:
         next_node.prev = prev_node
         del self.cache[node.key]
         
-
     def get(self, key: int) -> int:
         if key in self.cache:
             node = self.cache[key]
