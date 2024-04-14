@@ -8,3 +8,7 @@ class Solution:
                 stack.pop()
             stack.append(i)
         return result
+'''
+Time: O(N), N = Length of temperatures
+Space: O(N)
+'''
