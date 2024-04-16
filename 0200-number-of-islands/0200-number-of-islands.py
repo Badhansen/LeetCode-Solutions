@@ -31,23 +31,20 @@ class Solution:
         row = len(grid); col = len(grid[0])
         res, visited = 0, set()
         direction = [[1, 0], [-1, 0], [0, 1], [0, -1]]
-        
-        def bfs(r, c):
-            q = deque()
-            q.append((r, c))
-            while q:
-                a, b = q.popleft()
-                for dr, dc in direction:
-                    i, j = a + dr, b + dc
-                    if (0 <= i < row) and (0 <= j < col) and ((i, j) not in visited) and grid[i][j] == "1":
-                        q.append((i, j))
-                        visited.add((i, j)) 
-        
+
         for r in range(row):
             for c in range(col):
                 if (r, c) not in visited and grid[r][c] == '1':
                     res += 1
-                    bfs(r, c)
+                    q = deque()
+                    q.append((r, c))
+                    while q:
+                        a, b = q.popleft()
+                        for dr, dc in direction:
+                            i, j = a + dr, b + dc
+                            if (0 <= i < row) and (0 <= j < col) and ((i, j) not in visited) and grid[i][j] == "1":
+                                q.append((i, j))
+                                visited.add((i, j))
                 
         return res
     
