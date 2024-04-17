@@ -1,3 +1,5 @@
+# @Author: KING-SEN
+
 class TrieNode:
     def __init__(self):
         self.children = {}
@@ -35,16 +37,20 @@ class Trie:
 
     def erase(self, word: str) -> None:
         cur = self.root
-        node = None
+        # node = None
+        # for c in word:
+        #     cur = cur.children[c]
+        #     cur.prefix_of_word_count -= 1
+        #     if node:
+        #         node = None
+        #     if cur.prefix_of_word_count == 0:
+        #         node = cur
+        # if node:
+        #     node = None
+        # cur.end_of_word -= 1
         for c in word:
             cur = cur.children[c]
             cur.prefix_of_word_count -= 1
-            if node:
-                node = None
-            if cur.prefix_of_word_count == 0:
-                node = cur
-        if node:
-            node = None
         cur.end_of_word -= 1
 
 
