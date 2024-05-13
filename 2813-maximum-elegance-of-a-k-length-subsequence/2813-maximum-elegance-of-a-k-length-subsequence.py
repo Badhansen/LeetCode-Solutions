@@ -16,3 +16,8 @@ class Solution:
             seen.add(c)
             res = max(res, total + len(seen) ** 2)
         return res
+    
+'''
+Time O(nlogn)
+Space O(n)
+'''
