@@ -1,17 +1,19 @@
 class Solution:
-    def backtrack(self, idx: int, dp: List[bool], s: str, words: Set[str]) -> bool:
-        if idx == len(s):
+    def dfs(self, s, words, dp) -> bool:
+        if s in dp:
+            return dp[s]
+        if s in words:
             return True
-        if idx in dp:
-            return dp[idx]
-        for i in range(idx + 1, len(s) + 1):
-            if s[idx:i] in words and self.backtrack(i, dp, s, words):
-                dp[idx] = True
+        for i in range(1, len(s)):
+            prefix = s[:i]
+            if prefix in words and self.dfs(s[i:], words, dp):
+                dp[prefix] = True
                 return True
-        dp[idx] = False
+        dp[s] = False
         return False
+            
     
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         words = set(wordDict)
         dp = {}
-        return self.backtrack(0, dp, s, words) 
+        return self.dfs(s, words, dp) 
