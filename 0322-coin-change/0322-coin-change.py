@@ -22,5 +22,5 @@ class Solution:
             for c in coins:
                 if c <= i:
                     dp[i] = min(dp[i], 1 + dp[i - c])
-        return -1 if dp[amount] >= float("inf") else dp[amount]
+        return dp[amount] if dp[amount] != float('inf') else -1 
             
