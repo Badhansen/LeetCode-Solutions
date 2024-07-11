@@ -15,4 +15,8 @@ class Solution:
             left = left.next
         left.next = left.next.next
         return dummy.next
+'''
+Time Complexity: O(N), where N is the length of the ListNode
+Space Complexity: O(1), We only used constant extra space. 
+'''
             
