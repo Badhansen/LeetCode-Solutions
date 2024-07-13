@@ -5,8 +5,13 @@ class MedianFinder:
         self.right = []   # min heap
 
     def addNum(self, num: int) -> None:
+        # Push negative of num to left (max heap)
         heapq.heappush(self.left, -num)
+        
+        # Push smallest of left (max heap) to right (min heap)
         heapq.heappush(self.right, -heapq.heappop(self.left))
+        
+        # Balance heaps
         if len(self.left) < len(self.right):
             heapq.heappush(self.left, -heapq.heappop(self.right))
 
