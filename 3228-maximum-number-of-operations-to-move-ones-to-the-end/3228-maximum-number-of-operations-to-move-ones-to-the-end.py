@@ -1,20 +1,16 @@
 class Solution:
     def maxOperations(self, s: str) -> int:
-        stack = []
-        res = 0
+        res, ones = 0, 0
+        s = s + "1"
+        move = False
         for c in s:
-            if c == '1':
-                flag = False
-                while stack and stack[-1] == '0':
-                    flag = True
-                    stack.pop()
-                if flag:
-                    res += len(stack)
-            stack.append(c)
-        if stack and stack[-1] == '0':
-            while stack and stack[-1] == '0':
-                stack.pop()
-            res += len(stack)
+            if c == "1":
+                if move:
+                    res += ones
+                    move = False
+                ones += 1
+            else:
+                move = True
         return res
                 
                 
