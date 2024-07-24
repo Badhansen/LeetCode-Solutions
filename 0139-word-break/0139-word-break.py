@@ -7,7 +7,7 @@ class Solution:
                 return dp[s]
             if s in words:
                 return True
-            for length in range(1, len(s) + 1):
+            for length in range(1, len(s)):
                 prefix = s[:length]
                 if prefix in words and dfs(s[length:]):
                     dp[prefix] = True
