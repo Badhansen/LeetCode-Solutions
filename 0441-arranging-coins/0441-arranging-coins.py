@@ -4,7 +4,7 @@ class Solution:
             total = row * (row + 1) // 2
             return total > n
         
-        left, right, res = 1, n + 1, -1
+        left, right = 1, n + 1
         while left < right:
             mid = left + (right - left) // 2
             if possible(mid):
