@@ -1,5 +1,6 @@
 class Solution:
     def findKthNumber(self, m: int, n: int, k: int) -> int:
+        # Determine whether there're at least k values less than or equal to num.
         def enough(num) -> bool:
             count = 0
             for i in range(1, m + 1):
