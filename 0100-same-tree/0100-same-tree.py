@@ -5,14 +5,14 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    def dfs(self, p, q):
+        if p is None and q is None:
+            return True
+        if p is None or q is None:
+            return False
+        left, right = self.dfs(p.left, q.left), self.dfs(p.right, q.right)
+        result = left and right and p.val == q.val
+        return result
+    
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        def dfs(p, q):
-            if not p and not q:
-                return True
-            if not p or not q:
-                return False
-            left = dfs(p.left, q.left)
-            right = dfs(p.right, q.right)
-            res = left and right and p.val == q.val
-            return res
-        return dfs(p, q)
+        return self.dfs(p, q)
