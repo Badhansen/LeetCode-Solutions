@@ -22,8 +22,15 @@ class Solution:
                 return root.right
             if root.right is None:
                 return root.left
-            node = self.findMin(root.right)
-            root.right = self.deleteNode(root.right, node.val)
-            root.val = node.val
+            # node = self.findMin(root.right)
+            # root.right = self.deleteNode(root.right, node.val)
+            # root.val = node.val
+            
+            # Find the min from the right subtree
+            curr = root.right
+            while curr.left:
+                curr = curr.left
+            root.val = curr.val
+            root.right = self.deleteNode(root.right, root.val)
         return root
             
