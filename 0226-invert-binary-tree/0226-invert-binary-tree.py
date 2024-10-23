@@ -7,10 +7,9 @@
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         def dfs(root):
-            if not root:
+            if root is None:
                 return None
             left, right = dfs(root.left), dfs(root.right)
-            root.left = right
-            root.right = left
+            root.left, root.right = right, left
             return root
         return dfs(root)
