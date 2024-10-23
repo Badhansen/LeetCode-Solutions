@@ -5,15 +5,16 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def dfs(self, root, subRoot):
-        if not root and not subRoot:
+    def dfs(self, root, sub_root):
+        if root is None and sub_root is None:
             return True
-        if not root or not subRoot:
+        if root is None or sub_root is None:
             return False
-        return root.val == subRoot.val and self.dfs(root.left, subRoot.left) and self.dfs(root.right, subRoot.right)
+        left, right = self.dfs(root.left, sub_root.left), self.dfs(root.right, sub_root.right)
+        return left and right and root.val == sub_root.val
     
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        if not root:
+        if root is None:
             return False
         if self.dfs(root, subRoot):
             return True
