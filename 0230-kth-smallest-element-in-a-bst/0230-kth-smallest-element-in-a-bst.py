@@ -5,17 +5,23 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    def __init__(self):
+        # Initialize instance variables
+        self.res = None
+        self.k = 0
+    
+    def dfs(self, root):
+        if root is None:
+            return
+        self.dfs(root.left)
+        self.k -= 1
+        if self.k == 0:
+            self.res = root.val
+            return
+        self.dfs(root.right)
+        
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         self.res = None
         self.k = k
-        def dfs(root):
-            if not root or self.res is not None:
-                return
-            dfs(root.left)
-            self.k -= 1
-            if self.k == 0:
-                self.res = root.val
-                return
-            dfs(root.right)
-        dfs(root)
+        self.dfs(root)
         return self.res
