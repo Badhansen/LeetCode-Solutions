@@ -2,15 +2,15 @@ class Solution:
     def calculate(self, s: str) -> int:
         stack = []
         operation = '+'
-        s += '+'
-        res = 0
+        s += operation
+        res, i = 0, 0
         for c in s:
             if c.isdigit():
                 res = res * 10 + int(c)
             if c in "+-*/":
                 if operation == "+":
                     stack.append(res)
-                elif operation == '-':
+                elif operation == "-":
                     stack.append(-res)
                 elif operation == "*":
                     stack.append(stack.pop() * res)
@@ -19,3 +19,4 @@ class Solution:
                 operation = c
                 res = 0
         return sum(stack)
+                    
