@@ -3,7 +3,7 @@ class Solution:
         stack = []
         operation = '+'
         s += operation
-        res, i = 0, 0
+        res = 0
         for c in s:
             if c.isdigit():
                 res = res * 10 + int(c)
