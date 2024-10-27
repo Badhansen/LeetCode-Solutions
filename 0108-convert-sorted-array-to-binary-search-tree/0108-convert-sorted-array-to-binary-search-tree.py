@@ -5,7 +5,7 @@
 #         self.left = left
 #         self.right = right
 
-# This is the code for Google phone interveiw
+# This is the code for Google phone interview
 class Solution:
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
         queue = deque()
