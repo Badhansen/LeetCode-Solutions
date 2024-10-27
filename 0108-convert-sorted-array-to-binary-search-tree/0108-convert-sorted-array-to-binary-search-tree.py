@@ -4,15 +4,42 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# This is the code for Google phone interveiw
 class Solution:
-    def dfs(self, left, right, nums):
-        if left > right:
+    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
+        queue = deque()
+        n = len(nums)
+        if n == 0:
             return None
-        mid = (left + right) // 2
-        root = TreeNode(nums[mid])
-        root.left = self.dfs(left, mid - 1, nums)
-        root.right = self.dfs(mid + 1, right, nums)
+        root = TreeNode(n)
+        queue.append(root)
+        n -= 1
+        level = 1
+        while queue and n:
+            for i in range(2 ** level):
+                if queue:
+                    node = queue.popleft()
+                else:
+                    break
+                if n:
+                    node.left = TreeNode(n)
+                    n -= 1
+                    queue.append(node.left)
+                if n:
+                    node.right = TreeNode(n)
+                    n -= 1
+                    queue.append(node.right)
+                if n == 0:
+                    break
+        def dfs(root, res):
+            if root is None:
+                return
+            dfs(root.left, res)
+            res.append(root)
+            dfs(root.right, res)
+        res = []
+        dfs(root, res)
+        for i, num in enumerate(nums):
+            res[i].val = num
         return root
-    
-    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:        
-        return self.dfs(0, len(nums) - 1, nums)
