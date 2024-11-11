@@ -3,7 +3,7 @@ class Solution:
         maps = {')': '(', '}': '{', ']': '['}
         stack = []
         for c in s:
-            if not c in maps:
+            if c not in maps:
                 stack.append(c)
             else:
                 if stack and stack[-1] == maps[c]:
