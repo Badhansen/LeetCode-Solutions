@@ -29,15 +29,23 @@ class Trie:
         
 class Solution:
     def replaceWords(self, dictionary: List[str], sentence: str) -> str:
-        trie = Trie()
-        for word in dictionary:
-            trie.insert(word)
-        words = sentence.split(" ")
-        res = []
-        for word in words:
-            has_prefix, w = trie.start_with(word)
-            if has_prefix:
-                res.append(w)
-            else:
-                res.append(word)
-        return " ".join(res)
+        # trie = Trie()
+        # for word in dictionary:
+        #     trie.insert(word)
+        # words = sentence.split(" ")
+        # res = []
+        # for word in words:
+        #     has_prefix, w = trie.start_with(word)
+        #     if has_prefix:
+        #         res.append(w)
+        #     else:
+        #         res.append(word)
+        # return " ".join(res)
+        dictionary.sort()
+        words = list(sentence.split(" "))
+        for i in range(len(words)):
+            for dic in dictionary:
+                if words[i][:len(dic)] == dic:
+                    words[i] = dic
+                    break
+        return " ".join(words)
