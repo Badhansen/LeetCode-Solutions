@@ -5,9 +5,9 @@ class Solution:
         indegree = [0] * numCourses
         
         # Build the graph and indegree list
-        for c in prerequisites:
-            indegree[c[0]] += 1
-            graph[c[1]].append(c[0])
+        for u, v in prerequisites:
+            indegree[u] += 1
+            graph[v].append(u)
         
         # Initialize a queue with courses that have no prerequisites
         queue = deque()
