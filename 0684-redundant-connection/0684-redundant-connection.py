@@ -29,3 +29,10 @@ class Solution:
             if edge[0] != -1:
                 return edge
         return [0, 0]
+    
+"""
+Time Complexity: O(Nα(N))≈O(N), where 
+N is the number of vertices (and also the number of edges) in the graph, and 
+α is the Inverse-Ackermann function ans complexity approximately O(1)..
+Space Complexity: O(N)
+"""
