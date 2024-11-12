@@ -4,15 +4,14 @@ class UnionFind:
         self.size = [1] * n
         self.provinces = n
 
-    def find_root(self, node):
-        if node == self.parent[node]:
-            return node
-        self.parent[node] = self.find_root(self.parent[node])  # Path compression
-        return self.parent[node]
+    def find(self, x):
+        if x != self.parent[x]:
+            self.parent[x] = self.find(self.parent[x]) # Path compression
+        return self.parent[x]
 
     def union(self, a, b):
-        x = self.find_root(a)
-        y = self.find_root(b)
+        x = self.find(a)
+        y = self.find(b)
         if x != y:
             self.provinces -= 1
             if self.size[x] < self.size[y]:
@@ -28,6 +27,4 @@ class Solution:
             for j in range(n):
                 if mat[i][j]:
                     dsu.union(i, j)
-        return dsu.provinces            
-         
-        
+        return dsu.provinces
