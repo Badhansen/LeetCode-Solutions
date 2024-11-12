@@ -3,15 +3,14 @@ class UnionFind:
         self.parent = list(range(n))
         self.size = [1] * n
 
-    def find_root(self, node):
-        if node == self.parent[node]:
-            return node
-        self.parent[node] = self.find_root(self.parent[node])  # Path compression
-        return self.parent[node]
+    def find(self, x):
+        if x != self.parent[x]:
+            self.parent[x] = self.find(self.parent[x]) # Path compression
+        return self.parent[x]
 
     def union(self, a, b):
-        x = self.find_root(a)
-        y = self.find_root(b)
+        x = self.find(a)
+        y = self.find(b)
         if x != y:
             if self.size[x] < self.size[y]:
                 x, y = y, x
