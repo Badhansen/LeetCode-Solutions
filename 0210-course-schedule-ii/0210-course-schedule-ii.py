@@ -8,12 +8,11 @@ class Solution:
         sources = deque([i for i in range(numCourses) if indegree[i] == 0])
         res = []
         while sources:
-            size = len(sources)
-            for i in range(size):
-                src = sources.popleft()
-                res.append(src)
-                for dest in graph[src]:
-                    indegree[dest] -= 1
-                    if indegree[dest] == 0:
-                        sources.append(dest)
+            src = sources.popleft()
+            res.append(src)
+            for dest in graph[src]:
+                indegree[dest] -= 1
+                if indegree[dest] == 0:
+                    sources.append(dest)
+                
         return res if len(res) == numCourses else []
