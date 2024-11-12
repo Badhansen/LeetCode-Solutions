@@ -16,3 +16,7 @@ class Solution:
                     sources.append(dest)
                 
         return res if len(res) == numCourses else []
+    
+"""
+Time and space complexity: O(v + e)
+"""
