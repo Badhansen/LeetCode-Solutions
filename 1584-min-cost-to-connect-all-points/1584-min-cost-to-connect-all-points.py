@@ -27,7 +27,7 @@ class Solution:
                 edges.append((weight, i, j))
 
         # Sort edges by weight
-        edges.sort()
+        edges.sort(key=lambda edge: edge[0])
 
         # Kruskal's Algorithm
         dsu = UnionFind(n)
