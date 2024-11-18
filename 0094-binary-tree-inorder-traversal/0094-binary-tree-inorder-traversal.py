@@ -4,20 +4,20 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-# class Solution:
-#     def __init__(self):
-#         self.path = []
+class Solution:
+    def __init__(self):
+        self.path = []
         
-#     def dfs(self, root):
-#         if root is None:
-#             return
-#         self.dfs(root.left)
-#         self.path.append(root.val)
-#         self.dfs(root.right)
+    def dfs(self, root):
+        if root is None:
+            return
+        self.dfs(root.left)
+        self.path.append(root.val)
+        self.dfs(root.right)
         
-#     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-#         self.dfs(root)
-#         return self.path
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        self.dfs(root)
+        return self.path
 # class Solution:
 #     def inorderTraversal(self, root):
 #         res = []
@@ -30,17 +30,17 @@
 #             res.append(root.val)
 #             self.helper(root.right, res)
 
-class Solution:
-    def inorderTraversal(self, root):
-        result = []
-        stack = []
-        curr = root
-        while curr or stack:
-            while curr:
-                stack.append(curr)
-                curr = curr.left
-            curr = stack.pop()
-            result.append(curr.val)
-            curr = curr.right
-        return result
+# class Solution:
+#     def inorderTraversal(self, root):
+#         result = []
+#         stack = []
+#         curr = root
+#         while curr or stack:
+#             while curr:
+#                 stack.append(curr)
+#                 curr = curr.left
+#             curr = stack.pop()
+#             result.append(curr.val)
+#             curr = curr.right
+#         return result
         
