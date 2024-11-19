@@ -4,28 +4,24 @@
 #         self.val = val
 #         self.next = next
 
+import heapq
+
 
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-#         def getNextElement(root):
-#             while root:
-#                 yield root.val
-#                 root = root.next
-        
-#         values = [val for sl in lists for val in getNextElement(sl)]
-        values = []
-        for sl in lists:
-            while sl:
-                values.append(sl.val)
-                sl = sl.next
-        
-        heapq.heapify(values)
+        heap = []
+        for idx, lst in enumerate(lists):
+            if lst:
+                heapq.heappush(heap, (lst.val, idx, lst))
+                
         dummy = ListNode(-1, None)
         curr = dummy
         
-        while values:
-            val = heapq.heappop(values)
-            curr.next = ListNode(val)
+        while heap:
+            val, idx, node = heapq.heappop(heap)
+            curr.next = node
+            if node.next:
+                heapq.heappush(heap, (node.next.val, idx, node.next))
             curr = curr.next
         
         return dummy.next
