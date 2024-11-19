@@ -34,6 +34,7 @@ class Solution:
         # Transpose the matrix
         for i in range(n):
             for j in range(i, n):
+                # print(i, j)
                 matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
         # print(matrix)
         # Reverse each row
