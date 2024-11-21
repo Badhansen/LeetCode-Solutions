@@ -8,7 +8,7 @@ class Solution:
             for c in word:
                 counts[ord(c) - ord('a')] += 1
             anagrams[tuple(counts)].append(word)
-        return anagrams.values()
+        return list(anagrams.values())  # Convert to list before returning
 '''
 Time complexity: O(N * K), where N is the length of strs, and K is the maximum length of a string in strs.
 Counting each string is linear in the size of the string, and we count every string.
