@@ -1,6 +1,6 @@
 class Solution:
     def getSum(self, a: int, b: int) -> int:
-        mask = 0xffffffff
+        mask = (1 << 32) - 1
         while (mask & b) > 0:
             s = (a ^ b)
             carry = (a & b) << 1
