@@ -5,5 +5,5 @@ class Solution:
         for i in range(32):
             if n & (1 << i):
                 res = res | (1 << (31 - i))
-                res &= mask
+                # res &= mask
         return res
