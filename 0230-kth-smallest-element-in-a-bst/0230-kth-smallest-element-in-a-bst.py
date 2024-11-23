@@ -20,19 +20,33 @@ class Solution:
 #             return
 #         self.dfs(root.right)
         
+    # def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+    #     # self.res = None
+    #     # self.k = k
+    #     # self.dfs(root)
+    #     # return self.res
+    #     stack = []
+    #     curr = root
+    #     while curr or stack:
+    #         while curr:
+    #             stack.append(curr)
+    #             curr = curr.left
+    #         curr = stack.pop()
+    #         k -= 1
+    #         if k == 0:
+    #             return curr.val
+    #         curr = curr.right
+    def dfs(self, root, res, n):
+        if root is None:
+            return
+        self.dfs(root.left, res, n)
+        n[0] -= 1
+        if n[0] == 0:
+            res[0] = root.val
+            return
+        self.dfs(root.right, res, n)
+            
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        # self.res = None
-        # self.k = k
-        # self.dfs(root)
-        # return self.res
-        stack = []
-        curr = root
-        while curr or stack:
-            while curr:
-                stack.append(curr)
-                curr = curr.left
-            curr = stack.pop()
-            k -= 1
-            if k == 0:
-                return curr.val
-            curr = curr.right
+        res = [-1]
+        self.dfs(root, res, [k])
+        return res[0]
