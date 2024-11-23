@@ -19,3 +19,11 @@ class Solution:
         if self.dfs(root, subRoot):
             return True
         return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+    
+"""
+Summary
+Time Complexity: O(n⋅m), where n is the number of nodes in root and 
+    m is the number of nodes in subRoot.
+Space Complexity: O(n+m) in the worst case (unbalanced trees).
+    O(logn+logm) in the best case (balanced trees).
+"""
