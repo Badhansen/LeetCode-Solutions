@@ -12,7 +12,7 @@ class Solution:
         self.cache = {}
         
     def dfs(self, node):
-        if not node:
+        if node is None:
             return None
         if node.val in self.cache:
             return self.cache[node.val]
