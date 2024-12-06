@@ -1,17 +1,21 @@
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
         counter = Counter(tasks)
-        heap = []
-        queue = deque()
-        for key, val in counter.items():
-            heapq.heappush(heap, -val)
+        pq = [-val for val in counter.values()]
+        heapq.heapify(pq)
+        q = deque()
         time = 0
-        while queue or heap:
+        while q or pq:
             time += 1
-            if heap:
-                if abs(heap[0]) - 1 > 0:
-                    queue.append((abs(heap[0]) - 1, time + n))
-                heapq.heappop(heap)
-            if queue and queue[0][1] == time:
-                heapq.heappush(heap, -1 * queue.popleft()[0])
+            if pq:
+                count = 1 + heapq.heappop(pq)
+                if count:
+                    q.append((count, time + n))
+            if q and q[0][1] == time:
+                heapq.heappush(pq, q.popleft()[0])
         return time              
+    
+"""
+Time: O(N * M) -> length of the string and the interval length
+Space: O(26) ~ O(1)
+"""
