@@ -8,7 +8,8 @@ class Solution:
         for key, count in counts.items():
             buckets[count].append(key)
         results = [item for subList in buckets for item in subList]
-        return results[-k:]
+        # return results[-k:]
+        return list(reversed(results))[:k]
   
 '''
 Time complexity: O(N)
