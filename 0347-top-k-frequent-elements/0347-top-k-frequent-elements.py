@@ -4,12 +4,11 @@ import heapq
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         counts = Counter(nums)
-        buckets = [[] for i in range(len(nums) + 1)]
+        buckets = [[] for _ in range(len(nums) + 1)]
         for key, count in counts.items():
             buckets[count].append(key)
-        results = [item for subList in buckets for item in subList]
-        # return results[-k:]
-        return list(reversed(results))[:k]
+        results = [key for bucket in buckets for key in bucket]
+        return results[-k:]
   
 '''
 Time complexity: O(N)
