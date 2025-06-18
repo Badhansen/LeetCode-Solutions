@@ -6,6 +6,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Hash Table
 |  |
 | ------- |
+| [0001-two-sum](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0001-two-sum) |
 | [0146-lru-cache](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0146-lru-cache) |
 ## Linked List
 |  |
@@ -27,4 +28,8 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [1529-max-difference-you-can-get-from-changing-an-integer](https://github.com/Badhansen/LeetCode-Solutions/tree/master/1529-max-difference-you-can-get-from-changing-an-integer) |
+## Array
+|  |
+| ------- |
+| [0001-two-sum](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0001-two-sum) |
 <!---LeetCode Topics End-->
