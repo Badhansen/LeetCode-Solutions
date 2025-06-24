@@ -7,6 +7,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0001-two-sum](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0001-two-sum) |
+| [0076-minimum-window-substring](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0076-minimum-window-substring) |
 | [0146-lru-cache](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0146-lru-cache) |
 ## Linked List
 |  |
@@ -45,6 +46,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## String
 |  |
 | ------- |
+| [0076-minimum-window-substring](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0076-minimum-window-substring) |
 | [0125-valid-palindrome](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0125-valid-palindrome) |
 | [0269-alien-dictionary](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0269-alien-dictionary) |
 ## Depth-First Search
@@ -63,4 +65,8 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0269-alien-dictionary](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0269-alien-dictionary) |
+## Sliding Window
+|  |
+| ------- |
+| [0076-minimum-window-substring](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0076-minimum-window-substring) |
 <!---LeetCode Topics End-->
