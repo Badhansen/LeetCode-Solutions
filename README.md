@@ -17,6 +17,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0146-lru-cache](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0146-lru-cache) |
+| [0295-find-median-from-data-stream](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0295-find-median-from-data-stream) |
 ## Doubly-Linked List
 |  |
 | ------- |
@@ -43,6 +44,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0125-valid-palindrome](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0125-valid-palindrome) |
+| [0295-find-median-from-data-stream](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0295-find-median-from-data-stream) |
 ## String
 |  |
 | ------- |
@@ -73,4 +75,16 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0076-minimum-window-substring](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0076-minimum-window-substring) |
+## Sorting
+|  |
+| ------- |
+| [0295-find-median-from-data-stream](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0295-find-median-from-data-stream) |
+## Heap (Priority Queue)
+|  |
+| ------- |
+| [0295-find-median-from-data-stream](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0295-find-median-from-data-stream) |
+## Data Stream
+|  |
+| ------- |
+| [0295-find-median-from-data-stream](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0295-find-median-from-data-stream) |
 <!---LeetCode Topics End-->
