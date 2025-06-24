@@ -10,10 +10,10 @@ class Solution:
             graph[v].append(u)
         
         # Initialize a queue with courses that have no prerequisites
-        queue = deque()
-        for node in range(numCourses):
-            if indegree[node] == 0:
-                queue.append(node)
+        queue = deque([i for i in range(numCourses) if indegree[i] == 0])
+        # for node in range(numCourses):
+        #     if indegree[node] == 0:
+        #         queue.append(node)
         
         # Process the queue
         done = 0
