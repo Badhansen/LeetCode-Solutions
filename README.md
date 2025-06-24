@@ -29,16 +29,19 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Greedy
 |  |
 | ------- |
+| [0055-jump-game](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0055-jump-game) |
 | [1529-max-difference-you-can-get-from-changing-an-integer](https://github.com/Badhansen/LeetCode-Solutions/tree/master/1529-max-difference-you-can-get-from-changing-an-integer) |
 ## Array
 |  |
 | ------- |
 | [0001-two-sum](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0001-two-sum) |
+| [0055-jump-game](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0055-jump-game) |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0121-best-time-to-buy-and-sell-stock) |
 | [0269-alien-dictionary](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0269-alien-dictionary) |
 ## Dynamic Programming
 |  |
 | ------- |
+| [0055-jump-game](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0055-jump-game) |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0121-best-time-to-buy-and-sell-stock) |
 ## Two Pointers
 |  |
