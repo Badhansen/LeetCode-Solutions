@@ -1,24 +1,22 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        hash = defaultdict(int)
-        for c in t:
-            hash[c] += 1
+        table = Counter(t)
         n, m = len(s), len(t)
-        start, end, maxLen, count = 0, 0, float("inf"), 0
+        left, right, max_len, count = 0, 0, float('inf'), 0
         index = 0
-        while end < n:
-            if s[end] in hash:
-                hash[s[end]] -= 1
-                if hash[s[end]] >= 0:
+        while right < n:
+            if s[right] in table:
+                table[s[right]] -= 1
+                if table[s[right]] >= 0:
                     count += 1
             while count == m:
-                if end - start + 1 < maxLen:
-                    maxLen = end - start + 1
-                    index = start
-                if s[start] in hash:
-                    hash[s[start]] += 1
-                    if hash[s[start]] > 0:
+                if right - left + 1 < max_len:
+                    max_len = right - left + 1
+                    index = left
+                if s[left] in table:
+                    table[s[left]] += 1
+                    if table[s[left]] > 0:
                         count -= 1
-                start += 1
-            end += 1
-        return "" if maxLen == float('inf') else s[index:index+maxLen]
+                left += 1
+            right += 1
+        return "" if max_len == float('inf') else s[index:index + max_len]
