@@ -4,7 +4,6 @@ class Solution:
         for c in s:
             if c.isalpha() or c.isdigit():
                 line += c.lower()
-        print(line)
         return line == line[::-1]
     
 '''
