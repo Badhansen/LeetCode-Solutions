@@ -30,6 +30,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0055-jump-game](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0055-jump-game) |
+| [1478-maximum-number-of-events-that-can-be-attended](https://github.com/Badhansen/LeetCode-Solutions/tree/master/1478-maximum-number-of-events-that-can-be-attended) |
 | [1529-max-difference-you-can-get-from-changing-an-integer](https://github.com/Badhansen/LeetCode-Solutions/tree/master/1529-max-difference-you-can-get-from-changing-an-integer) |
 ## Array
 |  |
@@ -39,6 +40,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0055-jump-game](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0055-jump-game) |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0121-best-time-to-buy-and-sell-stock) |
 | [0269-alien-dictionary](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0269-alien-dictionary) |
+| [1478-maximum-number-of-events-that-can-be-attended](https://github.com/Badhansen/LeetCode-Solutions/tree/master/1478-maximum-number-of-events-that-can-be-attended) |
 ## Dynamic Programming
 |  |
 | ------- |
@@ -83,10 +85,12 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0295-find-median-from-data-stream](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0295-find-median-from-data-stream) |
+| [1478-maximum-number-of-events-that-can-be-attended](https://github.com/Badhansen/LeetCode-Solutions/tree/master/1478-maximum-number-of-events-that-can-be-attended) |
 ## Heap (Priority Queue)
 |  |
 | ------- |
 | [0295-find-median-from-data-stream](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0295-find-median-from-data-stream) |
+| [1478-maximum-number-of-events-that-can-be-attended](https://github.com/Badhansen/LeetCode-Solutions/tree/master/1478-maximum-number-of-events-that-can-be-attended) |
 ## Data Stream
 |  |
 | ------- |
