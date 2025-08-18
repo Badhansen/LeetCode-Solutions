@@ -28,6 +28,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Math
 |  |
 | ------- |
+| [0070-climbing-stairs](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0070-climbing-stairs) |
 | [1529-max-difference-you-can-get-from-changing-an-integer](https://github.com/Badhansen/LeetCode-Solutions/tree/master/1529-max-difference-you-can-get-from-changing-an-integer) |
 ## Greedy
 |  |
@@ -49,6 +50,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0055-jump-game](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0055-jump-game) |
+| [0070-climbing-stairs](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0070-climbing-stairs) |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0121-best-time-to-buy-and-sell-stock) |
 | [0338-counting-bits](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0338-counting-bits) |
 ## Two Pointers
@@ -127,4 +129,8 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0338-counting-bits](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0338-counting-bits) |
+## Memoization
+|  |
+| ------- |
+| [0070-climbing-stairs](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0070-climbing-stairs) |
 <!---LeetCode Topics End-->
