@@ -3,11 +3,16 @@ from collections import defaultdict, Counter
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         anagrams = defaultdict(list)
-        for word in strs:
-            counts = [0] * 26
-            for c in word:
-                counts[ord(c) - ord('a')] += 1
-            anagrams[tuple(counts)].append(word)
+        # for word in strs:
+        #     counts = [0] * 26
+        #     for c in word:
+        #         counts[ord(c) - ord('a')] += 1
+        #     anagrams[tuple(counts)].append(word)
+        for string in strs:
+            temp = "".join(sorted(string))
+            if temp not in anagrams:
+                anagrams[temp] = []
+            anagrams[temp].append(string)
         return list(anagrams.values())  # Convert to list before returning
 '''
 Time complexity: O(N * K), where N is the length of strs, and K is the maximum length of a string in strs.
