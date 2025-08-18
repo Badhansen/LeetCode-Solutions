@@ -44,6 +44,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | ------- |
 | [0001-two-sum](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0001-two-sum) |
 | [0033-search-in-rotated-sorted-array](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0033-search-in-rotated-sorted-array) |
+| [0039-combination-sum](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0039-combination-sum) |
 | [0055-jump-game](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0055-jump-game) |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0121-best-time-to-buy-and-sell-stock) |
 | [0217-contains-duplicate](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0217-contains-duplicate) |
@@ -176,4 +177,8 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0572-subtree-of-another-tree](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0572-subtree-of-another-tree) |
+## Backtracking
+|  |
+| ------- |
+| [0039-combination-sum](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0039-combination-sum) |
 <!---LeetCode Topics End-->
