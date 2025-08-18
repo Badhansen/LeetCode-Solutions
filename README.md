@@ -50,6 +50,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | ------- |
 | [0055-jump-game](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0055-jump-game) |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0121-best-time-to-buy-and-sell-stock) |
+| [0338-counting-bits](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0338-counting-bits) |
 ## Two Pointers
 |  |
 | ------- |
@@ -122,4 +123,8 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0023-merge-k-sorted-lists](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0023-merge-k-sorted-lists) |
+## Bit Manipulation
+|  |
+| ------- |
+| [0338-counting-bits](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0338-counting-bits) |
 <!---LeetCode Topics End-->
