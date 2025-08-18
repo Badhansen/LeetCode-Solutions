@@ -7,6 +7,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0001-two-sum](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0001-two-sum) |
+| [0049-group-anagrams](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0049-group-anagrams) |
 | [0076-minimum-window-substring](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0076-minimum-window-substring) |
 | [0146-lru-cache](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0146-lru-cache) |
 | [0217-contains-duplicate](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0217-contains-duplicate) |
@@ -45,6 +46,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0001-two-sum](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0001-two-sum) |
 | [0033-search-in-rotated-sorted-array](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0033-search-in-rotated-sorted-array) |
 | [0039-combination-sum](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0039-combination-sum) |
+| [0049-group-anagrams](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0049-group-anagrams) |
 | [0055-jump-game](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0055-jump-game) |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0121-best-time-to-buy-and-sell-stock) |
 | [0217-contains-duplicate](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0217-contains-duplicate) |
@@ -68,6 +70,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0020-valid-parentheses](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0020-valid-parentheses) |
+| [0049-group-anagrams](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0049-group-anagrams) |
 | [0076-minimum-window-substring](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0076-minimum-window-substring) |
 | [0125-valid-palindrome](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0125-valid-palindrome) |
 | [0242-valid-anagram](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0242-valid-anagram) |
@@ -107,6 +110,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Sorting
 |  |
 | ------- |
+| [0049-group-anagrams](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0049-group-anagrams) |
 | [0217-contains-duplicate](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0217-contains-duplicate) |
 | [0242-valid-anagram](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0242-valid-anagram) |
 | [0252-meeting-rooms](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0252-meeting-rooms) |
