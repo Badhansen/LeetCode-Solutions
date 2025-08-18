@@ -70,12 +70,14 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0100-same-tree](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0100-same-tree) |
+| [0104-maximum-depth-of-binary-tree](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0104-maximum-depth-of-binary-tree) |
 | [0207-course-schedule](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0207-course-schedule) |
 | [0269-alien-dictionary](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0269-alien-dictionary) |
 ## Breadth-First Search
 |  |
 | ------- |
 | [0100-same-tree](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0100-same-tree) |
+| [0104-maximum-depth-of-binary-tree](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0104-maximum-depth-of-binary-tree) |
 | [0207-course-schedule](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0207-course-schedule) |
 | [0269-alien-dictionary](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0269-alien-dictionary) |
 ## Graph
@@ -139,8 +141,10 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0100-same-tree](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0100-same-tree) |
+| [0104-maximum-depth-of-binary-tree](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0104-maximum-depth-of-binary-tree) |
 ## Binary Tree
 |  |
 | ------- |
 | [0100-same-tree](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0100-same-tree) |
+| [0104-maximum-depth-of-binary-tree](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0104-maximum-depth-of-binary-tree) |
 <!---LeetCode Topics End-->
