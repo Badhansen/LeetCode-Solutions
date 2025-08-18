@@ -9,6 +9,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0001-two-sum](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0001-two-sum) |
 | [0076-minimum-window-substring](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0076-minimum-window-substring) |
 | [0146-lru-cache](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0146-lru-cache) |
+| [0217-contains-duplicate](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0217-contains-duplicate) |
 ## Linked List
 |  |
 | ------- |
@@ -44,6 +45,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0033-search-in-rotated-sorted-array](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0033-search-in-rotated-sorted-array) |
 | [0055-jump-game](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0055-jump-game) |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0121-best-time-to-buy-and-sell-stock) |
+| [0217-contains-duplicate](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0217-contains-duplicate) |
 | [0269-alien-dictionary](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0269-alien-dictionary) |
 | [0271-encode-and-decode-strings](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0271-encode-and-decode-strings) |
 | [1478-maximum-number-of-events-that-can-be-attended](https://github.com/Badhansen/LeetCode-Solutions/tree/master/1478-maximum-number-of-events-that-can-be-attended) |
@@ -98,6 +100,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Sorting
 |  |
 | ------- |
+| [0217-contains-duplicate](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0217-contains-duplicate) |
 | [0295-find-median-from-data-stream](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0295-find-median-from-data-stream) |
 | [1478-maximum-number-of-events-that-can-be-attended](https://github.com/Badhansen/LeetCode-Solutions/tree/master/1478-maximum-number-of-events-that-can-be-attended) |
 ## Heap (Priority Queue)
