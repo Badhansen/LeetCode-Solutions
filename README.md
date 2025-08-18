@@ -125,6 +125,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0023-merge-k-sorted-lists](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0023-merge-k-sorted-lists) |
+| [0190-reverse-bits](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0190-reverse-bits) |
 ## Merge Sort
 |  |
 | ------- |
@@ -132,6 +133,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Bit Manipulation
 |  |
 | ------- |
+| [0190-reverse-bits](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0190-reverse-bits) |
 | [0338-counting-bits](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0338-counting-bits) |
 ## Memoization
 |  |
