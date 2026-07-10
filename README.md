@@ -60,6 +60,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0269-alien-dictionary](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0269-alien-dictionary) |
 | [0271-encode-and-decode-strings](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0271-encode-and-decode-strings) |
 | [1478-maximum-number-of-events-that-can-be-attended](https://github.com/Badhansen/LeetCode-Solutions/tree/master/1478-maximum-number-of-events-that-can-be-attended) |
+| [1514-path-with-maximum-probability](https://github.com/Badhansen/LeetCode-Solutions/tree/master/1514-path-with-maximum-probability) |
 ## Dynamic Programming
 |  |
 | ------- |
@@ -141,6 +142,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0295-find-median-from-data-stream](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0295-find-median-from-data-stream) |
 | [0743-network-delay-time](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0743-network-delay-time) |
 | [1478-maximum-number-of-events-that-can-be-attended](https://github.com/Badhansen/LeetCode-Solutions/tree/master/1478-maximum-number-of-events-that-can-be-attended) |
+| [1514-path-with-maximum-probability](https://github.com/Badhansen/LeetCode-Solutions/tree/master/1514-path-with-maximum-probability) |
 ## Data Stream
 |  |
 | ------- |
@@ -221,8 +223,10 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0743-network-delay-time](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0743-network-delay-time) |
+| [1514-path-with-maximum-probability](https://github.com/Badhansen/LeetCode-Solutions/tree/master/1514-path-with-maximum-probability) |
 ## Shortest Path
 |  |
 | ------- |
 | [0743-network-delay-time](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0743-network-delay-time) |
+| [1514-path-with-maximum-probability](https://github.com/Badhansen/LeetCode-Solutions/tree/master/1514-path-with-maximum-probability) |
 <!---LeetCode Topics End-->
