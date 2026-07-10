@@ -97,6 +97,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0226-invert-binary-tree](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0226-invert-binary-tree) |
 | [0269-alien-dictionary](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0269-alien-dictionary) |
 | [0572-subtree-of-another-tree](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0572-subtree-of-another-tree) |
+| [0743-network-delay-time](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0743-network-delay-time) |
 ## Breadth-First Search
 |  |
 | ------- |
@@ -107,6 +108,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0210-course-schedule-ii](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0210-course-schedule-ii) |
 | [0226-invert-binary-tree](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0226-invert-binary-tree) |
 | [0269-alien-dictionary](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0269-alien-dictionary) |
+| [0743-network-delay-time](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0743-network-delay-time) |
 ## Graph
 |  |
 | ------- |
@@ -137,6 +139,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | ------- |
 | [0023-merge-k-sorted-lists](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0023-merge-k-sorted-lists) |
 | [0295-find-median-from-data-stream](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0295-find-median-from-data-stream) |
+| [0743-network-delay-time](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0743-network-delay-time) |
 | [1478-maximum-number-of-events-that-can-be-attended](https://github.com/Badhansen/LeetCode-Solutions/tree/master/1478-maximum-number-of-events-that-can-be-attended) |
 ## Data Stream
 |  |
@@ -214,4 +217,12 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0208-implement-trie-prefix-tree](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0208-implement-trie-prefix-tree) |
+## Graph Theory
+|  |
+| ------- |
+| [0743-network-delay-time](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0743-network-delay-time) |
+## Shortest Path
+|  |
+| ------- |
+| [0743-network-delay-time](https://github.com/Badhansen/LeetCode-Solutions/tree/master/0743-network-delay-time) |
 <!---LeetCode Topics End-->
