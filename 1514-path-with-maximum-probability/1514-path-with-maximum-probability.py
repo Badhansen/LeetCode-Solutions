@@ -9,10 +9,11 @@ class Solution:
         pq = [(-p[start_node], start_node)]
         while pq:
             prob, curr = heapq.heappop(pq)
+            prob = -prob
             if curr == end_node:
-                return -1 * prob
+                return prob
             for neighbor, index in graph[curr]:
-                if -1 * prob * succProb[index] > p[neighbor]:
-                    p[neighbor] = -1 * prob * succProb[index]
+                if  prob * succProb[index] > p[neighbor]:
+                    p[neighbor] = prob * succProb[index]
                     heapq.heappush(pq, (-1 * p[neighbor], neighbor))
         return 0.0
